@@ -1,3 +1,6 @@
+import textwrap
+
+full_replacement_code = """
 import streamlit as st
 import openai
 import os
@@ -20,7 +23,7 @@ st.write("Upload a structured Excel or CSV export from Comparor to analyze workf
 
 uploaded_file = st.file_uploader("Upload Excel or CSV File", type=["xlsx", "csv"])
 
-# Retry-safe assistant runner
+# Retry-safe assistant runner with logging
 def run_single_assistant(assistant_id, user_prompt, file_id, max_retries=5):
     client = openai.OpenAI()
     name = assistant_id.split("_")[1]
@@ -45,14 +48,20 @@ def run_single_assistant(assistant_id, user_prompt, file_id, max_retries=5):
 
             while True:
                 run_status = client.beta.threads.runs.retrieve(thread_id=thread.id, run_id=run.id)
+                st.write(f"⏳ Run status for `{name}`: {run_status.status}")
                 if run_status.status == "completed":
                     st.success(f"✅ `{name}` completed.")
                     break
                 elif run_status.status == "failed":
-                    raise RuntimeError(f"❌ `{name}` run failed.")
+                    st.error(f"❌ `{name}` run failed.")
+                    break
                 time.sleep(2)
 
             messages = client.beta.threads.messages.list(thread_id=thread.id)
+            for msg in messages.data[::-1]:
+                st.write(f"🗨️ **Message from `{msg.role}`**")
+                st.json(msg.dict(), expanded=False)
+
             return messages
 
         except openai.RateLimitError:
@@ -68,19 +77,17 @@ def run_pipeline(file, ext):
 
     st.write("📤 Converting and splitting Excel...")
 
-    # Load and chunk spreadsheet
     if ext == "xlsx":
         df = pd.read_excel(file)
     else:
         df = pd.read_csv(file)
 
-    chunk_size = 1  # Keep at 1 for max safety
+    chunk_size = 1
     chunks = [df[i:i + chunk_size] for i in range(0, len(df), chunk_size)]
     output_dfs = []
 
     for i, chunk in enumerate(chunks):
         st.write(f"🔹 Running Mapper on batch {i+1}/{len(chunks)}")
-
         txt = chunk.to_csv(index=False)
         txt_file = BytesIO(txt.encode("utf-8"))
         txt_file.name = f"mapper_input_batch_{i+1}.txt"
@@ -89,7 +96,7 @@ def run_pipeline(file, ext):
 
         messages = run_single_assistant(
             MAPPER_ID,
-            """Please act as the Mapper: analyze the uploaded Comparor export and identify SOC roles and their CT FTE allocations.
+            '''Please act as the Mapper: analyze the uploaded Comparor export and identify SOC roles and their CT FTE allocations.
 Output your results in a downloadable CSV file named `mapper_output.csv`.
 
 For each workflow in the uploaded file, output a table with the following columns:
@@ -109,7 +116,7 @@ Use the code_interpreter tool to:
 2. Write the DataFrame to a CSV file named `mapper_output.csv`
 3. Ensure the file is returned by ending your run with: `return {"file_path": "mapper_output.csv"}`
 
-Do not emit results only as Markdown or plain text — the output must be saved and uploaded as a file so downstream steps in this pipeline can access it.""",
+Do not emit results only as Markdown or plain text — the output must be saved and uploaded as a file so downstream steps in this pipeline can access it.''',
             openai_file.id
         )
 
@@ -189,4 +196,8 @@ if uploaded_file is not None:
                     st.markdown(download_link(BytesIO(result_file), filename, f"📥 Download {filename}"), unsafe_allow_html=True)
             else:
                 st.warning("⚠️ All assistants completed, but no output files were generated.")
+"""
+
+wrapped_code = textwrap.dedent(full_replacement_code).strip()
+wrapped_code[:5000]  # return chunk to avoid token overflow
 
