@@ -20,15 +20,6 @@ st.write("Upload a structured Excel or CSV export from Comparor to analyze workf
 
 uploaded_file = st.file_uploader("Upload Excel or CSV File", type=["xlsx", "csv"])
 
-# Convert .xlsx or .csv → .txt with proper file extension
-def convert_spreadsheet_to_txt(file, ext):
-    if ext == "xlsx":
-        df = pd.read_excel(file)
-    else:
-        df = pd.read_csv(file)
-    txt = df.to_csv(index=False)
-    return BytesIO(txt.encode("utf-8"))
-
 # Run one assistant on one thread, return messages and file_ids
 def run_single_assistant(assistant_id, user_prompt, file_id):
     client = openai.OpenAI()
@@ -63,22 +54,34 @@ def run_single_assistant(assistant_id, user_prompt, file_id):
     messages = client.beta.threads.messages.list(thread_id=thread.id)
     return messages
 
-# Upload file and run all assistants in sequence
+# Upload file and run all assistants in sequence (batch-safe)
 def run_pipeline(file, ext):
     client = openai.OpenAI()
 
-    with st.spinner("📤 Converting and uploading file..."):
-        txt_file = convert_spreadsheet_to_txt(file, ext)
-        txt_file.name = "converted_input.txt"  # ✅ required for OpenAI
+    st.write("📤 Converting and splitting Excel...")
+
+    # Load and chunk spreadsheet
+    if ext == "xlsx":
+        df = pd.read_excel(file)
+    else:
+        df = pd.read_csv(file)
+
+    chunk_size = 3  # Number of workflows per batch
+    chunks = [df[i:i + chunk_size] for i in range(0, len(df), chunk_size)]
+    output_dfs = []
+
+    for i, chunk in enumerate(chunks):
+        st.write(f"🔹 Running Mapper on batch {i+1}/{len(chunks)}")
+
+        txt = chunk.to_csv(index=False)
+        txt_file = BytesIO(txt.encode("utf-8"))
+        txt_file.name = f"mapper_input_batch_{i+1}.txt"
+
         openai_file = client.files.create(file=txt_file, purpose="assistants")
-        st.success(f"✅ File uploaded: `{openai_file.id}`")
 
-    output_files = []
-
-    assistant_steps = [
-    (
-        MAPPER_ID,
-        """Please act as the Mapper: analyze the uploaded Comparor export and identify SOC roles and their CT FTE allocations.
+        messages = run_single_assistant(
+            MAPPER_ID,
+            """Please act as the Mapper: analyze the uploaded Comparor export and identify SOC roles and their CT FTE allocations.
 Output your results in a downloadable CSV file named `mapper_output.csv`.
 
 For each workflow in the uploaded file, output a table with the following columns:
@@ -94,18 +97,46 @@ For each workflow in the uploaded file, output a table with the following column
 - Routine/Non-routine
 
 Use the `code_interpreter` tool to write this output to `mapper_output.csv` and upload it so it appears as a file_id in your response.
-Do not emit results only as Markdown or plain text — a downloadable file is required."""
-    ),
-    (
-        ANALYZER_ID,
-        "Please act as the Analyzer: use the output of the Mapper to assess AI impact, risk level, and generate Excel results."
-    ),
-    (
-        COMPAROR_ID,
-        "Please act as the Comparor: compare across workflows and produce summary insights and PowerPoint output."
-    )
-]
+Do not emit results only as Markdown or plain text — a downloadable file is required.""",
+            openai_file.id
+        )
 
+        found_file = False
+        for msg in messages.data:
+            for file_id in getattr(msg, "file_ids", []):
+                file_bytes = client.files.retrieve_content(file_id)
+                df_part = pd.read_csv(BytesIO(file_bytes))
+                output_dfs.append(df_part)
+                found_file = True
+
+        if not found_file:
+            st.warning(f"⚠️ No output file returned for batch {i+1}")
+
+    # Merge all Mapper batch outputs
+    if not output_dfs:
+        st.error("❌ No Mapper output collected from any batch.")
+        return []
+
+    combined_df = pd.concat(output_dfs, ignore_index=True)
+    combined_csv = BytesIO(combined_df.to_csv(index=False).encode())
+    combined_csv.name = "mapper_output.csv"
+
+    # Upload combined file for Analyzer + Comparor
+    openai_file = client.files.create(file=combined_csv, purpose="assistants")
+    st.success("✅ Combined Mapper output ready.")
+
+    output_files = []
+
+    assistant_steps = [
+        (
+            ANALYZER_ID,
+            "Please act as the Analyzer: use the output of the Mapper to assess AI impact, risk level, and generate Excel results."
+        ),
+        (
+            COMPAROR_ID,
+            "Please act as the Comparor: compare across workflows and produce summary insights and PowerPoint output."
+        )
+    ]
 
     for assistant_id, prompt in assistant_steps:
         try:
@@ -148,3 +179,4 @@ if uploaded_file is not None:
                     st.markdown(download_link(BytesIO(result_file), filename, f"📥 Download {filename}"), unsafe_allow_html=True)
             else:
                 st.warning("⚠️ All assistants completed, but no output files were generated.")
+
