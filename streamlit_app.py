@@ -1,3 +1,6 @@
+from pathlib import Path
+
+corrected_code = """
 import streamlit as st
 import openai
 import os
@@ -52,20 +55,13 @@ def run_single_assistant(assistant_id, user_prompt, file_id, max_retries=5):
 
                 elif run_status.status == "failed":
                     st.error(f"❌ `{name}` run failed.")
-
-                    # DEBUG: Show assistant's reply before raising error
                     messages = client.beta.threads.messages.list(thread_id=thread.id)
                     st.write(f"📨 `{name}` last message contents:")
                     for msg in messages.data:
                         st.json(msg.dict())
-
                     raise RuntimeError(f"❌ `{name}` run failed.")
-
-                # Sleep only if still queued/in_progress
                 time.sleep(2)
 
-
-            # Log all messages
             messages = client.beta.threads.messages.list(thread_id=thread.id)
             for msg in messages.data[::-1]:
                 st.write(f"🗨️ **Message from `{msg.role}`**")
@@ -79,37 +75,32 @@ def run_single_assistant(assistant_id, user_prompt, file_id, max_retries=5):
             time.sleep(wait_seconds)
 
     raise RuntimeError(f"❌ `{name}` run failed after {max_retries} retries.")
-# Main processing pipeline
-# Main processing pipeline
+
 def run_pipeline(file, ext):
     client = openai.OpenAI()
     st.write("📤 Converting and splitting Excel...")
 
-    # Load and chunk spreadsheet
     if ext == "xlsx":
         df = pd.read_excel(file)
     else:
         df = pd.read_csv(file)
 
-    chunk_size = 1  # Use 1 for now to stay under token limits
+    chunk_size = 1
     chunks = [df[i:i + chunk_size] for i in range(0, len(df), chunk_size)]
     output_dfs = []
 
     for i, chunk in enumerate(chunks):
         st.write(f"🔹 Running Mapper on batch {i+1}/{len(chunks)}")
-
         txt = chunk.to_csv(index=False)
         txt_file = BytesIO(txt.encode("utf-8"))
         txt_file.name = f"mapper_input_batch_{i+1}.txt"
-
         openai_file = client.files.create(file=txt_file, purpose="assistants")
 
-       messages = run_single_assistant(
+        messages = run_single_assistant(
             MAPPER_ID,
-            "Run the instructions in your system prompt only."
+            "Run the instructions in your system prompt only.",
+            openai_file.id
         )
-
-
 
         found_file = False
         for msg in messages.data:
@@ -169,13 +160,11 @@ def run_pipeline(file, ext):
 
     return output_files
 
-# Download link helper
 def download_link(file_bytes, filename, label):
     b64 = base64.b64encode(file_bytes.read()).decode()
     href = f'<a href="data:application/octet-stream;base64,{b64}" download="{filename}">{label}</a>'
     return href
 
-# UI logic
 if uploaded_file is not None:
     ext = uploaded_file.name.split(".")[-1].lower()
     if ext not in ["xlsx", "csv"]:
@@ -194,3 +183,10 @@ if uploaded_file is not None:
                     st.markdown(download_link(BytesIO(result_file), filename, f"📥 Download {filename}"), unsafe_allow_html=True)
             else:
                 st.warning("⚠️ All assistants completed, but no output files were generated.")
+"""
+
+final_path = "/mnt/data/ct_ai_impact_analyzer_FIXED_FULL.py"
+Path(final_path).write_text(corrected_code)
+
+final_path
+
