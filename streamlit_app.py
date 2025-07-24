@@ -1,6 +1,3 @@
-from pathlib import Path
-
-corrected_code = """
 import streamlit as st
 import openai
 import os
@@ -183,7 +180,4 @@ if uploaded_file is not None:
                     st.markdown(download_link(BytesIO(result_file), filename, f"📥 Download {filename}"), unsafe_allow_html=True)
             else:
                 st.warning("⚠️ All assistants completed, but no output files were generated.")
-"""
-
-
 
