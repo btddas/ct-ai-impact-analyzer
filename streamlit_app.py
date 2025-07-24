@@ -7,7 +7,7 @@ from io import BytesIO
 import pandas as pd
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
-# Set your OpenAI API key
+# Set OpenAI API key
 openai.api_key = st.secrets["OPENAI_API_KEY"]
 
 # Assistant IDs
@@ -21,10 +21,14 @@ st.write("Upload a structured Excel or CSV export from Comparor to analyze workf
 
 uploaded_file = st.file_uploader("Upload Excel or CSV File", type=["xlsx", "csv"])
 
-def convert_excel_to_csv(file):
-    df = pd.read_excel(file)
-    csv_bytes = df.to_csv(index=False).encode("utf-8")
-    return BytesIO(csv_bytes)
+# ✅ Converts any spreadsheet file into a plain .txt (CSV-style)
+def convert_spreadsheet_to_txt(file, ext):
+    if ext == "xlsx":
+        df = pd.read_excel(file)
+    else:
+        df = pd.read_csv(file)
+    txt = df.to_csv(index=False)
+    return BytesIO(txt.encode("utf-8"))
 
 def run_single_assistant(assistant_id, openai_file_id):
     client = openai.OpenAI()
@@ -32,11 +36,10 @@ def run_single_assistant(assistant_id, openai_file_id):
     thread = client.beta.threads.create()
     st.write(f"📌 `{assistant_name}` thread ID: `{thread.id}`")
 
-    # Correct file attachment format as of July 2025
     client.beta.threads.messages.create(
         thread_id=thread.id,
         role="user",
-        content=f"Run `{assistant_name}` analysis on the uploaded file.",
+        content=f"Run `{assistant_name}` analysis on uploaded file.",
         attachments=[{"file_id": openai_file_id, "tools": [{"type": "file_search"}]}]
     )
 
@@ -64,14 +67,13 @@ def run_single_assistant(assistant_id, openai_file_id):
 
     return assistant_name, output_files
 
-def run_pipeline(file, filetype):
+def run_pipeline(file, ext):
     client = openai.OpenAI()
 
-    with st.spinner("📤 Uploading file to OpenAI..."):
-        if filetype == "xlsx":
-            file = convert_excel_to_csv(file)
-        openai_file = client.files.create(file=file, purpose="assistants")
-        st.success(f"✅ File uploaded: `{openai_file.id}`")
+    with st.spinner("📤 Converting and uploading file to OpenAI..."):
+        converted_txt = convert_spreadsheet_to_txt(file, ext)
+        openai_file = client.files.create(file=converted_txt, purpose="assistants")
+        st.success(f"✅ File uploaded as .txt: `{openai_file.id}`")
 
     assistant_ids = [MAPPER_ID, ANALYZER_ID, COMPAROR_ID]
     results = {}
