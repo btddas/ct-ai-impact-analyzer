@@ -104,7 +104,11 @@ def run_pipeline(file, ext):
 
         openai_file = client.files.create(file=txt_file, purpose="assistants")
 
-       "Run the instructions in your system prompt only."
+       messages = run_single_assistant(
+            MAPPER_ID,
+            "Run the instructions in your system prompt only."
+        )
+
 
 
         found_file = False
