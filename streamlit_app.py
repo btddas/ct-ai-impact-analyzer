@@ -12,6 +12,7 @@ MAPPER_ID = "asst_ICb5UuKQmufzyx2lRaEE1CBA"
 ANALYZER_ID = "asst_cRFnnCxMFqwhoVgFpiemOgIY"
 COMPAROR_ID = "asst_RXgfmnQ2wHxIcFwtSiUYSbKR"
 
+st.set_page_config(page_title="CT AI Impact Analyzer", layout="wide")
 st.title("CT AI Impact Analyzer")
 st.markdown("Upload a structured Excel export from Comparor to analyze workforce AI impact.")
 
@@ -25,8 +26,26 @@ def run_gpt_pipeline(file):
 
     def run_assistant_pipeline(assistant_id, file_id):
         thread = client.beta.threads.create()
-        client.beta.threads.messages.create(thread_id=thread.id, role="user", file_ids=[file_id], content="Process this file.")
-        run = client.beta.threads.runs.create(thread_id=thread.id, assistant_id=assistant_id)
+
+        client.beta.threads.messages.create(
+            thread_id=thread.id,
+            role="user",
+            content=[
+                {
+                    "type": "text",
+                    "text": "Please process this Excel file."
+                },
+                {
+                    "type": "file",
+                    "file_id": file_id
+                }
+            ]
+        )
+
+        run = client.beta.threads.runs.create(
+            thread_id=thread.id,
+            assistant_id=assistant_id
+        )
 
         while True:
             run = client.beta.threads.runs.retrieve(thread_id=thread.id, run_id=run.id)
@@ -83,3 +102,5 @@ if uploaded_file is not None:
 
         except Exception as e:
             st.error(f"Something went wrong: {str(e)}")
+else:
+    st.info("Please upload a valid Excel file (.xlsx) to begin.")
