@@ -10,7 +10,7 @@ import pandas as pd
 openai.api_key = st.secrets["OPENAI_API_KEY"]
 
 # Assistant IDs
-MAPPER_ID = "asst_ICb5UuKQmufzyx2lRaEE1CBA"
+MAPPER_ID = "asst_LjpOZTM7VQWPnUKSYt2U3zyb"
 ANALYZER_ID = "asst_cRFnnCxMFqwhoVgFpiemOgIY"
 COMPAROR_ID = "asst_RXgfmnQ2wHxIcFwtSiUYSbKR"
 
