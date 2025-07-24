@@ -76,10 +76,36 @@ def run_pipeline(file, ext):
     output_files = []
 
     assistant_steps = [
-        (MAPPER_ID, "Please act as the Mapper: analyze the uploaded Comparor export and identify SOC roles and their CT FTE allocations."),
-        (ANALYZER_ID, "Please act as the Analyzer: use the output of the Mapper to assess AI impact, risk level, and generate Excel results."),
-        (COMPAROR_ID, "Please act as the Comparor: compare across workflows and produce summary insights and PowerPoint output.")
-    ]
+    (
+        MAPPER_ID,
+        """Please act as the Mapper: analyze the uploaded Comparor export and identify SOC roles and their CT FTE allocations.
+Output your results in a downloadable CSV file named `mapper_output.csv`.
+
+For each workflow in the uploaded file, output a table with the following columns:
+- SOC Code
+- SOC Title
+- % of SOCs Participating in Workflow
+- % of Participating SOC’s Time Spent on this Workflow
+- % Share of Total Workflow Time
+- CT FTEs (Total for that SOC)
+- CT FTEs Assigned to this Workflow
+- EZ Zone
+- Cognitive/Manual
+- Routine/Non-routine
+
+Use the `code_interpreter` tool to write this output to `mapper_output.csv` and upload it so it appears as a file_id in your response.
+Do not emit results only as Markdown or plain text — a downloadable file is required."""
+    ),
+    (
+        ANALYZER_ID,
+        "Please act as the Analyzer: use the output of the Mapper to assess AI impact, risk level, and generate Excel results."
+    ),
+    (
+        COMPAROR_ID,
+        "Please act as the Comparor: compare across workflows and produce summary insights and PowerPoint output."
+    )
+]
+
 
     for assistant_id, prompt in assistant_steps:
         try:
