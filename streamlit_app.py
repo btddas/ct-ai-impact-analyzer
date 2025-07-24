@@ -27,32 +27,32 @@ def run_single_assistant(assistant_id, openai_file_id):
     thread = client.beta.threads.create()
     st.write(f"📌 `{assistant_name}` thread ID: `{thread.id}`")
 
-    # Attach file to thread via message
+    # ✅ Attach the file using the correct attachments format
     client.beta.threads.messages.create(
         thread_id=thread.id,
         role="user",
         content=f"Run `{assistant_name}` analysis on the uploaded file.",
-        file_ids=[openai_file_id]
+        attachments=[{"file_id": openai_file_id, "tools": [{"type": "file_search"}]}]
     )
 
-    # Start run
+    # Create the run
     run = client.beta.threads.runs.create(
         thread_id=thread.id,
         assistant_id=assistant_id
     )
     st.write(f"▶️ `{assistant_name}` run ID: `{run.id}`")
 
-    # Wait for completion
+    # Wait for run completion
     while True:
         run_status = client.beta.threads.runs.retrieve(thread_id=thread.id, run_id=run.id)
         if run_status.status == "completed":
             st.success(f"✅ `{assistant_name}` completed.")
             break
         elif run_status.status == "failed":
-            raise RuntimeError(f"{assistant_name} failed.")
+            raise RuntimeError(f"❌ {assistant_name} failed.")
         time.sleep(2)
 
-    # Retrieve messages and any file outputs
+    # Retrieve final messages and downloadable files
     messages = client.beta.threads.messages.list(thread_id=thread.id)
     output_files = []
     for msg in messages.data:
@@ -84,7 +84,7 @@ def run_pipeline(file):
             except Exception as e:
                 st.error(f"❌ Error in `{futures[future]}`: {e}")
 
-    # Flatten output files from all assistants
+    # Combine outputs from all assistants
     all_outputs = []
     for name in ["MAPPER", "ANALYZER", "COMPAROR"]:
         if name in results:
@@ -110,3 +110,4 @@ if uploaded_file is not None:
                 st.markdown(download_link(BytesIO(result_file), filename, f"📥 Download {filename}"), unsafe_allow_html=True)
         else:
             st.warning("⚠️ No output files generated.")
+
