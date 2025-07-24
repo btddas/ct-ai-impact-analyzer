@@ -45,20 +45,25 @@ def run_single_assistant(assistant_id, user_prompt, file_id, max_retries=5):
 
             while True:
                 run_status = client.beta.threads.runs.retrieve(thread_id=thread.id, run_id=run.id)
-                st.write(f"⏳ Run status for `{name}`: {run_status.status}")
+
                 if run_status.status == "completed":
                     st.success(f"✅ `{name}` completed.")
                     break
-                              elif run_status.status == "failed":
-                                st.error(f"❌ `{name}` run failed.")
-                                # DEBUG: Show assistant's reply before raising error
-                                messages = client.beta.threads.messages.list(thread_id=thread.id)
-                                st.write(f"📨 `{name}` last message contents:")
-                                for msg in messages.data:
-                                st.json(msg.dict())
-                                raise RuntimeError(f"❌ `{name}` run failed.")
-                    break
-                time.sleep(2)
+
+                elif run_status.status == "failed":
+                    st.error(f"❌ `{name}` run failed.")
+
+                    # DEBUG: Show assistant's reply before raising error
+                    messages = client.beta.threads.messages.list(thread_id=thread.id)
+                    st.write(f"📨 `{name}` last message contents:")
+                    for msg in messages.data:
+                    st.json(msg.dict())
+
+                    raise RuntimeError(f"❌ `{name}` run failed.")
+
+                # Sleep only if still queued/in_progress
+               time.sleep(2)
+
 
             # Log all messages
             messages = client.beta.threads.messages.list(thread_id=thread.id)
