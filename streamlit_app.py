@@ -20,15 +20,14 @@ st.write("Upload a structured Excel or CSV export from Comparor to analyze workf
 
 uploaded_file = st.file_uploader("Upload Excel or CSV File", type=["xlsx", "csv"])
 
-# Run one assistant on one thread, return messages and file_ids
-def run_single_assistant(assistant_id, user_prompt, file_id):
+# Retry-safe assistant runner
+def run_single_assistant(assistant_id, user_prompt, file_id, max_retries=5):
     client = openai.OpenAI()
     name = assistant_id.split("_")[1]
 
     thread = client.beta.threads.create()
     st.write(f"🧵 `{name}` thread ID: `{thread.id}`")
 
-    # Send message + file attachment
     client.beta.threads.messages.create(
         thread_id=thread.id,
         role="user",
@@ -36,25 +35,34 @@ def run_single_assistant(assistant_id, user_prompt, file_id):
         attachments=[{"file_id": file_id, "tools": [{"type": "file_search"}]}]
     )
 
-    run = client.beta.threads.runs.create(
-        thread_id=thread.id,
-        assistant_id=assistant_id
-    )
-    st.write(f"▶️ `{name}` run ID: `{run.id}`")
+    for attempt in range(max_retries):
+        try:
+            run = client.beta.threads.runs.create(
+                thread_id=thread.id,
+                assistant_id=assistant_id
+            )
+            st.write(f"▶️ `{name}` run ID: `{run.id}`")
 
-    while True:
-        run_status = client.beta.threads.runs.retrieve(thread_id=thread.id, run_id=run.id)
-        if run_status.status == "completed":
-            st.success(f"✅ `{name}` completed.")
-            break
-        elif run_status.status == "failed":
-            raise RuntimeError(f"❌ `{name}` run failed.")
-        time.sleep(2)
+            while True:
+                run_status = client.beta.threads.runs.retrieve(thread_id=thread.id, run_id=run.id)
+                if run_status.status == "completed":
+                    st.success(f"✅ `{name}` completed.")
+                    break
+                elif run_status.status == "failed":
+                    raise RuntimeError(f"❌ `{name}` run failed.")
+                time.sleep(2)
 
-    messages = client.beta.threads.messages.list(thread_id=thread.id)
-    return messages
+            messages = client.beta.threads.messages.list(thread_id=thread.id)
+            return messages
 
-# Upload file and run all assistants in sequence (batch-safe)
+        except openai.RateLimitError:
+            wait_seconds = 10 * (attempt + 1)
+            st.warning(f"⚠️ Rate limit hit. Retrying in {wait_seconds} seconds... (Attempt {attempt+1}/{max_retries})")
+            time.sleep(wait_seconds)
+
+    raise RuntimeError(f"❌ `{name}` run failed after {max_retries} retries.")
+
+# Main processing pipeline
 def run_pipeline(file, ext):
     client = openai.OpenAI()
 
@@ -66,7 +74,7 @@ def run_pipeline(file, ext):
     else:
         df = pd.read_csv(file)
 
-    chunk_size = 3  # Number of workflows per batch
+    chunk_size = 1  # Keep at 1 for max safety
     chunks = [df[i:i + chunk_size] for i in range(0, len(df), chunk_size)]
     output_dfs = []
 
@@ -81,7 +89,7 @@ def run_pipeline(file, ext):
 
         messages = run_single_assistant(
             MAPPER_ID,
-"""Please act as the Mapper: analyze the uploaded Comparor export and identify SOC roles and their CT FTE allocations.
+            """Please act as the Mapper: analyze the uploaded Comparor export and identify SOC roles and their CT FTE allocations.
 Output your results in a downloadable CSV file named `mapper_output.csv`.
 
 For each workflow in the uploaded file, output a table with the following columns:
@@ -96,13 +104,13 @@ For each workflow in the uploaded file, output a table with the following column
 - Cognitive/Manual
 - Routine/Non-routine
 
-Use the `code_interpreter` tool to:
+Use the code_interpreter tool to:
 1. Create the output as a pandas DataFrame
 2. Write the DataFrame to a CSV file named `mapper_output.csv`
 3. Ensure the file is returned by ending your run with: `return {"file_path": "mapper_output.csv"}`
 
 Do not emit results only as Markdown or plain text — the output must be saved and uploaded as a file so downstream steps in this pipeline can access it.""",
-openai_file.id
+            openai_file.id
         )
 
         found_file = False
@@ -116,7 +124,6 @@ openai_file.id
         if not found_file:
             st.warning(f"⚠️ No output file returned for batch {i+1}")
 
-    # Merge all Mapper batch outputs
     if not output_dfs:
         st.error("❌ No Mapper output collected from any batch.")
         return []
@@ -125,7 +132,6 @@ openai_file.id
     combined_csv = BytesIO(combined_df.to_csv(index=False).encode())
     combined_csv.name = "mapper_output.csv"
 
-    # Upload combined file for Analyzer + Comparor
     openai_file = client.files.create(file=combined_csv, purpose="assistants")
     st.success("✅ Combined Mapper output ready.")
 
@@ -158,13 +164,13 @@ openai_file.id
 
     return output_files
 
-# Convert bytes to downloadable link
+# Download link helper
 def download_link(file_bytes, filename, label):
     b64 = base64.b64encode(file_bytes.read()).decode()
     href = f'<a href="data:application/octet-stream;base64,{b64}" download="{filename}">{label}</a>'
     return href
 
-# Main UI logic
+# UI logic
 if uploaded_file is not None:
     ext = uploaded_file.name.split(".")[-1].lower()
     if ext not in ["xlsx", "csv"]:
