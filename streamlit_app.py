@@ -21,7 +21,7 @@ st.write("Upload a structured Excel or CSV export from Comparor to analyze workf
 
 uploaded_file = st.file_uploader("Upload Excel or CSV File", type=["xlsx", "csv"])
 
-# ✅ Converts any spreadsheet file into a plain .txt (CSV-style)
+# ✅ Convert to text-based .csv and wrap in .txt for OpenAI compatibility
 def convert_spreadsheet_to_txt(file, ext):
     if ext == "xlsx":
         df = pd.read_excel(file)
@@ -30,6 +30,7 @@ def convert_spreadsheet_to_txt(file, ext):
     txt = df.to_csv(index=False)
     return BytesIO(txt.encode("utf-8"))
 
+# Run a single assistant thread
 def run_single_assistant(assistant_id, openai_file_id):
     client = openai.OpenAI()
     assistant_name = assistant_id.split("_")[1]
@@ -67,11 +68,13 @@ def run_single_assistant(assistant_id, openai_file_id):
 
     return assistant_name, output_files
 
+# Run the full 3-assistant pipeline
 def run_pipeline(file, ext):
     client = openai.OpenAI()
 
     with st.spinner("📤 Converting and uploading file to OpenAI..."):
         converted_txt = convert_spreadsheet_to_txt(file, ext)
+        converted_txt.name = "converted_input.txt"  # ✅ critical fix
         openai_file = client.files.create(file=converted_txt, purpose="assistants")
         st.success(f"✅ File uploaded as .txt: `{openai_file.id}`")
 
@@ -95,11 +98,13 @@ def run_pipeline(file, ext):
             all_outputs.extend(results[name])
     return all_outputs
 
+# Generate download links
 def download_link(file_bytes, filename, label):
     b64 = base64.b64encode(file_bytes.read()).decode()
     href = f'<a href="data:application/octet-stream;base64,{b64}" download="{filename}">{label}</a>'
     return href
 
+# Main app logic
 if uploaded_file is not None:
     ext = uploaded_file.name.split(".")[-1].lower()
     if ext not in ["xlsx", "csv"]:
@@ -118,4 +123,3 @@ if uploaded_file is not None:
                     st.markdown(download_link(BytesIO(result_file), filename, f"📥 Download {filename}"), unsafe_allow_html=True)
             else:
                 st.warning("⚠️ No output files generated.")
-
