@@ -81,7 +81,7 @@ def run_pipeline(file, ext):
 
         messages = run_single_assistant(
             MAPPER_ID,
-            """Please act as the Mapper: analyze the uploaded Comparor export and identify SOC roles and their CT FTE allocations.
+"""Please act as the Mapper: analyze the uploaded Comparor export and identify SOC roles and their CT FTE allocations.
 Output your results in a downloadable CSV file named `mapper_output.csv`.
 
 For each workflow in the uploaded file, output a table with the following columns:
@@ -96,10 +96,14 @@ For each workflow in the uploaded file, output a table with the following column
 - Cognitive/Manual
 - Routine/Non-routine
 
-Use the `code_interpreter` tool to write this output to `mapper_output.csv` and upload it so it appears as a file_id in your response.
-Do not emit results only as Markdown or plain text — a downloadable file is required.""",
-            openai_file.id
-        )
+Use the `code_interpreter` tool to:
+1. Create the output as a pandas DataFrame
+2. Write the DataFrame to a CSV file named `mapper_output.csv`
+3. Ensure the file is returned by ending your run with: `return {"file_path": "mapper_output.csv"}`
+
+Do not emit results only as Markdown or plain text — the output must be saved and uploaded as a file so downstream steps in this pipeline can access it.""",
+openai_file.id
+
 
         found_file = False
         for msg in messages.data:
