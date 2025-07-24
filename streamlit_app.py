@@ -103,7 +103,7 @@ Use the `code_interpreter` tool to:
 
 Do not emit results only as Markdown or plain text — the output must be saved and uploaded as a file so downstream steps in this pipeline can access it.""",
 openai_file.id
-
+        )
 
         found_file = False
         for msg in messages.data:
