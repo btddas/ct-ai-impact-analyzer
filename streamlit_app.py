@@ -62,7 +62,7 @@ def run_single_assistant(assistant_id, user_prompt, file_id, max_retries=5):
                     raise RuntimeError(f"❌ `{name}` run failed.")
 
                 # Sleep only if still queued/in_progress
-               time.sleep(2)
+                time.sleep(2)
 
 
             # Log all messages
