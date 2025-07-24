@@ -12,7 +12,6 @@ MAPPER_ID = "asst_ICb5UuKQmufzyx2lRaEE1CBA"
 ANALYZER_ID = "asst_cRFnnCxMFqwhoVgFpiemOgIY"
 COMPAROR_ID = "asst_RXgfmnQ2wHxIcFwtSiUYSbKR"
 
-st.set_page_config(page_title="CT AI Impact Analyzer", layout="wide")
 st.title("CT AI Impact Analyzer")
 st.markdown("Upload a structured Excel export from Comparor to analyze workforce AI impact.")
 
@@ -27,25 +26,15 @@ def run_gpt_pipeline(file):
     def run_assistant_pipeline(assistant_id, file_id):
         thread = client.beta.threads.create()
 
+        # Corrected: use attachments, not file_ids or file content directly
         client.beta.threads.messages.create(
             thread_id=thread.id,
             role="user",
-            content=[
-                {
-                    "type": "text",
-                    "text": "Please process this Excel file."
-                },
-                {
-                    "type": "file",
-                    "file_id": file_id
-                }
-            ]
+            content="Process this file.",
+            attachments=[{"file_id": file_id, "tools": [{"type": "code_interpreter"}]}]
         )
 
-        run = client.beta.threads.runs.create(
-            thread_id=thread.id,
-            assistant_id=assistant_id
-        )
+        run = client.beta.threads.runs.create(thread_id=thread.id, assistant_id=assistant_id)
 
         while True:
             run = client.beta.threads.runs.retrieve(thread_id=thread.id, run_id=run.id)
@@ -73,7 +62,7 @@ def run_gpt_pipeline(file):
     # Step 5: Retrieve attachments (PPT + Excel)
     file_ids = []
     for msg in messages.data:
-        if msg.file_ids:
+        if hasattr(msg, "file_ids") and msg.file_ids:
             file_ids.extend(msg.file_ids)
 
     downloaded_files = []
@@ -102,5 +91,3 @@ if uploaded_file is not None:
 
         except Exception as e:
             st.error(f"Something went wrong: {str(e)}")
-else:
-    st.info("Please upload a valid Excel file (.xlsx) to begin.")
