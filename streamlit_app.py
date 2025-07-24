@@ -57,7 +57,7 @@ def run_single_assistant(assistant_id, user_prompt, file_id, max_retries=5):
                     messages = client.beta.threads.messages.list(thread_id=thread.id)
                     st.write(f"📨 `{name}` last message contents:")
                     for msg in messages.data:
-                    st.json(msg.dict())
+                        st.json(msg.dict())
 
                     raise RuntimeError(f"❌ `{name}` run failed.")
 
