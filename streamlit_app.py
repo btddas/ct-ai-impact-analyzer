@@ -185,8 +185,5 @@ if uploaded_file is not None:
                 st.warning("⚠️ All assistants completed, but no output files were generated.")
 """
 
-final_path = "/mnt/data/ct_ai_impact_analyzer_FIXED_FULL.py"
-Path(final_path).write_text(corrected_code)
 
-final_path
 
