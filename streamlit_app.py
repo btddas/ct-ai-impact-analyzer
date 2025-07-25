@@ -32,8 +32,12 @@ def run_single_assistant(assistant_id, user_prompt, file_id, tools=None, max_ret
         thread_id=thread.id,
         role="user",
         content=user_prompt,
-        attachments=[{"file_id": file_id, "tools": tools or [{"type": "file_search"}]}]
+        attachments=[{
+            "file_id": file_id,
+            "tools": tools or [{"type": "file_search"}]
+        }]
     )
+
 
 
     for attempt in range(max_retries):
