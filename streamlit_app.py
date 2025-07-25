@@ -28,7 +28,7 @@ def run_single_assistant(assistant_id, user_prompt, file_id, tools=None, max_ret
     thread = client.beta.threads.create()
     st.write(f"🧵 `{name}` thread ID: `{thread.id}`")
 
-   client.beta.threads.messages.create(
+    client.beta.threads.messages.create(
         thread_id=thread.id,
         role="user",
         content=user_prompt,
