@@ -110,15 +110,15 @@ def run_pipeline(file, ext):
         if hasattr(msg, "tool_calls"):
             for call in msg.tool_calls:
                 if call.type == "code_interpreter":
-                    file_id = call.code_interpreter.outputs[0].file_id
-                    try:
-                        file_bytes = client.files.retrieve_content(file_id)
-                        df_part = pd.read_csv(BytesIO(file_bytes))
-                        output_dfs.append(df_part)
-                        found_file = True
-                    except Exception as e:
-                        st.error(f"⚠️ Failed to read file from code interpreter `{file_id}`: {e}")
-
+                    args = call.function.arguments
+                    if "file_path" in args:
+                        try:
+                            file_bytes = client.files.retrieve_content(args["file_path"])
+                            df_part = pd.read_csv(BytesIO(file_bytes))
+                            output_dfs.append(df_part)
+                            found_file = True
+                        except Exception as e:
+                            st.error(f"⚠️ Failed to read returned file `{args['file_path']}`: {e}")
 
         if not found_file:
             st.warning(f"⚠️ No output file returned for batch {i+1}")
