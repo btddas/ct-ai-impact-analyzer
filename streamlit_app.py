@@ -98,30 +98,31 @@ def run_pipeline(file, ext):
         txt_file.name = f"mapper_input_batch_{i+1}.txt"
         openai_file = client.files.create(file=txt_file, purpose="assistants")
 
-    messages = run_single_assistant(
-        MAPPER_ID,
-        "Run the instructions in your system prompt only.",
-        openai_file.id,
-        tools=[{"type": "file_search"}]
-    )
+        messages = run_single_assistant(
+            MAPPER_ID,
+            "Run the instructions in your system prompt only.",
+            openai_file.id,
+            tools=[{"type": "code_interpreter"}]
+        )
 
-    found_file = False
-    for msg in messages.data:
-        if hasattr(msg, "tool_calls"):
-            for call in msg.tool_calls:
-                if call.type == "code_interpreter":
-                    args = call.function.arguments
-                    if "file_path" in args:
-                        try:
-                            file_bytes = client.files.retrieve_content(args["file_path"])
-                            df_part = pd.read_csv(BytesIO(file_bytes))
-                            output_dfs.append(df_part)
-                            found_file = True
-                        except Exception as e:
-                            st.error(f"⚠️ Failed to read returned file `{args['file_path']}`: {e}")
+        found_file = False
+        for msg in messages.data:
+            if hasattr(msg, "tool_calls"):
+                for call in msg.tool_calls:
+                    if call.type == "code_interpreter":
+                        args = call.function.arguments
+                        if "file_path" in args:
+                            try:
+                                file_bytes = client.files.retrieve_content(args["file_path"])
+                                df_part = pd.read_csv(BytesIO(file_bytes))
+                                output_dfs.append(df_part)
+                                found_file = True
+                            except Exception as e:
+                                st.error(f"⚠️ Failed to read returned file `{args['file_path']}`: {e}")
 
         if not found_file:
             st.warning(f"⚠️ No output file returned for batch {i+1}")
+")
 
     if not output_dfs:
         st.error("❌ No Mapper output collected from any batch.")
