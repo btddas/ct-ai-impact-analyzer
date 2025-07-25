@@ -122,7 +122,6 @@ def run_pipeline(file, ext):
 
         if not found_file:
             st.warning(f"⚠️ No output file returned for batch {i+1}")
-    ")
 
     if not output_dfs:
         st.error("❌ No Mapper output collected from any batch.")
