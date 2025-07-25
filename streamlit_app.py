@@ -110,7 +110,9 @@ def run_pipeline(file, ext):
             if hasattr(msg, "tool_calls"):
                 for call in msg.tool_calls:
                     if call.type == "code_interpreter":
-                        args = call.function.arguments
+                        import json
+                        args = json.loads(call.function.arguments)
+
                         if "file_path" in args:
                             try:
                                 file_bytes = client.files.retrieve_content(args["file_path"])
