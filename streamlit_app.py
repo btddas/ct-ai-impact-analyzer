@@ -105,16 +105,16 @@ def run_pipeline(file, ext):
         tools=[{"type": "file_search"}]
     )
 
-        found_file = False
-        for msg in messages.data:
-            for file_id in getattr(msg, "file_ids", []):
-                try:
-                    file_bytes = client.files.retrieve_content(file_id)
-                    df_part = pd.read_csv(BytesIO(file_bytes))
-                    output_dfs.append(df_part)
-                    found_file = True
-                except Exception as e:
-                    st.error(f"⚠️ Failed to read returned file `{file_id}`: {e}")
+    found_file = False
+    for msg in messages.data:
+        for file_id in getattr(msg, "file_ids", []):
+            try:
+                file_bytes = client.files.retrieve_content(file_id)
+                df_part = pd.read_csv(BytesIO(file_bytes))
+                output_dfs.append(df_part)
+                found_file = True
+            except Exception as e:
+                st.error(f"⚠️ Failed to read returned file `{file_id}`: {e}")
 
         if not found_file:
             st.warning(f"⚠️ No output file returned for batch {i+1}")
