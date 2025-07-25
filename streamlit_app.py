@@ -21,20 +21,20 @@ st.write("Upload a structured Excel or CSV export from Comparor to analyze workf
 uploaded_file = st.file_uploader("Upload Excel or CSV File", type=["xlsx", "csv"])
 
 # Retry-safe assistant runner with verbose logging
-def run_single_assistant(assistant_id, user_prompt, file_id, max_retries=5):
+def run_single_assistant(assistant_id, user_prompt, file_id, tools=None, max_retries=5):
     client = openai.OpenAI()
     name = assistant_id.split("_")[1]
 
     thread = client.beta.threads.create()
     st.write(f"🧵 `{name}` thread ID: `{thread.id}`")
 
-    client.beta.threads.messages.create(
+   client.beta.threads.messages.create(
         thread_id=thread.id,
         role="user",
         content=user_prompt,
-        attachments=[{"file_id": file_id, "tools": [{"type": "code_interpreter"}]}]
-
+        attachments=[{"file_id": file_id, "tools": tools or [{"type": "file_search"}]}]
     )
+
 
     for attempt in range(max_retries):
         try:
@@ -94,11 +94,12 @@ def run_pipeline(file, ext):
         txt_file.name = f"mapper_input_batch_{i+1}.txt"
         openai_file = client.files.create(file=txt_file, purpose="assistants")
 
-        messages = run_single_assistant(
-            MAPPER_ID,
-            "Run the instructions in your system prompt only.",
-            openai_file.id
-        )
+    messages = run_single_assistant(
+        MAPPER_ID,
+        "Run the instructions in your system prompt only.",
+        openai_file.id,
+        tools=[{"type": "file_search"}]
+    )
 
         found_file = False
         for msg in messages.data:
