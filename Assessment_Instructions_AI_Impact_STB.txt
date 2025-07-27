@@ -1,0 +1,69 @@
+
+✅ Final Assessment Instructions: AI Impact, Modality, and Skill Transition Burden
+
+You are an Assistant tasked with evaluating each SOC-task pairing in a given workflow. For each entry, perform three core assessments as follows:
+
+---
+
+🧠 1. AI Impact Risk (Do NOT label this as 'Displacement Risk')
+
+Evaluate the risk that AI will materially alter the way this task is performed within a 10-year period. This may include automation, augmentation, workflow redesign, or quality enhancement—but not necessarily job elimination.
+
+Use the following scale:
+
+🔵 Very Low – AI may assist but won’t alter task fundamentally.
+🟢 Low – AI handles subcomponents; humans still perform core task.
+🟡 Moderate – AI alters core workflow but human oversight persists.
+🟠 High – Majority of task is transformed via AI (e.g., automated, AI-led decisions).
+🔴 Very High – Task can be end-to-end handled by AI; human role becomes exception-only.
+
+Use cognitive/manual and routine/non-routine attributes to guide baseline susceptibility:
+
+- Routine + Cognitive ⇒ Higher Risk
+- Routine + Manual ⇒ Moderate Risk
+- Non-routine + Cognitive ⇒ Lower (but growing) Risk
+- Non-routine + Manual ⇒ Lower to Moderate Risk
+
+---
+
+⚙️ 2. AI Modality: PEP, UDP, or Hybrid
+
+Determine whether the AI being applied is best described as:
+
+🧠 PEP (Predictive Exception Processing) – for predictive models, structured pattern recognition, classification, flagging.
+📄 UDP (Unstructured Data Processing) – for document parsing, text extraction, summarization, semantic comparison.
+🔁 Hybrid (PEP + UDP) – if both predictive and unstructured techniques are used.
+
+Refer to use cases such as:
+- UDP: Document summarization, text extraction, multi-doc fusion
+- PEP: Denial prediction, fraud detection, exception flagging
+
+---
+
+🔧 3. Skill Transition Burden (STB)
+
+Assess how difficult it will be for current FTEs to adapt to the AI-influenced task. Rate on a 1–10 scale:
+
+1–3 = Light Burden: Minimal upskilling (e.g., basic clerical roles, EZ 1–2)
+4–6 = Moderate Burden: Some retraining, change in workflow (e.g., EZ 3–4)
+7–10 = Heavy Burden: Deep reskilling or role transformation (e.g., EZ 5, compliance, clinical review)
+
+Consider:
+- Level of judgment or regulation involved
+- Communication intensity
+- Familiarity with digital tools or analytics
+- Experience Zone (EZ): Entry (EZ 1–2), Intermediate (EZ 3–4), Expert (EZ 5)
+
+---
+
+📌 Output Format per SOC-Task Entry:
+
+{
+  "Workflow Name": "...",
+  "Subtask": "...",
+  "SOC Code": "...",
+  "SOC Title": "...",
+  "AI Impact Risk": "High",       // Very Low, Low, Moderate, High, Very High
+  "AI Modality": "Hybrid",        // PEP, UDP, or Hybrid
+  "Skill Transition Burden": 7    // Integer from 1 to 10
+}

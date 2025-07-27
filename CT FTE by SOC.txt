@@ -1,0 +1,740 @@
+Area Name	SOC Code	SOC Title	Employment 
+Connecticut	00-0000	Total all occupations	1,631,510
+Connecticut	11-0000	Management Occupations	139,660
+Connecticut	Nov-12	Administrative Services Managers	2,150
+Connecticut	Nov-11	Advertising and Promotions Managers	340
+Connecticut	Nov-41	Architectural and Engineering Managers	3,790
+Connecticut	11-1011	Chief Executives	510
+Connecticut	Nov-11	Compensation and Benefits Managers	210
+Connecticut	Nov-21	Computer and Information Systems Managers	9,750
+Connecticut	Nov-21	Construction Managers	2,000
+Connecticut	Nov-39	Education Administrators, All Other	590
+Connecticut	Nov-32	Education Administrators, Kindergarten through Secondary	4,300
+Connecticut	Nov-33	Education Administrators, Postsecondary	2,010
+Connecticut	Nov-31	Education and Childcare Administrators, Preschool and Daycare	980
+Connecticut	Nov-61	Emergency Management Directors	170
+Connecticut	Nov-72	Entertainment and Recreation Managers, Except Gambling	70
+Connecticut	Nov-13	Facilities Managers	2,360
+Connecticut	Nov-13	Farmers, Ranchers, and Other Agricultural Managers	20
+Connecticut	Nov-31	Financial Managers	19,540
+Connecticut	Nov-51	Food Service Managers	1,520
+Connecticut	Nov-33	Fundraising Managers	650
+Connecticut	Nov-71	Funeral Home Managers	180
+Connecticut	11-1021	General and Operations Managers	42,090
+Connecticut	Nov-21	Human Resources Managers	3,440
+Connecticut	Nov-51	Industrial Production Managers	2,730
+Connecticut	11-1031	Legislators	210
+Connecticut	Nov-81	Lodging Managers	170
+Connecticut	Nov-99	Managers, All Other	5,090
+Connecticut	Nov-21	Marketing Managers	6,010
+Connecticut	Nov-11	Medical and Health Services Managers	6,810
+Connecticut	Nov-31	Postmasters and Mail Superintendents	160
+Connecticut	Nov-41	Property, Real Estate, and Community Association Managers	2,950
+Connecticut	Nov-32	Public Relations Managers	870
+Connecticut	Nov-61	Purchasing Managers	1,510
+Connecticut	Nov-22	Sales Managers	9,030
+Connecticut	Nov-51	Social and Community Service Managers	3,950
+Connecticut	Nov-31	Training and Development Managers	650
+Connecticut	Nov-71	Transportation, Storage, and Distribution Managers	1,900
+Connecticut	13-0000	Business and Financial Operations Occupations	99,590
+Connecticut	13-2011	Accountants and Auditors	15,960
+Connecticut	13-2031	Budget Analysts	770
+Connecticut	13-1199	Business Operations Specialists, All Other	5,440
+Connecticut	13-1020	Buyers and Purchasing Agents	6,570
+Connecticut	13-1031	Claims Adjusters, Examiners, and Investigators	3,220
+Connecticut	13-1141	Compensation, Benefits, and Job Analysis Specialists	1,150
+Connecticut	13-1041	Compliance Officers	3,590
+Connecticut	13-1051	Cost Estimators	2,120
+Connecticut	13-2041	Credit Analysts	730
+Connecticut	13-2071	Credit Counselors	150
+Connecticut	13-2051	Financial and Investment Analysts	5,860
+Connecticut	13-2061	Financial Examiners	240
+Connecticut	13-2054	Financial Risk Specialists	530
+Connecticut	13-2099	Financial Specialists, All Other	470
+Connecticut	13-1131	Fundraisers	990
+Connecticut	13-1071	Human Resources Specialists	8,380
+Connecticut	13-1032	Insurance Appraisers, Auto Damage	60
+Connecticut	13-2053	Insurance Underwriters	2,520
+Connecticut	13-1075	Labor Relations Specialists	1,120
+Connecticut	13-2072	Loan Officers	2,770
+Connecticut	13-1081	Logisticians	1,600
+Connecticut	13-1111	Management Analysts	9,510
+Connecticut	13-1161	Market Research Analysts and Marketing Specialists	8,190
+Connecticut	13-1121	Meeting, Convention, and Event Planners	1,370
+Connecticut	13-2052	Personal Financial Advisors	3,520
+Connecticut	13-1082	Project Management Specialists	7,240
+Connecticut	13-2020	Property Appraisers and Assessors	510
+Connecticut	13-2081	Tax Examiners and Collectors, and Revenue Agents	890
+Connecticut	13-2082	Tax Preparers	610
+Connecticut	13-1151	Training and Development Specialists	3,480
+Connecticut	15-0000	Computer and Mathematical Occupations	48,730
+Connecticut	15-2011	Actuaries	1,220
+Connecticut	15-1221	Computer and Information Research Scientists	60
+Connecticut	15-1241	Computer Network Architects	1,760
+Connecticut	15-1231	Computer Network Support Specialists	420
+Connecticut	15-1299	Computer Occupations, All Other	850
+Connecticut	15-1251	Computer Programmers	2,490
+Connecticut	15-1211	Computer Systems Analysts	6,430
+Connecticut	15-1232	Computer User Support Specialists	9,140
+Connecticut	15-2051	Data Scientists	950
+Connecticut	15-1242	Database Administrators	890
+Connecticut	15-1243	Database Architects	640
+Connecticut	15-1212	Information Security Analysts	1,450
+Connecticut	15-2099	Mathematical Science Occupations, All Other	40
+Connecticut	15-1244	Network and Computer Systems Administrators	1,880
+Connecticut	15-2031	Operations Research Analysts	910
+Connecticut	15-1252	Software Developers	16,200
+Connecticut	15-1253	Software Quality Assurance Analysts and Testers	1,200
+Connecticut	15-2041	Statisticians	500
+Connecticut	15-1255	Web and Digital Interface Designers	990
+Connecticut	15-1254	Web Developers	710
+Connecticut	17-0000	Architecture and Engineering Occupations	33,470
+Connecticut	17-3021	Aerospace Engineering and Operations Technologists and Technicians	100
+Connecticut	17-2011	Aerospace Engineers	1,160
+Connecticut	17-1011	Architects, Except Landscape and Naval	1,110
+Connecticut	17-3011	Architectural and Civil Drafters	1,170
+Connecticut	17-2031	Bioengineers and Biomedical Engineers	160
+Connecticut	17-3028	Calibration Technologists and Technicians	40
+Connecticut	17-1021	Cartographers and Photogrammetrists	80
+Connecticut	17-2041	Chemical Engineers	230
+Connecticut	17-3022	Civil Engineering Technologists and Technicians	180
+Connecticut	17-2051	Civil Engineers	3,750
+Connecticut	17-2061	Computer Hardware Engineers	640
+Connecticut	17-3019	Drafters, All Other	120
+Connecticut	17-3023	Electrical and Electronic Engineering Technologists and Technicians	1,240
+Connecticut	17-3012	Electrical and Electronics Drafters	460
+Connecticut	17-2071	Electrical Engineers	2,540
+Connecticut	17-3024	Electro-Mechanical and Mechatronics Technologists and Technicians	90
+Connecticut	17-2072	Electronics Engineers, Except Computer	1,690
+Connecticut	17-3029	Engineering Technologists and Technicians, Except Drafters, All Other	440
+Connecticut	17-2199	Engineers, All Other	2,230
+Connecticut	17-3025	Environmental Engineering Technologists and Technicians	170
+Connecticut	17-2081	Environmental Engineers	390
+Connecticut	17-2111	Health and Safety Engineers, Except Mining Safety Engineers and Inspectors	140
+Connecticut	17-3026	Industrial Engineering Technologists and Technicians	1,110
+Connecticut	17-2112	Industrial Engineers	6,090
+Connecticut	17-1012	Landscape Architects	510
+Connecticut	17-2131	Materials Engineers	320
+Connecticut	17-3013	Mechanical Drafters	550
+Connecticut	17-3027	Mechanical Engineering Technologists and Technicians	220
+Connecticut	17-2141	Mechanical Engineers	3,850
+Connecticut	17-2171	Petroleum Engineers	10
+Connecticut	17-3031	Surveying and Mapping Technicians	410
+Connecticut	17-1022	Surveyors	480
+Connecticut	19-0000	Life, Physical, and Social Science Occupations	12,040
+Connecticut	19-4012	Agricultural Technicians	20
+Connecticut	19-3091	Anthropologists and Archeologists	90
+Connecticut	19-1021	Biochemists and Biophysicists	370
+Connecticut	19-1029	Biological Scientists, All Other	350
+Connecticut	19-4021	Biological Technicians	930
+Connecticut	19-4031	Chemical Technicians	600
+Connecticut	19-2031	Chemists	1,160
+Connecticut	19-3033	Clinical and Counseling Psychologists	530
+Connecticut	19-1031	Conservation Scientists	100
+Connecticut	19-3011	Economists	160
+Connecticut	19-4042	Environmental Science and Protection Technicians, Including Health	130
+Connecticut	19-2041	Environmental Scientists and Specialists, Including Health	790
+Connecticut	19-1041	Epidemiologists	140
+Connecticut	19-1012	Food Scientists and Technologists	N/A
+Connecticut	19-4092	Forensic Science Technicians	100
+Connecticut	19-4071	Forest and Conservation Technicians	30
+Connecticut	19-1032	Foresters	80
+Connecticut	19-2042	Geoscientists, Except Hydrologists and Geographers	N/A
+Connecticut	19-3093	Historians	60
+Connecticut	19-2043	Hydrologists	20
+Connecticut	19-1099	Life Scientists, All Other	120
+Connecticut	19-4099	Life, Physical, and Social Science Technicians, All Other	370
+Connecticut	19-2032	Materials Scientists	60
+Connecticut	19-1042	Medical Scientists, Except Epidemiologists	1,730
+Connecticut	19-1022	Microbiologists	110
+Connecticut	19-5011	Occupational Health and Safety Specialists	1,030
+Connecticut	19-5012	Occupational Health and Safety Technicians	80
+Connecticut	19-2099	Physical Scientists, All Other	90
+Connecticut	19-2012	Physicists	60
+Connecticut	19-3039	Psychologists, All Other	210
+Connecticut	19-3034	School Psychologists	990
+Connecticut	19-4061	Social Science Research Assistants	110
+Connecticut	19-3099	Social Scientists and Related Workers, All Other	180
+Connecticut	19-1013	Soil and Plant Scientists	100
+Connecticut	19-3022	Survey Researchers	280
+Connecticut	19-3051	Urban and Regional Planners	370
+Connecticut	19-1023	Zoologists and Wildlife Biologists	80
+Connecticut	21-0000	Community and Social Service Occupations	33,960
+Connecticut	21-1021	Child, Family, and School Social Workers	5,790
+Connecticut	21-2011	Clergy	630
+Connecticut	21-1099	Community and Social Service Specialists, All Other	420
+Connecticut	21-1094	Community Health Workers	520
+Connecticut	21-1019	Counselors, All Other	470
+Connecticut	21-2021	Directors, Religious Activities and Education	160
+Connecticut	21-1012	Educational, Guidance, and Career Counselors and Advisors	3,090
+Connecticut	21-1091	Health Education Specialists	480
+Connecticut	21-1022	Healthcare Social Workers	1,930
+Connecticut	21-1013	Marriage and Family Therapists	430
+Connecticut	21-1023	Mental Health and Substance Abuse Social Workers	1,400
+Connecticut	21-1092	Probation Officers and Correctional Treatment Specialists	1,080
+Connecticut	21-1015	Rehabilitation Counselors	2,770
+Connecticut	21-2099	Religious Workers, All Other	60
+Connecticut	21-1093	Social and Human Service Assistants	8,310
+Connecticut	21-1029	Social Workers, All Other	340
+Connecticut	21-1018	Substance abuse, behavioral disorder, and mental health counselors	6,070
+Connecticut	23-0000	Legal Occupations	14,480
+Connecticut	23-1021	Administrative Law Judges, Adjudicators, and Hearing Officers	300
+Connecticut	23-1022	Arbitrators, Mediators, and Conciliators	N/A
+Connecticut	23-1023	Judges, Magistrate Judges, and Magistrates	190
+Connecticut	23-1012	Judicial Law Clerks	290
+Connecticut	23-1011	Lawyers	8,380
+Connecticut	23-2099	Legal Support Workers, All Other	N/A
+Connecticut	23-2011	Paralegals and Legal Assistants	4,860
+Connecticut	23-2093	Title Examiners, Abstractors, and Searchers	80
+Connecticut	25-0000	Educational Instruction and Library Occupations	119,900
+Connecticut	25-3011	Adult Basic Education, Adult Secondary Education, and English as a Second Language Instructors	360
+Connecticut	25-1061	Anthropology and Archeology Teachers, Postsecondary	90
+Connecticut	25-1031	Architecture Teachers, Postsecondary	N/A
+Connecticut	25-4011	Archivists	40
+Connecticut	25-1121	Art, Drama, and Music Teachers, Postsecondary	960
+Connecticut	25-1051	Atmospheric, Earth, Marine, and Space Sciences Teachers, Postsecondary	180
+Connecticut	25-1042	Biological Science Teachers, Postsecondary	900
+Connecticut	25-1011	Business Teachers, Postsecondary	1,080
+Connecticut	25-2023	Career/Technical Education Teachers, Middle School	80
+Connecticut	25-1194	Career/Technical Education Teachers, Postsecondary	760
+Connecticut	25-2032	Career/Technical Education Teachers, Secondary School	1,530
+Connecticut	25-1052	Chemistry Teachers, Postsecondary	280
+Connecticut	25-1122	Communications Teachers, Postsecondary	350
+Connecticut	25-1021	Computer Science Teachers, Postsecondary	430
+Connecticut	25-1111	Criminal Justice and Law Enforcement Teachers, Postsecondary	130
+Connecticut	25-4012	Curators	150
+Connecticut	25-1063	Economics Teachers, Postsecondary	230
+Connecticut	25-1081	Education Teachers, Postsecondary	560
+Connecticut	25-9099	Educational Instruction and Library Workers, All Other	340
+Connecticut	25-2021	Elementary School Teachers, Except Special Education	16,890
+Connecticut	25-1032	Engineering Teachers, Postsecondary	490
+Connecticut	25-1123	English Language and Literature Teachers, Postsecondary	630
+Connecticut	25-1053	Environmental Science Teachers, Postsecondary	N/A
+Connecticut	25-1192	Family and Consumer Sciences Teachers, Postsecondary	20
+Connecticut	25-9021	Farm and Home Management Educators	30
+Connecticut	25-1124	Foreign Language and Literature Teachers, Postsecondary	350
+Connecticut	25-1064	Geography Teachers, Postsecondary	40
+Connecticut	25-1071	Health Specialties Teachers, Postsecondary	N/A
+Connecticut	25-1125	History Teachers, Postsecondary	270
+Connecticut	25-9031	Instructional Coordinators	1,600
+Connecticut	25-2012	Kindergarten Teachers, Except Special Education	1,490
+Connecticut	25-1112	Law Teachers, Postsecondary	N/A
+Connecticut	25-4022	Librarians and Media Collections Specialists	2,400
+Connecticut	25-1082	Library Science Teachers, Postsecondary	20
+Connecticut	25-4031	Library Technicians	960
+Connecticut	25-1022	Mathematical Science Teachers, Postsecondary	570
+Connecticut	25-2022	Middle School Teachers, Except Special and Career/Technical Education	8,450
+Connecticut	25-4013	Museum Technicians and Conservators	190
+Connecticut	25-1072	Nursing Instructors and Teachers, Postsecondary	990
+Connecticut	25-1126	Philosophy and Religion Teachers, Postsecondary	300
+Connecticut	25-1054	Physics Teachers, Postsecondary	180
+Connecticut	25-1065	Political Science Teachers, Postsecondary	240
+Connecticut	25-1199	Postsecondary Teachers, All Other	2,910
+Connecticut	25-2011	Preschool Teachers, Except Special Education	6,380
+Connecticut	25-1066	Psychology Teachers, Postsecondary	560
+Connecticut	25-1193	Recreation and Fitness Studies Teachers, Postsecondary	110
+Connecticut	25-2031	Secondary School Teachers, Except Special and Career/Technical Education	15,270
+Connecticut	25-3021	Self-Enrichment Teachers	3,010
+Connecticut	25-1113	Social Work Teachers, Postsecondary	240
+Connecticut	25-1067	Sociology Teachers, Postsecondary	170
+Connecticut	25-2059	Special Education Teachers, All Other	1,160
+Connecticut	25-2052	Special Education Teachers, Kindergarten and Elementary School	2,620
+Connecticut	25-2057	Special Education Teachers, Middle School	1,020
+Connecticut	25-2051	Special Education Teachers, Preschool	320
+Connecticut	25-2058	Special Education Teachers, Secondary School	1,450
+Connecticut	25-3031	Substitute Teachers, Short-Term	3,610
+Connecticut	25-3099	Teachers and Instructors, All Other	2,280
+Connecticut	25-9045	Teaching Assistants, Except Postsecondary	20,550
+Connecticut	25-9044	Teaching Assistants, Postsecondary	3,700
+Connecticut	25-3041	Tutors	2,880
+Connecticut	27-0000	Arts, Design, Entertainment, Sports, and Media Occupations	21,300
+Connecticut	27-2011	Actors	60
+Connecticut	27-1011	Art Directors	640
+Connecticut	27-1019	Artists and Related Workers, All Other	20
+Connecticut	27-2021	Athletes and Sports Competitors	210
+Connecticut	27-4011	Audio and Video Technicians	620
+Connecticut	27-3011	Broadcast Announcers and Radio Disc Jockeys	260
+Connecticut	27-4012	Broadcast Technicians	130
+Connecticut	27-4031	Camera Operators, Television, Video, and Film	420
+Connecticut	27-2032	Choreographers	70
+Connecticut	27-2022	Coaches and Scouts	3,570
+Connecticut	27-1021	Commercial and Industrial Designers	250
+Connecticut	27-3092	Court Reporters and Simultaneous Captioners	190
+Connecticut	27-1012	Craft Artists	50
+Connecticut	27-1029	Designers, All Other	30
+Connecticut	27-2091	Disc Jockeys, Except Radio	60
+Connecticut	27-3041	Editors	1,980
+Connecticut	27-2099	Entertainers and Performers, Sports and Related Workers, All Other	60
+Connecticut	27-1022	Fashion Designers	20
+Connecticut	27-4032	Film and Video Editors	480
+Connecticut	27-1013	Fine Artists, Including Painters, Sculptors, and Illustrators	80
+Connecticut	27-1023	Floral Designers	360
+Connecticut	27-1024	Graphic Designers	1,590
+Connecticut	27-1025	Interior Designers	690
+Connecticut	27-3091	Interpreters and Translators	230
+Connecticut	27-4099	Media and Communication Equipment Workers, All Other	40
+Connecticut	27-3099	Media and Communication Workers, All Other	110
+Connecticut	27-1026	Merchandise Displayers and Window Trimmers	1,490
+Connecticut	27-2041	Music Directors and Composers	280
+Connecticut	27-2042	Musicians and Singers	510
+Connecticut	27-3023	News Analysts, Reporters, and Journalists	400
+Connecticut	27-4021	Photographers	370
+Connecticut	27-2012	Producers and Directors	2,100
+Connecticut	27-3031	Public Relations Specialists	2,040
+Connecticut	27-1027	Set and Exhibit Designers	40
+Connecticut	27-4014	Sound Engineering Technicians	20
+Connecticut	27-1014	Special Effects Artists and Animators	130
+Connecticut	27-3042	Technical Writers	650
+Connecticut	27-3043	Writers and Authors	880
+Connecticut	29-0000	Healthcare Practitioners and Technical Occupations	105,830
+Connecticut	29-1291	Acupuncturists	10
+Connecticut	29-1211	Anesthesiologists	220
+Connecticut	29-9091	Athletic Trainers	710
+Connecticut	29-1181	Audiologists	190
+Connecticut	29-1212	Cardiologists	200
+Connecticut	29-2031	Cardiovascular Technologists and Technicians	470
+Connecticut	29-1011	Chiropractors	200
+Connecticut	29-2010	Clinical Laboratory Technologists and Technicians	3,690
+Connecticut	29-1292	Dental Hygienists	3,150
+Connecticut	29-1029	Dentists, All Other Specialists	10
+Connecticut	29-1021	Dentists, General	1,360
+Connecticut	29-2032	Diagnostic Medical Sonographers	1,000
+Connecticut	29-2051	Dietetic Technicians	190
+Connecticut	29-1031	Dietitians and Nutritionists	790
+Connecticut	29-2042	Emergency Medical Technicians	2,730
+Connecticut	29-1214	Emergency Medicine Physicians	420
+Connecticut	29-1128	Exercise Physiologists	60
+Connecticut	29-1215	Family Medicine Physicians	880
+Connecticut	29-1216	General Internal Medicine Physicians	920
+Connecticut	29-9092	Genetic Counselors	40
+Connecticut	29-9021	Health Information Technologists and Medical Registrars	270
+Connecticut	29-2099	Health Technologists and Technicians, All Other	930
+Connecticut	29-1299	Healthcare Diagnosing or Treating Practitioners, All Other	430
+Connecticut	29-9099	Healthcare Practitioners and Technical Workers, All Other	640
+Connecticut	29-2092	Hearing Aid Specialists	N/A
+Connecticut	29-2061	Licensed Practical and Licensed Vocational Nurses	8,800
+Connecticut	29-2035	Magnetic Resonance Imaging Technologists	270
+Connecticut	29-2072	Medical Records Specialists	1,590
+Connecticut	29-1217	Neurologists	70
+Connecticut	29-2033	Nuclear Medicine Technologists	190
+Connecticut	29-1151	Nurse Anesthetists	560
+Connecticut	29-1161	Nurse Midwives	240
+Connecticut	29-1171	Nurse Practitioners	2,910
+Connecticut	29-1218	Obstetricians and Gynecologists	470
+Connecticut	29-1122	Occupational Therapists	2,250
+Connecticut	29-2057	Ophthalmic Medical Technicians	770
+Connecticut	29-1241	Ophthalmologists, Except Pediatric	N/A
+Connecticut	29-2081	Opticians, Dispensing	520
+Connecticut	29-1041	Optometrists	550
+Connecticut	29-1023	Orthodontists	190
+Connecticut	29-1242	Orthopedic Surgeons, Except Pediatric	N/A
+Connecticut	29-2091	Orthotists and Prosthetists	50
+Connecticut	29-2043	Paramedics	1,110
+Connecticut	29-1243	Pediatric Surgeons	50
+Connecticut	29-1221	Pediatricians, General	330
+Connecticut	29-1051	Pharmacists	2,990
+Connecticut	29-2052	Pharmacy Technicians	4,500
+Connecticut	29-1123	Physical Therapists	3,500
+Connecticut	29-1071	Physician Assistants	2,820
+Connecticut	29-1229	Physicians, All Other	3,740
+Connecticut	29-1081	Podiatrists	150
+Connecticut	29-2053	Psychiatric Technicians	950
+Connecticut	29-1223	Psychiatrists	550
+Connecticut	29-1124	Radiation Therapists	180
+Connecticut	29-2034	Radiologic Technologists and Technicians	2,570
+Connecticut	29-1224	Radiologists	N/A
+Connecticut	29-1125	Recreational Therapists	250
+Connecticut	29-1141	Registered Nurses	34,290
+Connecticut	29-1126	Respiratory Therapists	1,370
+Connecticut	29-1127	Speech-Language Pathologists	1,990
+Connecticut	29-9093	Surgical Assistants	N/A
+Connecticut	29-2055	Surgical Technologists	1,180
+Connecticut	29-1129	Therapists, All Other	90
+Connecticut	29-1131	Veterinarians	900
+Connecticut	29-2056	Veterinary Technologists and Technicians	1,850
+Connecticut	31-0000	Healthcare Support Occupations	83,870
+Connecticut	31-9091	Dental Assistants	3,560
+Connecticut	31-9099	Healthcare Support Workers, All Other	1,170
+Connecticut	31-1120	Home Health and Personal Care Aides	41,230
+Connecticut	31-9011	Massage Therapists	770
+Connecticut	31-9092	Medical Assistants	9,760
+Connecticut	31-9093	Medical Equipment Preparers	640
+Connecticut	31-9094	Medical Transcriptionists	890
+Connecticut	31-1131	Nursing Assistants	19,390
+Connecticut	31-2012	Occupational Therapy Aides	40
+Connecticut	31-2011	Occupational Therapy Assistants	790
+Connecticut	31-1132	Orderlies	800
+Connecticut	31-9095	Pharmacy Aides	270
+Connecticut	31-9097	Phlebotomists	1,830
+Connecticut	31-2022	Physical Therapist Aides	360
+Connecticut	31-2021	Physical Therapist Assistants	850
+Connecticut	31-1133	Psychiatric Aides	440
+Connecticut	31-9096	Veterinary Assistants and Laboratory Animal Caretakers	1,070
+Connecticut	33-0000	Protective Service Occupations	34,030
+Connecticut	33-9011	Animal Control Workers	160
+Connecticut	33-3011	Bailiffs	40
+Connecticut	33-3012	Correctional Officers and Jailers	3,540
+Connecticut	33-9091	Crossing Guards and Flaggers	1,500
+Connecticut	33-3021	Detectives and Criminal Investigators	800
+Connecticut	33-2021	Fire Inspectors and Investigators	360
+Connecticut	33-2011	Firefighters	2,340
+Connecticut	33-1011	First-Line Supervisors of Correctional Officers	610
+Connecticut	33-1021	First-Line Supervisors of Firefighting and Prevention Workers	1,000
+Connecticut	33-1012	First-Line Supervisors of Police and Detectives	1,670
+Connecticut	33-1099	First-Line Supervisors of Protective Service Workers, All Other	320
+Connecticut	33-1091	First-Line Supervisors of Security Workers	510
+Connecticut	33-3031	Fish and Game Wardens	70
+Connecticut	33-9031	Gambling Surveillance Officers and Gambling Investigators	440
+Connecticut	33-9092	Lifeguards, Ski Patrol, and Other Recreational Protective Service Workers	780
+Connecticut	33-3051	Police and Sheriff's Patrol Officers	6,410
+Connecticut	33-9021	Private Detectives and Investigators	390
+Connecticut	33-9099	Protective Service Workers, All Other	520
+Connecticut	33-9094	School Bus Monitors	610
+Connecticut	33-9032	Security Guards	11,670
+Connecticut	35-0000	Food Preparation and Serving Related Occupations	123,560
+Connecticut	35-3011	Bartenders	7,160
+Connecticut	35-1011	Chefs and Head Cooks	4,530
+Connecticut	35-2019	Cooks, All Other	190
+Connecticut	35-2011	Cooks, Fast Food	2,890
+Connecticut	35-2012	Cooks, Institution and Cafeteria	3,330
+Connecticut	35-2014	Cooks, Restaurant	12,740
+Connecticut	35-2015	Cooks, Short Order	180
+Connecticut	35-9011	Dining Room and Cafeteria Attendants and Bartender Helpers	4,700
+Connecticut	35-9021	Dishwashers	6,210
+Connecticut	35-3023	Fast Food and Counter Workers	28,880
+Connecticut	35-1012	First-Line Supervisors of Food Preparation and Serving Workers	10,240
+Connecticut	35-9099	Food Preparation and Serving Related Workers, All Other	380
+Connecticut	35-2021	Food Preparation Workers	10,760
+Connecticut	35-3041	Food Servers, Nonrestaurant	4,290
+Connecticut	35-9031	Hosts and Hostesses, Restaurant, Lounge, and Coffee Shop	4,430
+Connecticut	35-3031	Waiters and Waitresses	22,650
+Connecticut	37-0000	Building and Grounds Cleaning and Maintenance Occupations	53,940
+Connecticut	37-2019	Building Cleaning Workers, All Other	200
+Connecticut	37-1011	First-Line Supervisors of Housekeeping and Janitorial Workers	1,780
+Connecticut	37-1012	First-Line Supervisors of Landscaping, Lawn Service, and Groundskeeping Workers	1,770
+Connecticut	37-2011	Janitors and Cleaners, Except Maids and Housekeeping Cleaners	28,770
+Connecticut	37-3011	Landscaping and Groundskeeping Workers	13,900
+Connecticut	37-2012	Maids and Housekeeping Cleaners	6,420
+Connecticut	37-2021	Pest Control Workers	550
+Connecticut	37-3012	Pesticide Handlers, Sprayers, and Applicators, Vegetation	N/A
+Connecticut	37-3013	Tree Trimmers and Pruners	430
+Connecticut	39-0000	Personal Care and Service Occupations	38,780
+Connecticut	39-3091	Amusement and Recreation Attendants	2,420
+Connecticut	39-2021	Animal Caretakers	2,950
+Connecticut	39-2011	Animal Trainers	510
+Connecticut	39-6011	Baggage Porters and Bellhops	90
+Connecticut	39-5011	Barbers	230
+Connecticut	39-9011	Childcare Workers	6,340
+Connecticut	39-6012	Concierges	200
+Connecticut	39-3092	Costume Attendants	60
+Connecticut	39-4012	Crematory Operators	N/A
+Connecticut	39-4011	Embalmers	20
+Connecticut	39-9031	Exercise Trainers and Group Fitness Instructors	3,360
+Connecticut	39-1014	First-Line Supervisors of Entertainment and Recreation Workers, Except Gambling Services	1,550
+Connecticut	39-1013	First-Line Supervisors of Gambling Services Workers	510
+Connecticut	39-1022	First-Line Supervisors of Personal Service Workers	1,390
+Connecticut	39-4021	Funeral Attendants	330
+Connecticut	39-5012	Hairdressers, Hairstylists, and Cosmetologists	4,180
+Connecticut	39-3093	Locker Room, Coatroom, and Dressing Room Attendants	90
+Connecticut	39-5092	Manicurists and Pedicurists	4,050
+Connecticut	39-4031	Morticians, Undertakers, and Funeral Arrangers	270
+Connecticut	39-9099	Personal Care and Service Workers, All Other	270
+Connecticut	39-9032	Recreation Workers	5,420
+Connecticut	39-9041	Residential Advisors	1,590
+Connecticut	39-5093	Shampooers	N/A
+Connecticut	39-5094	Skincare Specialists	460
+Connecticut	39-7010	Tour and travel guides	390
+Connecticut	39-3031	Ushers, Lobby Attendants, and Ticket Takers	660
+Connecticut	41-0000	Sales and Related Occupations	136,810
+Connecticut	41-3011	Advertising Sales Agents	900
+Connecticut	41-2011	Cashiers	37,320
+Connecticut	41-2021	Counter and Rental Clerks	3,340
+Connecticut	41-9011	Demonstrators and Product Promoters	170
+Connecticut	41-9091	Door-to-Door Sales Workers, News and Street Vendors, and Related Workers	N/A
+Connecticut	41-1012	First-Line Supervisors of Non-Retail Sales Workers	1,920
+Connecticut	41-1011	First-Line Supervisors of Retail Sales Workers	12,520
+Connecticut	41-2012	Gambling Change Persons and Booth Cashiers	160
+Connecticut	41-3021	Insurance Sales Agents	4,700
+Connecticut	41-2022	Parts Salespersons	1,990
+Connecticut	41-9021	Real Estate Brokers	100
+Connecticut	41-9022	Real Estate Sales Agents	400
+Connecticut	41-2031	Retail Salespersons	39,620
+Connecticut	41-9099	Sales and Related Workers, All Other	820
+Connecticut	41-9031	Sales Engineers	720
+Connecticut	41-3091	Sales Representatives of Services, Except Advertising, Insurance, Financial Services, and Travel	8,800
+Connecticut	41-4012	Sales Representatives, Wholesale and Manufacturing, Except Technical and Scientific Products	12,860
+Connecticut	41-4011	Sales Representatives, Wholesale and Manufacturing, Technical and Scientific Products	2,730
+Connecticut	41-3031	Securities, Commodities, and Financial Services Sales Agents	7,030
+Connecticut	41-9041	Telemarketers	310
+Connecticut	41-3041	Travel Agents	320
+Connecticut	43-0000	Office and Administrative Support Occupations	214,390
+Connecticut	43-3011	Bill and Account Collectors	760
+Connecticut	43-3021	Billing and Posting Clerks	5,450
+Connecticut	43-3031	Bookkeeping, Accounting, and Auditing Clerks	16,350
+Connecticut	43-4011	Brokerage Clerks	400
+Connecticut	43-5011	Cargo and Freight Agents	400
+Connecticut	43-5021	Couriers and Messengers	800
+Connecticut	43-4031	Court, Municipal, and License Clerks	1,270
+Connecticut	43-4041	Credit Authorizers, Checkers, and Clerks	30
+Connecticut	43-4051	Customer Service Representatives	30,140
+Connecticut	43-9021	Data Entry Keyers	1,650
+Connecticut	43-9031	Desktop Publishers	30
+Connecticut	43-5032	Dispatchers, Except Police, Fire, and Ambulance	2,540
+Connecticut	43-4061	Eligibility Interviewers, Government Programs	1,310
+Connecticut	43-6011	Executive Secretaries and Executive Administrative Assistants	6,000
+Connecticut	43-4071	File Clerks	480
+Connecticut	43-3099	Financial Clerks, All Other	360
+Connecticut	43-1011	First-Line Supervisors of Office and Administrative Support Workers	26,670
+Connecticut	43-4081	Hotel, Motel, and Resort Desk Clerks	1,550
+Connecticut	43-4161	Human Resources Assistants, Except Payroll and Timekeeping	870
+Connecticut	43-4199	Information and Record Clerks, All Other	670
+Connecticut	43-9041	Insurance Claims and Policy Processing Clerks	3,670
+Connecticut	43-4111	Interviewers, Except Eligibility and Loan	1,490
+Connecticut	43-6012	Legal Secretaries and Administrative Assistants	1,280
+Connecticut	43-4121	Library Assistants, Clerical	1,330
+Connecticut	43-4131	Loan Interviewers and Clerks	1,670
+Connecticut	43-9051	Mail Clerks and Mail Machine Operators, Except Postal Service	860
+Connecticut	43-6013	Medical Secretaries and Administrative Assistants	5,000
+Connecticut	43-5041	Meter Readers, Utilities	80
+Connecticut	43-4141	New Accounts Clerks	180
+Connecticut	43-9199	Office and Administrative Support Workers, All Other	3,050
+Connecticut	43-9061	Office Clerks, General	25,890
+Connecticut	43-9071	Office Machine Operators, Except Computer	150
+Connecticut	43-3051	Payroll and Timekeeping Clerks	1,750
+Connecticut	43-5051	Postal Service Clerks	1,020
+Connecticut	43-5052	Postal Service Mail Carriers	4,740
+Connecticut	43-5053	Postal Service Mail Sorters, Processors, and Processing Machine Operators	1,150
+Connecticut	43-3061	Procurement Clerks	550
+Connecticut	43-5061	Production, Planning, and Expediting Clerks	4,370
+Connecticut	43-9081	Proofreaders and Copy Markers	60
+Connecticut	43-5031	Public Safety Telecommunicators	1,350
+Connecticut	43-4171	Receptionists and Information Clerks	13,580
+Connecticut	43-4181	Reservation and Transportation Ticket Agents and Travel Clerks	360
+Connecticut	43-6014	Secretaries and Administrative Assistants, Except Legal, Medical, and Executive	24,640
+Connecticut	43-5071	Shipping, Receiving, and Inventory Clerks	7,570
+Connecticut	43-9111	Statistical Assistants	100
+Connecticut	43-2011	Switchboard Operators, Including Answering Service	470
+Connecticut	43-2021	Telephone Operators	50
+Connecticut	43-3071	Tellers	3,620
+Connecticut	43-5111	Weighers, Measurers, Checkers, and Samplers, Recordkeeping	310
+Connecticut	43-9022	Word Processors and Typists	240
+Connecticut	45-0000	Farming, Fishing, and Forestry Occupations	750
+Connecticut	45-2011	Agricultural Inspectors	20
+Connecticut	45-2099	Agricultural Workers, All Other	20
+Connecticut	45-2092	Farmworkers and Laborers, Crop, Nursery, and Greenhouse	540
+Connecticut	45-2093	Farmworkers, Farm, Ranch, and Aquacultural Animals	80
+Connecticut	45-1011	First-Line Supervisors of Farming, Fishing, and Forestry Workers	60
+Connecticut	45-4011	Forest and Conservation Workers	20
+Connecticut	47-0000	Construction and Extraction Occupations	49,320
+Connecticut	47-2011	Boilermakers	230
+Connecticut	47-2021	Brickmasons and Blockmasons	440
+Connecticut	47-2031	Carpenters	6,720
+Connecticut	47-2041	Carpet Installers	60
+Connecticut	47-2051	Cement Masons and Concrete Finishers	700
+Connecticut	47-4011	Construction and Building Inspectors	900
+Connecticut	47-2061	Construction Laborers	7,830
+Connecticut	47-2081	Drywall and Ceiling Tile Installers	120
+Connecticut	47-5023	Earth Drillers, Except Oil and Gas	80
+Connecticut	47-2111	Electricians	7,160
+Connecticut	47-5022	Excavating and Loading Machine and Dragline Operators, Surface Mining	110
+Connecticut	47-5032	Explosives Workers, Ordnance Handling Experts, and Blasters	20
+Connecticut	47-5099	Extraction Workers, All Other	10
+Connecticut	47-1011	First-Line Supervisors of Construction Trades and Extraction Workers	6,270
+Connecticut	47-2042	Floor Layers, Except Carpet, Wood, and Hard Tiles	130
+Connecticut	47-2121	Glaziers	500
+Connecticut	47-4041	Hazardous Materials Removal Workers	630
+Connecticut	47-3019	Helpers, Construction Trades, All Other	80
+Connecticut	47-3011	Helpers--Brickmasons, Blockmasons, Stonemasons, and Tile and Marble Setters	110
+Connecticut	47-3012	Helpers--Carpenters	50
+Connecticut	47-3013	Helpers--Electricians	160
+Connecticut	47-5081	Helpers--Extraction Workers	20
+Connecticut	47-3015	Helpers--Pipelayers, Plumbers, Pipefitters, and Steamfitters	110
+Connecticut	47-4051	Highway Maintenance Workers	2,080
+Connecticut	47-2131	Insulation Workers, Floor, Ceiling, and Wall	280
+Connecticut	47-2132	Insulation Workers, Mechanical	200
+Connecticut	47-4090	Miscellaneous Construction and Related Workers	170
+Connecticut	47-2073	Operating Engineers and Other Construction Equipment Operators	3,010
+Connecticut	47-2141	Painters, Construction and Maintenance	1,840
+Connecticut	47-2071	Paving, Surfacing, and Tamping Equipment Operators	N/A
+Connecticut	47-2151	Pipelayers	30
+Connecticut	47-2152	Plumbers, Pipefitters, and Steamfitters	4,960
+Connecticut	47-2171	Reinforcing Iron and Rebar Workers	90
+Connecticut	47-2181	Roofers	750
+Connecticut	47-4071	Septic Tank Servicers and Sewer Pipe Cleaners	150
+Connecticut	47-2211	Sheet Metal Workers	1,720
+Connecticut	47-2231	Solar Photovoltaic Installers	110
+Connecticut	47-2022	Stonemasons	200
+Connecticut	47-2221	Structural Iron and Steel Workers	150
+Connecticut	47-2082	Tapers	340
+Connecticut	47-2044	Tile and Stone Setters	230
+Connecticut	49-0000	Installation, Maintenance, and Repair Occupations	54,160
+Connecticut	49-3011	Aircraft Mechanics and Service Technicians	1,160
+Connecticut	49-2097	Audiovisual Equipment Installers and Repairers	420
+Connecticut	49-3021	Automotive Body and Related Repairers	1,660
+Connecticut	49-3022	Automotive Glass Installers and Repairers	20
+Connecticut	49-3023	Automotive Service Technicians and Mechanics	7,450
+Connecticut	49-2091	Avionics Technicians	N/A
+Connecticut	49-3091	Bicycle Repairers	200
+Connecticut	49-3031	Bus and Truck Mechanics and Diesel Engine Specialists	2,840
+Connecticut	49-9091	Coin, Vending, and Amusement Machine Servicers and Repairers	250
+Connecticut	49-2011	Computer, Automated Teller, and Office Machine Repairers	480
+Connecticut	49-9012	Control and Valve Installers and Repairers, Except Mechanical Door	680
+Connecticut	49-2092	Electric Motor, Power Tool, and Related Repairers	80
+Connecticut	49-2093	Electrical and Electronics Installers and Repairers, Transportation Equipment	70
+Connecticut	49-2094	Electrical and Electronics Repairers, Commercial and Industrial Equipment	240
+Connecticut	49-2095	Electrical and Electronics Repairers, Powerhouse, Substation, and Relay	330
+Connecticut	49-9051	Electrical Power-Line Installers and Repairers	1,200
+Connecticut	49-2096	Electronic Equipment Installers and Repairers, Motor Vehicles	30
+Connecticut	49-3041	Farm Equipment Mechanics and Service Technicians	20
+Connecticut	49-1011	First-Line Supervisors of Mechanics, Installers, and Repairers	6,160
+Connecticut	49-9021	Heating, Air Conditioning, and Refrigeration Mechanics and Installers	4,890
+Connecticut	49-9098	Helpers--Installation, Maintenance, and Repair Workers	570
+Connecticut	49-9031	Home Appliance Repairers	230
+Connecticut	49-9041	Industrial Machinery Mechanics	3,060
+Connecticut	49-9099	Installation, Maintenance, and Repair Workers, All Other	1,740
+Connecticut	49-9094	Locksmiths and Safe Repairers	130
+Connecticut	49-9071	Maintenance and Repair Workers, General	12,190
+Connecticut	49-9043	Maintenance Workers, Machinery	600
+Connecticut	49-9011	Mechanical Door Repairers	180
+Connecticut	49-9062	Medical Equipment Repairers	730
+Connecticut	49-9044	Millwrights	20
+Connecticut	49-3042	Mobile Heavy Equipment Mechanics, Except Engines	630
+Connecticut	49-3051	Motorboat Mechanics and Service Technicians	450
+Connecticut	49-3052	Motorcycle Mechanics	100
+Connecticut	49-9063	Musical Instrument Repairers and Tuners	100
+Connecticut	49-3053	Outdoor Power Equipment and Other Small Engine Mechanics	420
+Connecticut	49-9069	Precision Instrument and Equipment Repairers, All Other	120
+Connecticut	49-2021	Radio, Cellular, and Tower Equipment Installers and Repairers	200
+Connecticut	49-3092	Recreational Vehicle Service Technicians	N/A
+Connecticut	49-9096	Riggers	240
+Connecticut	49-2098	Security and Fire Alarm Systems Installers	420
+Connecticut	49-2022	Telecommunications Equipment Installers and Repairers, Except Line Installers	2,060
+Connecticut	49-9052	Telecommunications Line Installers and Repairers	840
+Connecticut	49-3093	Tire Repairers and Changers	550
+Connecticut	49-9064	Watch and Clock Repairers	N/A
+Connecticut	51-0000	Production Occupations	89,630
+Connecticut	51-9191	Adhesive Bonding Machine Operators and Tenders	70
+Connecticut	51-2011	Aircraft Structure, Surfaces, Rigging, and Systems Assemblers	330
+Connecticut	51-3011	Bakers	2,210
+Connecticut	51-3021	Butchers and Meat Cutters	750
+Connecticut	51-7011	Cabinetmakers and Bench Carpenters	550
+Connecticut	51-9011	Chemical Equipment Operators and Tenders	710
+Connecticut	51-8091	Chemical Plant and System Operators	50
+Connecticut	51-9192	Cleaning, Washing, and Metal Pickling Equipment Operators and Tenders	80
+Connecticut	51-9124	Coating, Painting, and Spraying Machine Setters, Operators, and Tenders	1,150
+Connecticut	51-2021	Coil Winders, Tapers, and Finishers	270
+Connecticut	51-9161	Computer Numerically Controlled Tool Operators	3,970
+Connecticut	51-9162	Computer Numerically Controlled Tool Programmers	520
+Connecticut	51-9021	Crushing, Grinding, and Polishing Machine Setters, Operators, and Tenders	320
+Connecticut	51-9031	Cutters and Trimmers, Hand	N/A
+Connecticut	51-9032	Cutting and Slicing Machine Setters, Operators, and Tenders	450
+Connecticut	51-4031	Cutting, Punching, and Press Machine Setters, Operators, and Tenders, Metal and Plastic	1,680
+Connecticut	51-9081	Dental Laboratory Technicians	130
+Connecticut	51-4032	Drilling and Boring Machine Tool Setters, Operators, and Tenders, Metal and Plastic	140
+Connecticut	51-2028	Electrical, electronic, and electromechanical assemblers, except coil winders, tapers, and finishers	3,510
+Connecticut	51-2031	Engine and Other Machine Assemblers	390
+Connecticut	51-9194	Etchers and Engravers	N/A
+Connecticut	51-4021	Extruding and Drawing Machine Setters, Operators, and Tenders, Metal and Plastic	1,060
+Connecticut	51-6091	Extruding and Forming Machine Setters, Operators, and Tenders, Synthetic and Glass Fibers	10
+Connecticut	51-9041	Extruding, Forming, Pressing, and Compacting Machine Setters, Operators, and Tenders	280
+Connecticut	51-2051	Fiberglass Laminators and Fabricators	40
+Connecticut	51-1011	First-Line Supervisors of Production and Operating Workers	8,820
+Connecticut	51-3091	Food and Tobacco Roasting, Baking, and Drying Machine Operators and Tenders	150
+Connecticut	51-3092	Food Batchmakers	1,420
+Connecticut	51-3093	Food Cooking Machine Operators and Tenders	180
+Connecticut	51-3099	Food Processing Workers, All Other	200
+Connecticut	51-4022	Forging Machine Setters, Operators, and Tenders, Metal and Plastic	270
+Connecticut	51-4071	Foundry Mold and Coremakers	N/A
+Connecticut	51-9051	Furnace, Kiln, Oven, Drier, and Kettle Operators and Tenders	100
+Connecticut	51-7021	Furniture Finishers	60
+Connecticut	51-9022	Grinding and Polishing Workers, Hand	180
+Connecticut	51-4033	Grinding, Lapping, Polishing, and Buffing Machine Tool Setters, Operators, and Tenders, Metal and Plastic	1,890
+Connecticut	51-4191	Heat Treating Equipment Setters, Operators, and Tenders, Metal and Plastic	220
+Connecticut	51-9198	Helpers--Production Workers	1,260
+Connecticut	51-9061	Inspectors, Testers, Sorters, Samplers, and Weighers	8,920
+Connecticut	51-9071	Jewelers and Precious Stone and Metal Workers	200
+Connecticut	51-4034	Lathe and Turning Machine Tool Setters, Operators, and Tenders, Metal and Plastic	1,160
+Connecticut	51-6011	Laundry and Dry-Cleaning Workers	1,650
+Connecticut	51-4041	Machinists	7,350
+Connecticut	51-3022	Meat, Poultry, and Fish Cutters and Trimmers	400
+Connecticut	51-9082	Medical Appliance Technicians	220
+Connecticut	51-4199	Metal Workers and Plastic Workers, All Other	40
+Connecticut	51-4051	Metal-Refining Furnace Operators and Tenders	40
+Connecticut	51-4035	Milling and Planing Machine Setters, Operators, and Tenders, Metal and Plastic	290
+Connecticut	51-2090	Miscellaneous Assemblers and Fabricators	11,960
+Connecticut	51-9023	Mixing and Blending Machine Setters, Operators, and Tenders	830
+Connecticut	51-4061	Model Makers, Metal and Plastic	40
+Connecticut	51-9195	Molders, Shapers, and Casters, Except Metal and Plastic	140
+Connecticut	51-4072	Molding, Coremaking, and Casting Machine Setters, Operators, and Tenders, Metal and Plastic	1,410
+Connecticut	51-4081	Multiple Machine Tool Setters, Operators, and Tenders, Metal and Plastic	2,880
+Connecticut	51-9083	Ophthalmic Laboratory Technicians	350
+Connecticut	51-9111	Packaging and Filling Machine Operators and Tenders	1,860
+Connecticut	51-9123	Painting, Coating, and Decorating Workers	160
+Connecticut	51-9196	Paper Goods Machine Setters, Operators, and Tenders	850
+Connecticut	51-8093	Petroleum Pump System Operators, Refinery Operators, and Gaugers	70
+Connecticut	51-9151	Photographic Process Workers and Processing Machine Operators	40
+Connecticut	51-8099	Plant and System Operators, All Other	130
+Connecticut	51-4193	Plating Machine Setters, Operators, and Tenders, Metal and Plastic	560
+Connecticut	51-8013	Power Plant Operators	260
+Connecticut	51-5111	Prepress Technicians and Workers	290
+Connecticut	51-6021	Pressers, Textile, Garment, and Related Materials	670
+Connecticut	51-5113	Print Binding and Finishing Workers	710
+Connecticut	51-5112	Printing Press Operators	1,760
+Connecticut	51-9199	Production Workers, All Other	790
+Connecticut	51-4023	Rolling Machine Setters, Operators, and Tenders, Metal and Plastic	510
+Connecticut	51-7041	Sawing Machine Setters, Operators, and Tenders, Wood	120
+Connecticut	51-9141	Semiconductor Processing Technicians	50
+Connecticut	51-9012	Separating, Filtering, Clarifying, Precipitating, and Still Machine Setters, Operators, and Tenders	270
+Connecticut	51-6051	Sewers, Hand	20
+Connecticut	51-6031	Sewing Machine Operators	770
+Connecticut	51-3023	Slaughterers and Meat Packers	50
+Connecticut	51-8021	Stationary Engineers and Boiler Operators	240
+Connecticut	51-2041	Structural Metal Fabricators and Fitters	450
+Connecticut	51-6052	Tailors, Dressmakers, and Custom Sewers	220
+Connecticut	51-6061	Textile Bleaching and Dyeing Machine Operators and Tenders	90
+Connecticut	51-6062	Textile Cutting Machine Setters, Operators, and Tenders	60
+Connecticut	51-6063	Textile Knitting and Weaving Machine Setters, Operators, and Tenders	70
+Connecticut	51-6099	Textile, Apparel, and Furnishings Workers, All Other	30
+Connecticut	51-4111	Tool and Die Makers	2,050
+Connecticut	51-4194	Tool Grinders, Filers, and Sharpeners	50
+Connecticut	51-6093	Upholsterers	290
+Connecticut	51-8031	Water and Wastewater Treatment Plant and System Operators	970
+Connecticut	51-4121	Welders, Cutters, Solderers, and Brazers	2,280
+Connecticut	51-4122	Welding, Soldering, and Brazing Machine Setters, Operators, and Tenders	220
+Connecticut	51-7042	Woodworking Machine Setters, Operators, and Tenders, Except Sawing	220
+Connecticut	53-0000	Transportation and Material Moving Occupations	123,320
+Connecticut	53-2021	Air Traffic Controllers	80
+Connecticut	53-2011	Airline Pilots, Copilots, and Flight Engineers	140
+Connecticut	53-3011	Ambulance Drivers and Attendants, Except Emergency Medical Technicians	20
+Connecticut	53-6031	Automotive and Watercraft Service Attendants	580
+Connecticut	53-6011	Bridge and Lock Tenders	30
+Connecticut	53-3051	Bus Drivers, School	5,430
+Connecticut	53-3052	Bus Drivers, Transit and Intercity	2,460
+Connecticut	53-5021	Captains, Mates, and Pilots of Water Vessels	300
+Connecticut	53-7061	Cleaners of Vehicles and Equipment	2,840
+Connecticut	53-2012	Commercial Pilots	280
+Connecticut	53-7021	Crane and Tower Operators	340
+Connecticut	53-3031	Driver/Sales Workers	4,010
+Connecticut	53-1047	First-Line Supervisors of Transportation and Material-Moving Workers, Except Aircraft Cargo Handling Supervisors	5,790
+Connecticut	53-2031	Flight Attendants	210
+Connecticut	53-7071	Gas Compressor and Gas Pumping Station Operators	N/A
+Connecticut	53-3032	Heavy and Tractor-Trailer Truck Drivers	15,150
+Connecticut	53-7051	Industrial Truck and Tractor Operators	2,370
+Connecticut	53-7062	Laborers and Freight, Stock, and Material Movers, Hand	26,350
+Connecticut	53-3033	Light Truck Drivers	10,440
+Connecticut	53-4011	Locomotive Engineers	420
+Connecticut	53-7063	Machine Feeders and Offbearers	N/A
+Connecticut	53-7199	Material Moving Workers, All Other	40
+Connecticut	53-3099	Motor Vehicle Operators, All Other	350
+Connecticut	53-5022	Motorboat Operators	N/A
+Connecticut	53-7064	Packers and Packagers, Hand	4,670
+Connecticut	53-6021	Parking Attendants	920
+Connecticut	53-6061	Passenger Attendants	180
+Connecticut	53-7081	Refuse and Recyclable Material Collectors	670
+Connecticut	53-5011	Sailors and Marine Oilers	360
+Connecticut	53-5031	Ship Engineers	40
+Connecticut	53-3053	Shuttle Drivers and Chauffeurs	3,790
+Connecticut	53-7065	Stockers and Order Fillers	33,520
+Connecticut	53-6041	Traffic Technicians	80
+Connecticut	53-6051	Transportation Inspectors	180
+Connecticut	53-6099	Transportation Workers, All Other	40
