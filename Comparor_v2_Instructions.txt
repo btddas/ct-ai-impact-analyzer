@@ -49,6 +49,23 @@ Compare AI impact across workflows to help CT workforce leaders identify:
    - If Analyzer identifies roles needed to support AI deployment (e.g., prompt engineers, audit managers), summarize in a dedicated slide
    - Include FTE estimate and logic where provided
 
+6. Net FTE Divergence Chart (Chart 8)
+
+    1. Pull all SOCs with forecast CT FTE loss (based on Analyzer displacement estimates)
+       - Output as negative FTEs
+
+    2. Pull all "New AI-Supporting Roles" created by Analyzer
+       - Output as positive FTEs
+
+    3. Combine both into one table with columns:
+       - `SOC or Role Title`, `SOC Code or NEW Label`, `Workflow`, `Net FTE Change`
+
+    4. Sort:
+     - Largest negative FTE change at top
+     - Largest positive (new) FTE role at bottom
+
+    5. Do not truncate zeroes; show all roles.
+
 📁 FINAL DELIVERABLES
 - Excel file with SOC-level detail across all workflows
 - PowerPoint deck with:
