@@ -20,7 +20,10 @@ Outputs:
   - % Participating, % Contribution, % Share of Time (sum=100%)
   - Experience Zone (EZ)
   - Tenure <3 years (%), 4–9 years (%), 10+ years (%)
-  - Cognitive? Routine?
+  - Cognitive? Routine? Classification Rules for Cognitive vs. Manual
+    - All SOCs in the 43-XXXX series (e.g., 43-3021, 43-9021, 43-9061) are **Routine Cognitive**.
+    - These should **always be classified as Cognitive**, not Manual.
+
 
 Rules:
 - Fresh mapping per workflow; no reuse across workflows
