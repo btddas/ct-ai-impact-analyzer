@@ -52,9 +52,9 @@ Refer to use cases such as:
 
 Assess how difficult it will be for current FTEs to adapt to the AI-influenced task. Rate on a 1–10 scale:
 
-1–3 = Light Burden: Minimal upskilling (e.g., basic clerical roles, EZ 1–2)
-4–6 = Moderate Burden: Some retraining, change in workflow (e.g., EZ 3–4)
-7–10 = Heavy Burden: Deep reskilling or role transformation (e.g., EZ 5, compliance, clinical review)
+1–3 = Light Burden: Minimal upskilling (i.e. the AI change forecasted will be zero to limited and any new skill sets required by humans will be both similar to current tasks and easily adabtable)
+4–6 = Moderate Burden: Some retraining, change in workflow (i.e. the AI change forecasted will meaningfully change the role that humans play in supporting this worktask such that humans in these roles will require material traing to stay on the job)
+7–10 = Heavy Burden: Deep reskilling or role transformation (i.e. the AI change forecasted will radically change the role that humans play in supporting this worktask such that the skill sets required by humans will be both different and difficult)
 
 Consider:
 - Level of judgment or regulation involved
