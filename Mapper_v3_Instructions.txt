@@ -20,9 +20,27 @@ Outputs:
   - % Participating, % Contribution, % Share of Time (sum=100%)
   - Experience Zone (EZ)
   - Tenure <3 years (%), 4–9 years (%), 10+ years (%)
-  - Cognitive? Routine? Classification Rules for Cognitive vs. Manual
-    - All SOCs in the 43-XXXX series (e.g., 43-3021, 43-9021, 43-9061) are **Routine Cognitive**.
-    - These should **always be classified as Cognitive**, not Manual.
+  - Routine/Manual Classification for Downstream AI Assessment
+      Each SOC-task output from Mapper must include:
+
+      - `Manual_vs_Cognitive`: one of `"Manual"` or `"Cognitive"`
+      - `Routine_vs_NonRoutine`: one of `"Routine"` or `"Non-Routine"`
+
+      Use the following guidelines:
+      - Cognitive = tasks involving structured thinking, communication, analysis, or digital tools
+      - Manual = tasks requiring physical effort or tool use
+      - Routine = tasks that are predictable, rules-based, or easily scripted
+      - Non-Routine = tasks involving judgment, context switching, or unstructured input
+
+      Classify based on:
+      - SOC description from O*NET
+      - Task wording (e.g., “prepare,” “enter,” “respond,” “assess”)
+      - Known domain patterns (e.g., 43-XXXX = Cognitive Routine; 29-XXXX varies)
+
+      These attributes will directly influence Analyzer scoring and must be accurate.
+        Cognitive? Routine? Classification Rules for Cognitive vs. Manual
+        - All SOCs in the 43-XXXX series (e.g., 43-3021, 43-9021, 43-9061) are **Routine Cognitive**.
+        - These should **always be classified as Cognitive**, not Manual.
 
 
 Rules:
