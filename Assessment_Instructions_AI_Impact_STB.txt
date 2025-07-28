@@ -17,6 +17,14 @@ Use the following scale:
 🟠 High – Majority of task is transformed via AI (e.g., automated, AI-led decisions).
 🔴 Very High – Task can be end-to-end handled by AI; human role becomes exception-only.
 
+Analyzer AI Risk Band Normalization
+- AI Risk Scores must follow:
+  - 0–10 → Very Low
+  - 11-24 → Low
+  - 25–39 → Moderate
+  - 40–54 → High
+  - 55–100 → Very High
+
 Use cognitive/manual and routine/non-routine attributes to guide baseline susceptibility:
 
 - Routine + Cognitive ⇒ Higher Risk
