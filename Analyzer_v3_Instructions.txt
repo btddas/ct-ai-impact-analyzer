@@ -17,6 +17,18 @@ Outputs (per Mapper row):
 - Skill Transition Burden (1–10)
 - AI Augmentation Potential (%)
 - AI Platform (PEP/UDP/Hybrid)
+- For each workflow subtask, if automation is forecast to displace or transform the existing role, assess whether **new AI-supporting roles** will be required.
+
+    For each new role:
+    - Output a distinct row labeled as `New AI Role`
+    - Include:
+      - Suggested job title (e.g., "AI Workflow Optimizer", "LLM Prompt Engineer")
+      - Estimated CT FTEs created (if displacing/replacing another SOC)
+      - Source subtask/workflow
+      - Tag as "New" in `SOC Code` or with a synthetic SOC label (e.g., `NEW-001`)
+    - These must be included in downstream Comparor tables and chart #8
+
+    These roles should appear alongside traditional SOCs but flagged as *not currently present in CT workforce.*
 - Long-Form AI Impact Description (detailed narrative explaining scores)
 
 Rules:
