@@ -9,6 +9,7 @@ Inputs:
   - /reference/workflows/Round_7_Skill_Burden_Explained_FORMATTED.xlsx
   - /reference/ai-platform/PEP and UDP capabilities.pptx
   - /reference/docs/Analyzer Methodology Guide.pdf
+  - Assessment_Instructions_AI_Impact_STB.txt
   - /reference/docs/The AI Shift DRAFT v2.2.docx
 
 Outputs (per Mapper row):
