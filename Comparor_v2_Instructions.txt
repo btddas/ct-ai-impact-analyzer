@@ -25,55 +25,69 @@ Compare AI impact across workflows to help CT workforce leaders identify:
 
 1. ⏳ Timeline of AI Impact
    - For each workflow, show % of total CT FTEs in High or Very High Risk buckets
-   - 1–3, 4–7, 8–10 year periods
-   - Risk levels derived from AI Impact Risk column
+   - Separate bars for 1–3, 4–7, and 8–10 year timeframes
+   - Use normalized share of FTEs from AI Impact Risk values
 
 2. 🧭 Quadrant Summary (Risk × Burden)
-   - Q1: Transform or Transition (High Risk, High Burden)
-   - Q2: Upskill & Retain (High Risk, Low Burden)
-   - Q3: Stuck but Stable (Low Risk, High Burden)
-   - Q4: Resilient Roles (Low Risk, Low Burden)
-   - Chart must show % of CT FTEs in each quadrant per workflow
-   - Classification rule: ≥25% of FTEs in Q1 = “High AI Impact Workflow”
+   - Classify each SOC into one of four quadrants:
+     - Q1: Transform or Transition (High Risk, High Burden)
+     - Q2: Upskill & Retain (High Risk, Low Burden)
+     - Q3: Stuck but Stable (Low Risk, High Burden)
+     - Q4: Resilient Roles (Low Risk, Low Burden)
+   - Chart must show % of total CT FTEs in each quadrant (not count of SOCs)
+   - Workflows classified as “High AI Impact” if ≥25% of FTEs fall in Q1
 
 3. 📊 Seniority vs AI Risk (EZ Zones)
-   - Stacked bar for each EZ zone (1–5)
-   - Each bar segmented by AI Impact Level (Low, Moderate, High, Very High)
-   - Normalized to 100% within each EZ group
+   - Stacked bar chart with one bar for each EZ level (1–5)
+   - Within each bar, segment FTEs by AI Risk (Low, Moderate, High, Very High)
+   - Normalize each bar to 100% to compare exposure patterns across seniority levels
 
-4. 📉 Net CT FTE Impact (per workflow)
-   - Bar chart showing estimated % FTE change over time
-   - Derived from Analyzer’s total CT FTE impact
+4. 🔄 Routine × Cognitive Role Matrix
+   - Divide all SOCs into 4 types:
+     - Routine + Manual
+     - Routine + Cognitive
+     - Non-Routine + Manual
+     - Non-Routine + Cognitive
+   - Show % of total CT FTEs in each group
+   - Use for identifying latent automation opportunities
 
-5. 🆕 New AI Job Roles Required
-   - If Analyzer identifies roles needed to support AI deployment (e.g., prompt engineers, audit managers), summarize in a dedicated slide
-   - Include FTE estimate and logic where provided
+5. ⚙️ AI Modality Breakdown
+   - Chart showing % of total CT FTEs tagged as:
+     - PEP (Predictive Exception Processing)
+     - UDP (Unstructured Data Processing)
+     - Hybrid
+   - Use PEP/UDP/Hybrid column from Analyzer
 
-6. Net FTE Divergence Chart (Chart 8)
+6. 📉 Skill Transition Burden (STB) Distribution
+   - Histogram or stacked bar showing total FTEs across STB levels 1–10
+   - Groups: Light (1–3), Moderate (4–6), Heavy (7–10)
 
-    1. Pull all SOCs with forecast CT FTE loss (based on Analyzer displacement estimates)
-       - Output as negative FTEs
+7. 📉 Divergence Chart – Net CT FTE Impact by SOC
+   - Bar chart showing net CT FTE change per SOC
+   - Combine:
+     - FTE losses based on AI Risk × STB × displacement logic
+     - FTE gains from:
+       - AI-supporting roles mapped to SOCs
+       - New synthetic roles (e.g., “Prompt Engineer”)
+   - Sort chart top to bottom: largest net losses → largest net gains
+   - Show all rows; do not truncate zeroes
 
-    2. Pull all "New AI-Supporting Roles" created by Analyzer
-       - Output as positive FTEs
-
-    3. Combine both into one table with columns:
-       - `SOC or Role Title`, `SOC Code or NEW Label`, `Workflow`, `Net FTE Change`
-
-    4. Sort:
-     - Largest negative FTE change at top
-     - Largest positive (new) FTE role at bottom
-
-    5. Do not truncate zeroes; show all roles.
+8. 🆕 New AI Roles Summary
+   - Table showing all newly identified AI-supporting roles
+   - Two groups:
+     - SOC-linked roles (e.g., “Chatbot QA Specialist” from CSRs)
+     - Standalone synthetic roles (e.g., “LLM Scenario Tester”)
+   - Include: role title, estimated FTEs, source workflow/SOC if available
 
 📁 FINAL DELIVERABLES
-- Excel file with SOC-level detail across all workflows
+- Excel file with SOC-level detail and all chart data tables
 - PowerPoint deck with:
-   - One slide per chart
+   - One slide per chart (8 total)
    - One summary slide per workflow
-   - One executive summary slide across all workflows
+   - One executive summary slide comparing workflows
 
 📌 OUTPUT RULES
-- Classify workflows as “High AI Impact” only if ≥25% of CT FTEs fall in Q1
-- Use only Analyzer inputs — do not invent values
-- Default to descriptive insights unless prescriptive is requested
+- Classify workflows as “High AI Impact” only if ≥25% of CT FTEs fall in Quadrant 1
+- All FTE values must be normalized and based on Analyzer inputs
+- Default to descriptive insights unless prescriptive commentary is requested
+- Do not invent SOCs, STB scores, or impact risks unless explicitly tagged as “NEW” roles from Analyzer
