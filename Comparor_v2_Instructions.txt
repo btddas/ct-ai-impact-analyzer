@@ -29,20 +29,21 @@ Compare workflows to reveal:
 ## Required Charts and Outputs
 
 1. ⏳ AI Impact Timeline (Updated)  
-   - Bar chart showing % of total Adjusted CT FTEs in each AI Risk band (Low, Moderate, High, Very High)  
-   - Use 1–3 year period only  
-   - Show all 4 risk bands left to right even if some have zero values  
+   - stacked Bar chart showing % of total Adjusted CT FTEs in each AI Risk band (Low, Moderate, High, Very High)  
+   - x axis show the three time periods
+   -  stacks = % in each of the 5 AI impact risk bands
    - Y-axis = % of total FTEs (adjusted)
 
-2. 🧭 3x Quadrant Summary Grids  
-   - One grid per time period: 1–3, 4–7, 8–10 yrs  
-   - Classify SOCs into 4 quadrants:  
+2. 🧭quadrant chart 
+   - Use AI impact 4-7 year band data
+   - Scatter plot chart with a plot for all 210 SOCs
+   - Y axis = Skill Transition Burden score
+   - X axis = AI impact Risk score for 4-7 year time band
+   - Label each quadrant as follows:
      - Q1: Transform or Transition (High Risk, High Burden)  
      - Q2: Upskill & Retain (High Risk, Low Burden)  
      - Q3: Stuck but Stable (Low Risk, High Burden)  
      - Q4: Resilient Roles (Low Risk, Low Burden)  
-   - Output: % of Adjusted CT FTEs in each quadrant (NOT just count of SOCs)  
-   - Infographic format: large % and quadrant label only (no scatterplot)
 
 3. 📊 Seniority × AI Risk (8–10 yrs)  
    - Bar chart per EZ1–EZ5 (always include all 5 even if empty)  
@@ -50,17 +51,17 @@ Compare workflows to reveal:
    - Normalize each bar to 100%  
    - Add line chart overlay for raw FTE counts per EZ (secondary Y-axis)
 
-4. 🔄 Routine × Cognitive Matrix  
-   - Divide roles into 4 buckets:  
+4. 🔄 Routine × Cognitive 2x2 Matrix  
+   - Divide roles into 4 bucket:  
      - Routine Manual  
      - Routine Cognitive  
      - Non-Routine Manual  
      - Non-Routine Cognitive  
-   - Show % of Adjusted CT FTEs in each
+   - Show % of Adjusted CT FTEs in each quadrant labeled accordingly
 
 5. ⚙️ AI Modality Breakdown  
-   - PEP / UDP / Hybrid  
-   - Stacked bar of Adjusted CT FTEs
+   - x axis = PEP / UDP / Hybrid  
+   - y axis = subtasks
 
 6. 📈 Skill Transition Burden Distribution  
    - Group STB into:  
@@ -87,9 +88,9 @@ Compare workflows to reveal:
      - Fully synthetic AI roles
 
 9. 🧱 Tenure Composition × Experience Zone  
-   - Stacked bar chart by EZ1–EZ5  
+   - Stacked bar chart by EZ1–EZ5  (always include all 5 even if empty)  
    - % of FTEs in each tenure band (<3, 4–9, 10+ yrs)  
-   - Add black line chart for raw FTEs per EZ
+   - Add black line chart for raw FTEs per EZ  (secondary Y-axis)
 
 10. 📊 Tenure Composition × Workflow  
     - Horizontal stacked bar chart  
