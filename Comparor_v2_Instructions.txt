@@ -28,6 +28,8 @@ Compare workflows to reveal:
 
 ## Required Charts and Outputs
 
+Provide a summary of all Workflows analyzed including description, number of adjsuted FTEs in CT, and average EZ and Tenure bands
+
 1. ⏳ AI Impact Timeline (Updated)  
    - stacked Bar chart showing % of total Adjusted CT FTEs in each AI Risk band (Low, Moderate, High, Very High)  
    - x axis show the three time periods
