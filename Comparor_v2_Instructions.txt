@@ -30,8 +30,45 @@ Compare workflows to reveal:
 
 #############################################
 # Slide 2 –  Executive Summary slide (patterns across workflows)  
-      Purpose - summarize key findings focsuing on common patterns across workflows and where, when, and why some workflos are unique
 #############################################
+
+      Purpose:
+      Provides a summary of all workflows analyzed in the Comparor AI Impact Deck. This slide defines the scope of analysis and gives visibility into role exposure, tenure, and preparation levels.
+      
+      Placement:
+      Always Slide 2 (immediately after the title slide).
+      
+      Required Columns:
+      1. # — Workflow number (1–n) for easy reference across charts
+      2. Workflow Name — Descriptive title of the workflow
+      3. Description — One-line explanation of what the workflow entails
+      4. CT Adjusted FTEs — Estimated Connecticut full-time equivalent workers involved in this workflow
+      5. Avg EZ Zone — Weighted average Experience Zone (EZ1–EZ5) for the workflow
+      6. Dominant Tenure Band — Most common tenure bracket for workflow FTEs:
+         - <3 years
+         - 4–9 years
+         - 10+ years
+      
+      Formatting Requirements:
+      - Must show all workflows included in the Comparor analysis (typically 21+)
+      - First two columns should be **extra wide** to avoid wrapping text:
+        - Workflow Name: ≥2.0 inches
+        - Description: ≥3.0 inches
+      - Font size should be readable across slides: 13pt header, 10–11pt body
+      - Acceptable layout styles: table or hybrid table + icons
+      - No wrapping in column headers (keep them short and clear)
+      
+      Data Source:
+      Pull directly from the most recent Analyzer output (e.g., Round_11_Skill_Burden_Explained_FORMATTED_UPDATED.xlsx) using:
+      - CT Adjusted FTEs column sum per workflow
+      - Weighted average EZ and Tenure derived from workflow-level SOCs
+      
+      Example Header Row:
+      | # | Workflow Name              | Description                         | CT Adjusted FTEs | Avg EZ Zone | Dominant Tenure Band |
+      |---|----------------------------|-------------------------------------|------------------|-------------|-----------------------|
+      
+      Example Row:
+      | 3 | Appeals of Denied Claims   | Rebuttal and documentation for denied claims including clinical review | 2,132            | EZ3.1       | 4–9 years             |
 
 #############################################
 # Slide 3 – Workflow Summary Table (REQUIRED)
