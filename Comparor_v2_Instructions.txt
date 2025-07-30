@@ -226,8 +226,11 @@ Title⚙️ AI Modality Breakdown
             - “Hybrid” should be used only when both PEP and UDP apply substantially
             - If other modalities emerge in future versions, add them to the grouping
 
+#############################################
+# Slide 8 - Skill Transition Burden Distribution  
+#############################################
 
-6. 📈 Skill Transition Burden Distribution  
+Title 📈 Skill Transition Burden Distribution  
    - Group STB into:  
      - Light (1–3)  
      - Moderate (4–6)  
@@ -235,7 +238,10 @@ Title⚙️ AI Modality Breakdown
    - Chart % of FTEs in each category  
    - Include full 1–10 distribution if space allows
 
-7. 📉 📉 Divergence – CT FTEs Lost and Gained
+#############################################
+# Slide 9 - Divergence – CT FTEs Lost and Gained 
+#############################################
+Title 📉 Divergence – CT FTEs Lost and Gained
 
       Chart Title:
       “Divergence: CT FTEs Lost vs Gained Due to AI (8–10 Years)”
@@ -276,21 +282,28 @@ Title⚙️ AI Modality Breakdown
       Note:
       This chart must be regenerated whenever CT FTE loss forecasts or synthetic AI role creation assumptions change.
 
-
-8. 🧠 New AI Role Adoption Chart  
+#############################################
+# Slide 10 - New AI Role Adoption Chart  
+#############################################
+Title 🧠 New AI Role Adoption Chart  
    - List all new roles vertically  
    - X-axis = number of workflows supporting each  
    - Sort top to bottom by frequency  
    - Two groups:  
      - SOC-linked AI roles  
      - Fully synthetic AI roles
-
-9. 🧱 Tenure Composition × Experience Zone  
+#############################################
+# Slide 11 - Tenure Composition × Experience Zone  
+#############################################
+Title 🧱 Tenure Composition × Experience Zone  
    - Stacked bar chart by EZ1–EZ5  (always include all 5 even if empty)  
    - % of FTEs in each tenure band (<3, 4–9, 10+ yrs)  
    - Add black line chart for raw FTEs per EZ  (secondary Y-axis)
 
-10. 📊 Tenure Composition × Workflow  
+#############################################
+# Slide 12 - Tenure Composition × Workflow   
+#############################################
+Title 📊 Tenure Composition × Workflow  
 
       - Chart Type: Horizontal stacked bar
       - Each bar = one workflow
@@ -315,7 +328,16 @@ Title⚙️ AI Modality Breakdown
       - Label axis clearly and use full workflow names
       - If multiple workflows tie on average risk, preserve original order
 
-## Output Deliverables  
+#############################################
+# Slides 13+ - Appendix  
+#############################################
+- Appendix with:
+    - Source references  
+    - Methodology and FTE model  
+    - Reflections on anomalies, quadrant skews, modality mix, divergence insights
+
+
+## Output Deliverables Recap
 - 📈 Excel file with all chart data  
 - 📊 PowerPoint with:
   - One slide per chart (10 total)  
