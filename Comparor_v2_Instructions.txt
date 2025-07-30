@@ -29,7 +29,12 @@ Compare workflows to reveal:
 ## Required Charts and Outputs
 
 #############################################
-# Slide 2 – Workflow Summary Table (REQUIRED)
+# Slide 2 –  Executive Summary slide (patterns across workflows)  
+      Purpose - summarize key findings focsuing on common patterns across workflows and where, when, and why some workflos are unique
+#############################################
+
+#############################################
+# Slide 3 – Workflow Summary Table (REQUIRED)
 #############################################
 
       Purpose:
@@ -59,16 +64,21 @@ Compare workflows to reveal:
       | SNF Claim Submission       | Skilled Nursing & Residential    | 2,504     | EZ2.3     | 10+ years       |
       | Appeals of Denied Claim    | Provider + Payer + Legal/Compliance | 2,132  | EZ3.1     | 4–9 years       |
 
-1. ⏳ AI Impact Timeline (Updated)  
-   - stacked Bar chart showing % of total Adjusted CT FTEs in each AI Risk band (Low, Moderate, High, Very High)  
+#############################################
+# Slide 4 – AI Impact Timeline 
+#############################################
+Title = ⏳ AI Impact Timeline  
+   - stacked Bar chart showing % of total Adjusted CT FTEs in each AI Risk band (Very Low, Low, Moderate, High, Very High)  
    - x axis show the three time periods
    -  stacks = % in each of the 5 AI impact risk bands
    - Y-axis = % of total FTEs (adjusted)
 
-2. 📊 Quadrant Summary Grid – Adjusted CT FTEs by Exposure Type
+#############################################
+# Slide 5 – Quadrant Summary Grid
+#############################################
+Title =  📊 Quadrant Summary Grid – Adjusted CT FTEs by Exposure Type
 
          Goal: Summarize workforce exposure to AI across four strategic quadrants using AI Impact Risk (4–7 yrs) and Skill Transition Burden.
-
          Inputs:
          - AI Impact Risk Score (4–7 yrs), normalized on a 0–100 scale
          - Skill Transition Burden Score (1–10)
@@ -96,8 +106,10 @@ Compare workflows to reveal:
 
          Note: This chart helps identify how AI exposure maps to retraining needs across the workforce. It replaces the classic scatter with a clean infographic style.
 
-
-3. 📊 📊 Seniority × AI Risk (4–7 yrs)
+#############################################
+# Slide 5 – Seniority × AI Risk (4–7 yrs)
+#############################################
+Title 📊 Seniority × AI Risk (4–7 yrs)
 
          Chart Title: “Seniority × AI Risk (4–7 yrs) – Normalized Bars with Raw FTE Overlay”
 
@@ -135,8 +147,10 @@ Compare workflows to reveal:
 
          This chart must be regenerated any time EZ risk distributions or total FTEs change.
 
-
-4. 🔄 🔄 Routine × Cognitive Matrix
+#############################################
+# Slide 6 –Routine × Cognitive Matrix
+#############################################
+Title 🔄 Routine × Cognitive Matrix
 
             Chart Title:
             “Routine × Cognitive Matrix: % of CT FTEs by Work Type”
@@ -175,7 +189,10 @@ Compare workflows to reveal:
             Note:
             This chart is used to interpret structural AI susceptibility by task modality and should match classifications used in Analyzer output.
 
-5. ⚙️ AI Modality Breakdown  
+#############################################
+# Slide 7 - AI Modality Breakdown  
+#############################################
+Title⚙️ AI Modality Breakdown  
 
             Chart Title:
             “AI Modality Breakdown: CT FTEs by Platform Type”
