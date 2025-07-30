@@ -147,8 +147,39 @@ Provide a summary of all Workflows analyzed including description, number of adj
             This chart is used to interpret structural AI susceptibility by task modality and should match classifications used in Analyzer output.
 
 5. ⚙️ AI Modality Breakdown  
-   - x axis = PEP / UDP / Hybrid  
-   - y axis = subtasks
+
+            Chart Title:
+            “AI Modality Breakdown: CT FTEs by Platform Type”
+            
+            Purpose:
+            Show how Connecticut workforce roles are distributed across AI modalities:
+            - PEP (Predictive Exception Processing)
+            - UDP (Unstructured Data Processing)
+            - Hybrid (both)
+            
+            Chart Type:
+            - Vertical bar chart
+            - X-axis: AI Modality (Platform Type)
+            - Y-axis: Adjusted CT FTEs
+            - Annotate bars with % of total Adjusted CT FTEs
+            
+            Instructions:
+            1. Group all SOC rows by `AI Platform` field in Analyzer output.
+               - Valid values: PEP, UDP, Hybrid
+            2. Sum `CT FTEs (Adjusted)` by platform
+            3. Compute % of total FTEs for each platform type
+            4. Draw one vertical bar per AI Platform
+               - X-axis = Modality label (PEP / UDP / Hybrid)
+               - Y-axis = Adjusted CT FTEs
+               - Annotate bar tops with % values (rounded to 1 decimal)
+            5. Sort bars descending by FTEs (optional)
+            6. Apply a pastel or muted color palette
+            
+            Notes:
+            - This chart reflects the dominant AI method impacting the task — not the full range of AI used
+            - “Hybrid” should be used only when both PEP and UDP apply substantially
+            - If other modalities emerge in future versions, add them to the grouping
+
 
 6. 📈 Skill Transition Burden Distribution  
    - Group STB into:  
