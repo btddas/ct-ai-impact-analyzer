@@ -46,16 +46,19 @@ These must be included in Comparor and shown in divergence + role adoption chart
 - Experience Zone must be retained
 - Healthcare workflows must include ≥3–5 clinical SOCs unless explicitly excluded
 
-## Patch v4 Logic (Final – August 2025)
+## Patch v4 Logic (Final – Updated with v10.4 Risk Scoring)
 
 - SOCs like 43-9061, 43-6013, 43-4051, 43-3021, etc. must show High or Very High Risk in 1–3 yrs
 - Front-loaded risk reflects live deployments (chatbots, RPA, LLMs)
 - SOCs like 29-1210 (physicians), 23-1011 (lawyers), 11-9111 (managers) may remain Low Risk at 8–10 yrs
+- Risk scores must be non-decreasing over time and reflect band-normalized logic in Assessment Instructions v10.4.
+- Ensure score progression is realistic: Very Low → Moderate is a ceiling; not all tasks should reach High or Very High even by year 10
 - Modality logic:
   - UDP = document intake, scheduling, records
   - PEP = policy enforcement, prediction, exception resolution
   - Hybrid = mixed or interleaved roles
 - Include new AI roles even without displacement when augmentation or oversight is required
+- AI Risk banding must reflect the timeline logic used in Comparor v3’s Timeline Chart: realistic diversity across all 5 risk bands at each time horizon, using score persistence ceilings and task-specific exceptions
 
 ## Chart-Dependent Outputs
 
