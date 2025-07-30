@@ -28,7 +28,36 @@ Compare workflows to reveal:
 
 ## Required Charts and Outputs
 
-Provide a summary of all Workflows analyzed including description, number of adjsuted FTEs in CT, and average EZ and Tenure bands
+#############################################
+# Slide 2 – Workflow Summary Table (REQUIRED)
+#############################################
+
+      Purpose:
+      This slide provides a high-level summary of each workflow analyzed in the Comparor AI Impact deck. It defines the analytical scope and gives the audience a clear understanding of worker exposure before AI impact charts are presented.
+      
+      Slide Placement:
+      Always immediately after the title slide (Slide 2).
+      
+      Required Columns (one row per workflow):
+      - Workflow Name: Short descriptive title
+      - Description: Brief explanation of the workflow scope or setting (e.g., "Ambulatory + Payer Composite")
+      - CT Adjusted FTEs: Total number of Connecticut full-time equivalents involved in the workflow
+      - Avg EZ Zone: Weighted average Experience Zone (EZ1–EZ5) across all SOCs involved
+      - Dominant Tenure Band: Most common tenure band for FTEs (<3 years, 4–9 years, or 10+ years)
+      
+      Formatting Instructions:
+      - Table must include all workflows analyzed in the deck.
+      - Styled formatting encouraged (e.g., icons or visual cues for EZ and Tenure).
+      - Use consistent units and rounding (e.g., FTEs as whole numbers, EZ to one decimal place).
+      - Data must be pulled from the most recent Analyzer output Excel (e.g., Round_11_Skill_Burden_Explained_FORMATTED_UPDATED.xlsx).
+      - DO NOT omit this slide even if only one workflow is analyzed.
+      
+      Example Row Structure:
+      | 🏥 Workflow Name            | 📄 Description                   | 👥 CT FTEs | 🎓 Avg EZ | ⏳ Tenure Band |
+      |----------------------------|----------------------------------|-----------|-----------|----------------|
+      | Medical Claim with Repair  | Ambulatory + Payer Composite     | 3,317     | EZ2.8     | 4–9 years       |
+      | SNF Claim Submission       | Skilled Nursing & Residential    | 2,504     | EZ2.3     | 10+ years       |
+      | Appeals of Denied Claim    | Provider + Payer + Legal/Compliance | 2,132  | EZ3.1     | 4–9 years       |
 
 1. ⏳ AI Impact Timeline (Updated)  
    - stacked Bar chart showing % of total Adjusted CT FTEs in each AI Risk band (Low, Moderate, High, Very High)  
