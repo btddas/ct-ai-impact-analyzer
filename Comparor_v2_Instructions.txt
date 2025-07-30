@@ -107,13 +107,44 @@ Provide a summary of all Workflows analyzed including description, number of adj
          This chart must be regenerated any time EZ risk distributions or total FTEs change.
 
 
-4. 🔄 Routine × Cognitive 2x2 Matrix  
-   - Divide roles into 4 bucket:  
-     - Routine Manual  
-     - Routine Cognitive  
-     - Non-Routine Manual  
-     - Non-Routine Cognitive  
-   - Show % of Adjusted CT FTEs in each quadrant labeled accordingly
+4. 🔄 🔄 Routine × Cognitive Matrix
+
+            Chart Title:
+            “Routine × Cognitive Matrix: % of CT FTEs by Work Type”
+            
+            Purpose:
+            Segment all SOCs into four work-type categories to show structural exposure to AI, based on the nature of their labor.
+            
+            Chart Type:
+            - Horizontal bar chart
+            - Y-axis: Work Type (4 categories)
+            - X-axis: % of total Adjusted CT FTEs
+            
+            Instructions:
+            1. For each SOC, use the following binary attributes:
+               - `Routine?` (values may include “Yes”, “No”, “Non-Routine”)
+               - `Cognitive?` (values are “Yes” or “No”)
+            2. Normalize values:
+               - Treat `Non-Routine` as equivalent to “No”
+               - All missing or unclear values must be excluded or handled as edge cases
+            3. Define Work Type:
+               - Routine Manual = Routine = “Yes” or “Routine”, Cognitive = “No”
+               - Routine Cognitive = Routine = “Yes” or “Routine”, Cognitive = “Yes”
+               - Non-Routine Manual = Routine = “No” or “Non-Routine”, Cognitive = “No”
+               - Non-Routine Cognitive = Routine = “No” or “Non-Routine”, Cognitive = “Yes”
+            4. Group by Work Type and sum `CT FTEs (Adjusted)`
+            5. Convert to percentage of total Adjusted CT FTEs
+            6. Display bars in descending order by % of FTEs
+            7. Ensure all 4 Work Types are shown, even if zero
+            8. Color palette = Muted or accessible scheme (no red/green for accessibility)
+            9. Chart must show Y-axis as Work Type buckets and X-axis as % of FTEs
+            
+            Optional Enhancements:
+            - Add raw FTE counts next to each bar (in small type)
+            - Use tooltip or annotation layers if interactive
+            
+            Note:
+            This chart is used to interpret structural AI susceptibility by task modality and should match classifications used in Analyzer output.
 
 5. ⚙️ AI Modality Breakdown  
    - x axis = PEP / UDP / Hybrid  
