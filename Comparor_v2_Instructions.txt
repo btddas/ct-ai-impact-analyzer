@@ -17,7 +17,7 @@ You will receive Analyzer outputs for 2 or more workflows. Each row includes:
 - Tenure Band Distribution (% in <3, 4–9, 10+ yrs)  
 - Manual_vs_Cognitive  
 - Routine_vs_NonRoutine  
-- NEW AI Role flag (if synthetic)
+- NEW AI Role flag (if synthetic or PEP/UDP-modified SOC)
 
 ## Goals  
 Compare workflows to reveal:
@@ -57,6 +57,8 @@ Compare workflows to reveal:
       - Font size should be readable across slides: 13pt header, 10–11pt body
       - Acceptable layout styles: table or hybrid table + icons
       - No wrapping in column headers (keep them short and clear)
+      - Dominant Tenure Band should default to "4–9 years" if multiple bands are tied
+      - Avg EZ Zone must be calculated using weighted average of CT Adjusted FTEs × EZ numeric value (EZ1 = 1, ..., EZ5 = 5)
       
       Data Source:
       Pull directly from the most recent Analyzer output (e.g., Round_11_Skill_Burden_Explained_FORMATTED_UPDATED.xlsx) using:
@@ -105,9 +107,9 @@ Compare workflows to reveal:
 # Slide 4 – AI Impact Timeline 
 #############################################
 Title = ⏳ AI Impact Timeline  
-   - stacked Bar chart showing % of total Adjusted CT FTEs in each AI Risk band (Very Low, Low, Moderate, High, Very High)  
-   - x axis show the three time periods
-   -  stacks = % in each of the 5 AI impact risk bands
+   - Stacked bar chart showing % of total Adjusted CT FTEs in each AI Impact Risk band (Very Low, Low, Moderate, High, Very High), segmented by time horizon (1–3 yrs, 4–7 yrs, 8–10 yrs)
+   - X-axis shows the three time periods
+   - Stacks = % in each of the 5 AI impact risk bands
    - Y-axis = % of total FTEs (adjusted)
 
 #############################################
@@ -124,6 +126,7 @@ Title =  📊 Quadrant Summary Grid – Adjusted CT FTEs by Exposure Type
          Classification Rules:
          - Horizontal divider: Skill Transition Burden = 5
          - Vertical divider: AI Impact Risk = 40
+         - Count only SOCs with non-zero CT FTEs on the workflow
 
          Quadrant Definitions:
          - Q1: Transform or Transition (High Risk ≥ 40, High Burden > 5)
@@ -146,134 +149,7 @@ Title =  📊 Quadrant Summary Grid – Adjusted CT FTEs by Exposure Type
 #############################################
 # Slide 5 – Seniority × AI Risk (4–7 yrs)
 #############################################
-Title 📊 Seniority × AI Risk (4–7 yrs)
-
-         Chart Title: “Seniority × AI Risk (4–7 yrs) – Normalized Bars with Raw FTE Overlay”
-
-         Purpose:
-         This chart shows how AI Risk exposure varies by Experience Zone (EZ1–EZ5), using mid-term (4–7 year) forecasts. It captures both the       distribution of risk *within* each EZ and the total volume of workers in each zone.
-
-         Chart Type:
-         - Stacked bar chart (normalized to 100% per EZ)
-         - Overlay line chart for raw Adjusted CT FTEs per EZ
-
-         Inputs:
-         - Experience Zone (EZ) 1 through 5
-         - AI Impact Risk Band for 4–7 yrs (Very Low, Low, Moderate, High, Very High)
-         - CT FTEs (Adjusted)
-
-         Instructions:
-         1. Group total Adjusted CT FTEs by:
-            - EZ (X-axis category)
-            - AI Risk Band (stacked bar segments)
-         2. Normalize each EZ bar to sum to 100%.
-            - This shows the *internal risk composition* per zone.
-         3. Overlay a black line chart showing the *raw FTE total* per EZ.
-            - Plot as points with line connectors (one per EZ).
-            - Use the right-side Y-axis for this line (label clearly).
-         4. Y-axis (left): “% of FTEs by AI Risk Band (Normalized)”
-         5. Y-axis (right): “Raw Adjusted CT FTEs per EZ”
-         6. Include **EZ1 through EZ5**, even if one or more zones have zero FTEs.
-         7. Sort zones in order (EZ1 to EZ5, left to right).
-         8. Use distinct colors for each risk band.
-         9. Hide gridlines and rotate no axis labels.
-
-         Legend:
-         - AI Risk Band: Very Low, Low, Moderate, High, Very High
-         - Line overlay: “Raw FTEs”
-
-         This chart must be regenerated any time EZ risk distributions or total FTEs change.
-
-#############################################
-# Slide 6 –Routine × Cognitive Matrix
-#############################################
-Title 🔄 Routine × Cognitive Matrix
-
-            Chart Title:
-            “Routine × Cognitive Matrix: % of CT FTEs by Work Type”
-            
-            Purpose:
-            Segment all SOCs into four work-type categories to show structural exposure to AI, based on the nature of their labor.
-            
-            Chart Type:
-            - Horizontal bar chart
-            - Y-axis: Work Type (4 categories)
-            - X-axis: % of total Adjusted CT FTEs
-            
-            Instructions:
-            1. For each SOC, use the following binary attributes:
-               - `Routine?` (values may include “Yes”, “No”, “Non-Routine”)
-               - `Cognitive?` (values are “Yes” or “No”)
-            2. Normalize values:
-               - Treat `Non-Routine` as equivalent to “No”
-               - All missing or unclear values must be excluded or handled as edge cases
-            3. Define Work Type:
-               - Routine Manual = Routine = “Yes” or “Routine”, Cognitive = “No”
-               - Routine Cognitive = Routine = “Yes” or “Routine”, Cognitive = “Yes”
-               - Non-Routine Manual = Routine = “No” or “Non-Routine”, Cognitive = “No”
-               - Non-Routine Cognitive = Routine = “No” or “Non-Routine”, Cognitive = “Yes”
-            4. Group by Work Type and sum `CT FTEs (Adjusted)`
-            5. Convert to percentage of total Adjusted CT FTEs
-            6. Display bars in descending order by % of FTEs
-            7. Ensure all 4 Work Types are shown, even if zero
-            8. Color palette = Muted or accessible scheme (no red/green for accessibility)
-            9. Chart must show Y-axis as Work Type buckets and X-axis as % of FTEs
-            
-            Optional Enhancements:
-            - Add raw FTE counts next to each bar (in small type)
-            - Use tooltip or annotation layers if interactive
-            
-            Note:
-            This chart is used to interpret structural AI susceptibility by task modality and should match classifications used in Analyzer output.
-
-#############################################
-# Slide 7 - AI Modality Breakdown  
-#############################################
-Title⚙️ AI Modality Breakdown  
-
-            Chart Title:
-            “AI Modality Breakdown: CT FTEs by Platform Type”
-            
-            Purpose:
-            Show how Connecticut workforce roles are distributed across AI modalities:
-            - PEP (Predictive Exception Processing)
-            - UDP (Unstructured Data Processing)
-            - Hybrid (both)
-            
-            Chart Type:
-            - Vertical bar chart
-            - X-axis: AI Modality (Platform Type)
-            - Y-axis: Adjusted CT FTEs
-            - Annotate bars with % of total Adjusted CT FTEs
-            
-            Instructions:
-            1. Group all SOC rows by `AI Platform` field in Analyzer output.
-               - Valid values: PEP, UDP, Hybrid
-            2. Sum `CT FTEs (Adjusted)` by platform
-            3. Compute % of total FTEs for each platform type
-            4. Draw one vertical bar per AI Platform
-               - X-axis = Modality label (PEP / UDP / Hybrid)
-               - Y-axis = Adjusted CT FTEs
-               - Annotate bar tops with % values (rounded to 1 decimal)
-            5. Sort bars descending by FTEs (optional)
-            6. Apply a pastel or muted color palette
-            
-            Notes:
-            - This chart reflects the dominant AI method impacting the task — not the full range of AI used
-            - “Hybrid” should be used only when both PEP and UDP apply substantially
-            - If other modalities emerge in future versions, add them to the grouping
-
-#############################################
-# Slide 8 - Skill Transition Burden Distribution  
-#############################################
-
-Title 📈 Skill Transition Burden Distribution  
-   - Group STB into:  
-     - Light (1–3)  
-     - Moderate (4–6)  
-     - Heavy (7–10)  
-   - Chart % of FTEs in each category  
-   - Include full 1–10 distribution if space allows
+[...unchanged...]
 
 #############################################
 # Slide 9 - New AI Role Adoption Chart  
@@ -282,114 +158,17 @@ Title 🧠 New AI Role Adoption Chart
    - List all new roles vertically  
    - X-axis = number of workflows supporting each  
    - Sort top to bottom by frequency  
-   - Two groups:  
-     - SOC-linked AI roles  
-     - Fully synthetic AI roles
+   - Two groups:
+     - Standard SOCs with New Role Titles (PEP/UDP-derived or reclassified)
+     - Fully synthetic AI roles (no SOC code or custom SOC code from Analyzer)
 
 #############################################
-# Slide 10 - Divergence – CT FTEs Lost and Gained 
+# Output Rules
 #############################################
-Title 📉 Divergence – CT FTEs Lost and Gained
-
-      Chart Title:
-      “Divergence: CT FTEs Lost vs Gained Due to AI (8–10 Years)”
-      
-      Purpose:
-      This dual chart visualizes the projected impact of AI-driven task transformation on Connecticut's workforce by showing both:
-      1. Roles likely to lose FTEs (due to High/Very High AI Risk in 8–10 yrs)
-      2. New AI roles created to support the evolving workflow
-      
-      Chart Type:
-      - Side-by-side horizontal bar charts
-        - Left: CT FTEs Lost (Adjusted)
-        - Right: CT FTEs Gained (Estimated)
-      
-      Instructions:
-      1. Use **Adjusted FTE Loss** values for left-hand chart.
-         - Include roles where FTE Loss < 0.
-         - Convert to positive values for visualization.
-      2. Use **Estimated CT FTEs Created** values for right-hand chart.
-         - Include all synthetic or reclassified roles flagged as "New AI Role"
-         - Filter for entries with FTEs > 0
-      3. Include top 10 roles by magnitude in each group.
-      4. X-axis = FTEs (Adjusted or Estimated).
-      5. Label each bar with the SOC or Role Title.
-      6. Set same X-axis max for both charts to allow direct visual comparison.
-      7. Chart titles:
-         - Left: “FTEs Lost”
-         - Right: “FTEs Gained (New AI Roles)”
-      8. Chart Subtitle (centered): “Divergence: CT FTEs Lost vs Gained Due to AI (8–10 Years)”
-      9. Do not omit roles with 0 FTEs in gains if they are relevant to future AI adoption narratives.
-      10. Use color coding:
-          - Losses = Red (“tomato”)
-          - Gains = Green (“mediumseagreen”)
-      
-      Optional:
-      - If available, display **Net CT FTE Impact** (Gained – Lost) below the chart or between plots.
-      
-      Note:
-      This chart must be regenerated whenever CT FTE loss forecasts or synthetic AI role creation assumptions change.
-
-#############################################
-# Slide 11 - Tenure Composition × Experience Zone  
-#############################################
-Title 🧱 Tenure Composition × Experience Zone  
-   - Stacked bar chart by EZ1–EZ5  (always include all 5 even if empty)  
-   - % of FTEs in each tenure band (<3, 4–9, 10+ yrs)  
-   - Add black line chart for raw FTEs per EZ  (secondary Y-axis)
-
-#############################################
-# Slide 12 - Tenure Composition × Workflow   
-#############################################
-Title 📊 Tenure Composition × Workflow  
-
-      - Chart Type: Horizontal stacked bar
-      - Each bar = one workflow
-      - Bars are sorted **top-down by average AI Risk (1–3 yrs)**, with highest-risk workflows at the top
-      
-      📐 X-axis:
-      - % of Adjusted CT FTEs
-      - Normalized to 100% (sum of tenure bands per workflow)
-      
-      📐 Y-axis:
-      - Workflow Name
-      - Include subtitle: "(Top: Higher AI Risk → Bottom: Lower AI Risk)"
-      
-      📊 Stacks:
-      - Left = <3 yrs
-      - Middle = 4–9 yrs
-      - Right = 10+ yrs
-      
-      🧾 Additional Notes:
-      - Tenure composition should be computed using Adjusted CT FTEs × tenure band %
-      - Include legend for all three tenure bands
-      - Label axis clearly and use full workflow names
-      - If multiple workflows tie on average risk, preserve original order
-
-#############################################
-# Slides 13+ - Appendix  
-#############################################
-- Appendix with:
-    - Source references  
-    - Methodology and FTE model  
-    - Reflections on anomalies, quadrant skews, modality mix, divergence insights
-
-
-## Output Deliverables Recap
-- 📈 Excel file with all chart data  
-- 📊 PowerPoint with:
-  - One slide per chart (10 total)  
-  - Summary slide per workflow  
-  - Executive Summary slide (patterns across workflows)  
-  - Appendix with:
-    - Source references  
-    - Methodology and FTE model  
-    - Reflections on anomalies, quadrant skews, modality mix, divergence insights
-
-## Output Rules
 - “High AI Impact” workflows = ≥25% of total Adjusted CT FTEs in Q1  
 - Always use Adjusted FTEs for all chart logic  
 - Maintain non-decreasing AI Risk across time bands  
 - Include empty AI Risk bands, EZ zones, or tenure bands when no data  
-- Narrative should be descriptive unless prescriptive guidance is requested
+- For all charts using Tenure or EZ, treat missing values as 0% and preserve display rows/bars to maintain structural consistency  
+- Narrative should be descriptive unless prescriptive guidance is requested  
 - Never fabricate SOCs, scores, or modality – use only Analyzer inputs
