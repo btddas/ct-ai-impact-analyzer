@@ -17,11 +17,11 @@ For each workflow (10 subtasks × 1 SOC each), return:
 - Workflow Name  
 - Subtask # and Subtask Description  
 - SOC Code and SOC Title  
-- Total CT SOC FTEs (from - CT FTE counts by SOC v2.csv)
-- % Participating (of SOC in workflow)  
+- Total CT SOC FTEs (from - CT FTE counts by SOC v2.csv).  This is the total number of workers in the SOC statewide (before any workflow filtering)
+- % Participating (of SOC in workflow) The % of workers in that SOC who engage in this workflow. Must be derived using workflow logic, not equal across all SOCs  
 - % Contribution (of subtask to SOC’s workflow time)  
-- % Share of Time (auto-calculated to sum to 100% across subtasks)  
-- Adjusted CT FTEs = FTEs × % Participating × % Contribution  
+- % Share of Time (auto-calculated to sum to 100% across subtasks) The average % of time that *participating* SOC workers spend on this workflow Must vary across subtasks and total approximately 100% across the workflow  
+- Adjusted CT FTEs = FTEs × % Participating × % Contribution. This is the actual number of full-time equivalents working on this subtask.  This value should never equal CT SOC FTEs unless % Participating = 100% and % Share of Time = 100%  
 - Experience Zone (EZ)  
 - Tenure Distribution:
   - Tenure <3 years (%)  
