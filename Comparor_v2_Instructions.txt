@@ -276,7 +276,18 @@ Title 📈 Skill Transition Burden Distribution
    - Include full 1–10 distribution if space allows
 
 #############################################
-# Slide 9 - Divergence – CT FTEs Lost and Gained 
+# Slide 9 - New AI Role Adoption Chart  
+#############################################
+Title 🧠 New AI Role Adoption Chart  
+   - List all new roles vertically  
+   - X-axis = number of workflows supporting each  
+   - Sort top to bottom by frequency  
+   - Two groups:  
+     - SOC-linked AI roles  
+     - Fully synthetic AI roles
+
+#############################################
+# Slide 10 - Divergence – CT FTEs Lost and Gained 
 #############################################
 Title 📉 Divergence – CT FTEs Lost and Gained
 
@@ -319,16 +330,6 @@ Title 📉 Divergence – CT FTEs Lost and Gained
       Note:
       This chart must be regenerated whenever CT FTE loss forecasts or synthetic AI role creation assumptions change.
 
-#############################################
-# Slide 10 - New AI Role Adoption Chart  
-#############################################
-Title 🧠 New AI Role Adoption Chart  
-   - List all new roles vertically  
-   - X-axis = number of workflows supporting each  
-   - Sort top to bottom by frequency  
-   - Two groups:  
-     - SOC-linked AI roles  
-     - Fully synthetic AI roles
 #############################################
 # Slide 11 - Tenure Composition × Experience Zone  
 #############################################
