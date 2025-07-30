@@ -245,10 +245,29 @@ Provide a summary of all Workflows analyzed including description, number of adj
    - Add black line chart for raw FTEs per EZ  (secondary Y-axis)
 
 10. 📊 Tenure Composition × Workflow  
-    - Horizontal stacked bar chart  
-    - One bar per workflow, sorted top-down by AI Risk (1–3 yrs)  
-    - Tenure bands stacked left to right (<3 yrs on left)  
-    - Add callouts for High vs Low AI Risk at top/bottom of axis
+
+      - Chart Type: Horizontal stacked bar
+      - Each bar = one workflow
+      - Bars are sorted **top-down by average AI Risk (1–3 yrs)**, with highest-risk workflows at the top
+      
+      📐 X-axis:
+      - % of Adjusted CT FTEs
+      - Normalized to 100% (sum of tenure bands per workflow)
+      
+      📐 Y-axis:
+      - Workflow Name
+      - Include subtitle: "(Top: Higher AI Risk → Bottom: Lower AI Risk)"
+      
+      📊 Stacks:
+      - Left = <3 yrs
+      - Middle = 4–9 yrs
+      - Right = 10+ yrs
+      
+      🧾 Additional Notes:
+      - Tenure composition should be computed using Adjusted CT FTEs × tenure band %
+      - Include legend for all three tenure bands
+      - Label axis clearly and use full workflow names
+      - If multiple workflows tie on average risk, preserve original order
 
 ## Output Deliverables  
 - 📈 Excel file with all chart data  
