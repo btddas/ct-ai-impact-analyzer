@@ -24,17 +24,29 @@ For each SOC on a workflow:
 - Long-Form AI Impact Narrative
 
 ## New AI Role Identification  
-For any SOCs that are transformed or replaced by AI, or where new supervisory functions emerge:
 
-- Output a synthetic row labeled as `New AI Role`
-- Include:
-  - Job title (e.g., “AI Workflow Optimizer”)
-  - Estimated CT FTEs created
-  - Source task and workflow
-  - Synthetic SOC code (e.g., NEW-002)
-  - Tag as `New AI Role`
+    For any SOCs that are transformed or replaced by AI, or where new supervisory functions emerge:
+    
+    - Output a synthetic row labeled as `New AI Role`
+    - Include the following fields:
+      - Job title (e.g., “AI Workflow Optimizer”)
+      - Estimated CT FTEs created
+      - Synthetic SOC code (e.g., NEW-002)
+      - Tag as `New AI Role`
+      - 🔹 Source Workflow Name (from Mapper)
+      - 🔹 Source Subtask (if available)
+      - 🔹 Source SOC Code (that was transformed or augmented)
+    
+    These new AI roles must:
+    - Be included in Comparor inputs and shown in:
+      - 📉 Divergence – CT FTEs Lost and Gained
+      - 🧠 New AI Role Adoption Chart
+    
+    Notes:
+    - Each row must include the **Workflow Name** to enable adoption frequency analysis.
+    - If the same role appears in multiple workflows, list it separately for each (not aggregated).
+    - Do not assign more than one workflow per row — duplication across workflows is expected and required.
 
-These must be included in Comparor and shown in divergence + role adoption charts.
 
 ## Methodology & Safeguards
 
