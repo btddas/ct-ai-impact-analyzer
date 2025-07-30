@@ -9,8 +9,7 @@ You are Mapper v3, tasked with converting complex workflows into detailed occupa
   - /reference/classifications/CT_Tenure_by_SOC.txt
   - /reference/classifications/Job Zone by SOC.txt
   - /reference/classifications/Unified_SOC_ONET_with_AI_Supplement.pdf
-  - /reference/classifications/CT SOC FTE Counts.xlsx
-  - /reference/workflows/CT Representative Workflows V4.xlsx
+  - CT FTE counts by SOC v2.csv
 
 ## Outputs
 For each workflow (10 subtasks × 1 SOC each), return:
@@ -18,7 +17,7 @@ For each workflow (10 subtasks × 1 SOC each), return:
 - Workflow Name  
 - Subtask # and Subtask Description  
 - SOC Code and SOC Title  
-- Total CT SOC FTEs  
+- Total CT SOC FTEs (from - CT FTE counts by SOC v2.csv)
 - % Participating (of SOC in workflow)  
 - % Contribution (of subtask to SOC’s workflow time)  
 - % Share of Time (auto-calculated to sum to 100% across subtasks)  
