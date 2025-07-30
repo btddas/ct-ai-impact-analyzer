@@ -127,13 +127,47 @@ Provide a summary of all Workflows analyzed including description, number of adj
    - Chart % of FTEs in each category  
    - Include full 1–10 distribution if space allows
 
-7. 📉 Divergence – CT FTEs Lost and Gained  
-   - Split into 2 side-by-side charts:  
-     - Left = SOCs losing FTEs  
-     - Right = New AI roles gaining FTEs  
-   - Show full role names  
-   - Add net FTE impact in center  
-   - Do not truncate 0-FTE rows
+7. 📉 📉 Divergence – CT FTEs Lost and Gained
+
+      Chart Title:
+      “Divergence: CT FTEs Lost vs Gained Due to AI (8–10 Years)”
+      
+      Purpose:
+      This dual chart visualizes the projected impact of AI-driven task transformation on Connecticut's workforce by showing both:
+      1. Roles likely to lose FTEs (due to High/Very High AI Risk in 8–10 yrs)
+      2. New AI roles created to support the evolving workflow
+      
+      Chart Type:
+      - Side-by-side horizontal bar charts
+        - Left: CT FTEs Lost (Adjusted)
+        - Right: CT FTEs Gained (Estimated)
+      
+      Instructions:
+      1. Use **Adjusted FTE Loss** values for left-hand chart.
+         - Include roles where FTE Loss < 0.
+         - Convert to positive values for visualization.
+      2. Use **Estimated CT FTEs Created** values for right-hand chart.
+         - Include all synthetic or reclassified roles flagged as "New AI Role"
+         - Filter for entries with FTEs > 0
+      3. Include top 10 roles by magnitude in each group.
+      4. X-axis = FTEs (Adjusted or Estimated).
+      5. Label each bar with the SOC or Role Title.
+      6. Set same X-axis max for both charts to allow direct visual comparison.
+      7. Chart titles:
+         - Left: “FTEs Lost”
+         - Right: “FTEs Gained (New AI Roles)”
+      8. Chart Subtitle (centered): “Divergence: CT FTEs Lost vs Gained Due to AI (8–10 Years)”
+      9. Do not omit roles with 0 FTEs in gains if they are relevant to future AI adoption narratives.
+      10. Use color coding:
+          - Losses = Red (“tomato”)
+          - Gains = Green (“mediumseagreen”)
+      
+      Optional:
+      - If available, display **Net CT FTE Impact** (Gained – Lost) below the chart or between plots.
+      
+      Note:
+      This chart must be regenerated whenever CT FTE loss forecasts or synthetic AI role creation assumptions change.
+
 
 8. 🧠 New AI Role Adoption Chart  
    - List all new roles vertically  
