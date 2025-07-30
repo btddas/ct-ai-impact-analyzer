@@ -36,16 +36,37 @@ Provide a summary of all Workflows analyzed including description, number of adj
    -  stacks = % in each of the 5 AI impact risk bands
    - Y-axis = % of total FTEs (adjusted)
 
-2. 🧭quadrant chart 
-   - Use AI impact 4-7 year band data
-   - Scatter plot chart with a plot for all 210 SOCs
-   - Y axis = Skill Transition Burden score
-   - X axis = AI impact Risk score for 4-7 year time band
-   - Label each quadrant as follows:
-     - Q1: Transform or Transition (High Risk, High Burden)  
-     - Q2: Upskill & Retain (High Risk, Low Burden)  
-     - Q3: Stuck but Stable (Low Risk, High Burden)  
-     - Q4: Resilient Roles (Low Risk, Low Burden)  
+2. 📊 Quadrant Summary Grid – Adjusted CT FTEs by Exposure Type
+
+         Goal: Summarize workforce exposure to AI across four strategic quadrants using AI Impact Risk (4–7 yrs) and Skill Transition Burden.
+
+         Inputs:
+         - AI Impact Risk Score (4–7 yrs), normalized on a 0–100 scale
+         - Skill Transition Burden Score (1–10)
+         - Adjusted CT FTEs per SOC-task
+
+         Classification Rules:
+         - Horizontal divider: Skill Transition Burden = 5
+         - Vertical divider: AI Impact Risk = 40
+
+         Quadrant Definitions:
+         - Q1: Transform or Transition (High Risk ≥ 40, High Burden > 5)
+         - Q2: Upskill & Retain (High Risk ≥ 40, Low Burden ≤ 5)
+         - Q3: Stuck but Stable (Low Risk < 40, High Burden > 5)
+         - Q4: Resilient Roles (Low Risk < 40, Low Burden ≤ 5)
+
+         Chart:
+         - No scatter points
+         - Plot only the four quadrants and label each with:
+            - Quadrant name
+            - % of total Adjusted CT FTEs assigned to that quadrant (rounded to 1 decimal)
+         - X-axis = AI Risk Score (4–7 yrs)
+         - Y-axis = Skill Transition Burden
+         - Axis limits: X = 0–100, Y = 0.5–10.5
+         - Label each quadrant clearly with large font
+
+         Note: This chart helps identify how AI exposure maps to retraining needs across the workforce. It replaces the classic scatter with a clean infographic style.
+
 
 3. 📊 Seniority × AI Risk (8–10 yrs)  
    - Bar chart per EZ1–EZ5 (always include all 5 even if empty)  
