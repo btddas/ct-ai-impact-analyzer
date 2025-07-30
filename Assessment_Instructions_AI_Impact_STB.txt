@@ -1,4 +1,3 @@
-
 ✅ Final Assessment Instructions: AI Impact, Modality, and Skill Transition Burden
 
 You are an Assistant tasked with evaluating each SOC-task pairing in a given workflow. For each entry, perform three core assessments as follows:
@@ -17,20 +16,34 @@ Use the following scale:
 🟠 High – Majority of task is transformed via AI (e.g., automated, AI-led decisions).
 🔴 Very High – Task can be end-to-end handled by AI; human role becomes exception-only.
 
-Analyzer AI Risk Band Normalization
-- AI Risk Scores must follow:
-  - 0–10 → Very Low
-  - 11-24 → Low
-  - 25–39 → Moderate
-  - 40–54 → High
-  - 55–100 → Very High
+---
 
-Use cognitive/manual and routine/non-routine attributes to guide baseline susceptibility:
+### Analyzer AI Risk Scoring Framework (v10.4)
 
-- Routine + Cognitive ⇒ Higher Risk
-- Routine + Manual ⇒ Moderate Risk
-- Non-routine + Cognitive ⇒ Lower (but growing) Risk
-- Non-routine + Manual ⇒ Lower to Moderate Risk
+AI Risk Scores must be assigned for three time periods (1–3, 4–7, 8–10 years) using the following guidance:
+
+1. Baseline Determination by Modality Traits:
+   - Routine + Cognitive → start at Moderate or High in 1–3 yrs
+   - Routine + Manual → start at Low or Moderate
+   - Non-routine + Cognitive → typically Low in 1–3 yrs, Moderate later
+   - Non-routine + Manual → typically Very Low to Low, little change over time
+
+2. Experience Zone Adjustments:
+   - EZ 1–2 → add +2
+   - EZ 4–5 → subtract −2
+
+3. Structure + AI Automation Keywords:
+   - Tasks with “enter,” “verify,” “route,” “extract,” “schedule,” “submit” are considered structurally automatable
+   - If also routine + cognitive/manual, elevate scores in 4–7 and 8–10 year bands
+
+4. Risk Persistence and Ceiling Logic:
+   - Scores must not decrease over time
+   - Very Low in 1–3 yrs → cannot exceed Moderate by 8–10 yrs
+   - Do not push all tasks to High or Very High
+   - Very High = AI can fully replace task end-to-end by 8–10 yrs
+
+5. Interpersonal Exception Clause:
+   - Tasks centered on communication, reassurance, or emotional labor without structured triggers should remain Low or Moderate across all periods
 
 ---
 
@@ -38,13 +51,9 @@ Use cognitive/manual and routine/non-routine attributes to guide baseline suscep
 
 Determine whether the AI being applied is best described as:
 
-🧠 PEP (Predictive Exception Processing) – for predictive models, structured pattern recognition, classification, flagging.
-📄 UDP (Unstructured Data Processing) – for document parsing, text extraction, summarization, semantic comparison.
-🔁 Hybrid (PEP + UDP) – if both predictive and unstructured techniques are used.
-
-Refer to use cases such as:
-- UDP: Document summarization, text extraction, multi-doc fusion
-- PEP: Denial prediction, fraud detection, exception flagging
+🧠 PEP (Predictive Exception Processing) – for predictive models, structured pattern recognition, classification, flagging
+📄 UDP (Unstructured Data Processing) – for document parsing, text extraction, summarization, semantic comparison
+🔁 Hybrid (PEP + UDP) – if both predictive and unstructured techniques are used
 
 ---
 
@@ -52,9 +61,9 @@ Refer to use cases such as:
 
 Assess how difficult it will be for current FTEs to adapt to the AI-influenced task. Rate on a 1–10 scale:
 
-1–3 = Light Burden: Minimal upskilling (i.e. the AI change forecasted will be zero to limited and any new skill sets required by humans will be both similar to current tasks and easily adabtable)
-4–6 = Moderate Burden: Some retraining, change in workflow (i.e. the AI change forecasted will meaningfully change the role that humans play in supporting this worktask such that humans in these roles will require material traing to stay on the job)
-7–10 = Heavy Burden: Deep reskilling or role transformation (i.e. the AI change forecasted will radically change the role that humans play in supporting this worktask such that the skill sets required by humans will be both different and difficult)
+1–3 = Light Burden
+4–6 = Moderate Burden
+7–10 = Heavy Burden
 
 Consider:
 - Level of judgment or regulation involved
