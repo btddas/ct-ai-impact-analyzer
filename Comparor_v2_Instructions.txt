@@ -68,11 +68,44 @@ Provide a summary of all Workflows analyzed including description, number of adj
          Note: This chart helps identify how AI exposure maps to retraining needs across the workforce. It replaces the classic scatter with a clean infographic style.
 
 
-3. 📊 Seniority × AI Risk (8–10 yrs)  
-   - Bar chart per EZ1–EZ5 (always include all 5 even if empty)  
-   - Stacked by AI Risk band  
-   - Normalize each bar to 100%  
-   - Add line chart overlay for raw FTE counts per EZ (secondary Y-axis)
+3. 📊 📊 Seniority × AI Risk (4–7 yrs)
+
+         Chart Title: “Seniority × AI Risk (4–7 yrs) – Normalized Bars with Raw FTE Overlay”
+
+         Purpose:
+         This chart shows how AI Risk exposure varies by Experience Zone (EZ1–EZ5), using mid-term (4–7 year) forecasts. It captures both the       distribution of risk *within* each EZ and the total volume of workers in each zone.
+
+         Chart Type:
+         - Stacked bar chart (normalized to 100% per EZ)
+         - Overlay line chart for raw Adjusted CT FTEs per EZ
+
+         Inputs:
+         - Experience Zone (EZ) 1 through 5
+         - AI Impact Risk Band for 4–7 yrs (Very Low, Low, Moderate, High, Very High)
+         - CT FTEs (Adjusted)
+
+         Instructions:
+         1. Group total Adjusted CT FTEs by:
+            - EZ (X-axis category)
+            - AI Risk Band (stacked bar segments)
+         2. Normalize each EZ bar to sum to 100%.
+            - This shows the *internal risk composition* per zone.
+         3. Overlay a black line chart showing the *raw FTE total* per EZ.
+            - Plot as points with line connectors (one per EZ).
+            - Use the right-side Y-axis for this line (label clearly).
+         4. Y-axis (left): “% of FTEs by AI Risk Band (Normalized)”
+         5. Y-axis (right): “Raw Adjusted CT FTEs per EZ”
+         6. Include **EZ1 through EZ5**, even if one or more zones have zero FTEs.
+         7. Sort zones in order (EZ1 to EZ5, left to right).
+         8. Use distinct colors for each risk band.
+         9. Hide gridlines and rotate no axis labels.
+
+         Legend:
+         - AI Risk Band: Very Low, Low, Moderate, High, Very High
+         - Line overlay: “Raw FTEs”
+
+         This chart must be regenerated any time EZ risk distributions or total FTEs change.
+
 
 4. 🔄 Routine × Cognitive 2x2 Matrix  
    - Divide roles into 4 bucket:  
