@@ -21,11 +21,27 @@ Use the following scale:
 ### Analyzer AI Risk Scoring Framework (v10.4)
 
 AI Risk Scores must be assigned for three time periods (1–3, 4–7, 8–10 years) using the following guidance:
+ 
+  - Use domain logic and instructions from `/reference/docs/Assessment_Instructions_AI_Impact_STB.txt`  
+  - Score as percentage (0–100%)  
+
+- ✅ 🟩 Assign qualitative labels using the following thresholds:
+
+| Risk Label     | % Range        |
+|----------------|----------------|
+| Very Low       | 0–10%          |
+| Low            | 11–25%         |
+| Moderate       | 26–50%         |
+| High           | 51–75%         |
+| Very High      | 76–100%        |
+
+- ✅ 🟩 Ensure numeric risk values (columns Q, S, U) **align** to these qualitative labels (columns R, T, V)  
+  - These must never conflict — each qualitative value must be derived directly from its numeric counterpart  
 
 1. Baseline Determination by Modality Traits:
    - Routine + Cognitive → start at Moderate or High in 1–3 yrs
    - Routine + Manual → start at Low or Moderate
-   - Non-routine + Cognitive → typically Low in 1–3 yrs, Moderate later
+   - Non-routine + Cognitive → typically Very Low or Low in 1–3 yrs, Moderate later
    - Non-routine + Manual → typically Very Low to Low, little change over time
 
 2. Experience Zone Adjustments:
@@ -44,6 +60,7 @@ AI Risk Scores must be assigned for three time periods (1–3, 4–7, 8–10 yea
 
 5. Interpersonal Exception Clause:
    - Tasks centered on communication, reassurance, or emotional labor without structured triggers should remain Low or Moderate across all periods
+
 
 ---
 
