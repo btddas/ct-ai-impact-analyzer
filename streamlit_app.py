@@ -10,7 +10,7 @@ openai.api_key = st.secrets["OPENAI_API_KEY"]
 # Assistant IDs
 MAPPER_ID = "asst_ICb5UuKQmufzyx2lRaEE1CBA"
 ANALYZER_ID = "asst_cRFnnCxMFqwhoVgFpiemOgIY"
-COMPAROR_ID = "asst_PTfsO2JxEjkgRpDeZVvcPPG7"
+COMPAROR_ID = "your_new_comparor_id_here"  # ← Replace with your new one
 
 def extract_code_block(text):
     blocks = re.findall(r"```(?:\w*\n)?(.*?)```", text, re.DOTALL)
@@ -102,8 +102,14 @@ if uploaded_file:
                         st.success("✅ Analyzer complete.")
                         st.text_area("🔹 Analyzer Output", analyzer_structured, height=200)
 
+                    # ⚠️ Strip non-table content from Analyzer output for Comparor
+                    analyzer_table = "\n".join([
+                        line for line in analyzer_structured.splitlines()
+                        if "|" in line and not line.strip().startswith("```")
+                    ])
+
                     with NamedTemporaryFile(delete=False, mode="w", suffix=".txt") as f:
-                        f.write(analyzer_structured)
+                        f.write(analyzer_table.strip())
                         analyzer_txt_path = f.name
 
                     with st.spinner("📈 Step 3: Running Comparor..."):
