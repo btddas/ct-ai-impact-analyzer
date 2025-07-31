@@ -1,23 +1,16 @@
 import streamlit as st
 import pandas as pd
 import openai
+import os
 import time
-import re
+from tempfile import NamedTemporaryFile
 
 openai.api_key = st.secrets["OPENAI_API_KEY"]
 
+# Assistant IDs
 MAPPER_ID = "asst_ICb5UuKQmufzyx2lRaEE1CBA"
 ANALYZER_ID = "asst_cRFnnCxMFqwhoVgFpiemOgIY"
 COMPAROR_ID = "asst_RXgfmnQ2wHxIcFwtSiUYSbKR"
-
-st.set_page_config(page_title="CT AI Impact Analyzer", layout="centered")
-st.title("🧠 Round Runner – Multi-Workflow (Excel Upload)")
-
-uploaded_file = st.file_uploader("📤 Upload an Excel file with a 'Workflow' column", type=["xlsx"])
-
-def extract_code_block(text):
-    blocks = re.findall(r"```(?:\w*\n)?(.*?)```", text, re.DOTALL)
-    return blocks[0].strip() if blocks else text.strip()
 
 def run_assistant(assistant_id, user_input, file_path=None):
     thread = openai.beta.threads.create()
@@ -28,7 +21,7 @@ def run_assistant(assistant_id, user_input, file_path=None):
             thread_id=thread.id,
             role="user",
             content=user_input,
-            file_ids=[upload.id]
+            attachments=[{"file_id": upload.id}]
         )
     else:
         message = openai.beta.threads.messages.create(
@@ -53,54 +46,40 @@ def run_assistant(assistant_id, user_input, file_path=None):
     messages = openai.beta.threads.messages.list(thread_id=thread.id)
     return messages.data[0].content[0].text.value
 
+st.title("🔁 CT AI Workforce Impact Analyzer – Round 12")
+
+uploaded_file = st.file_uploader("📂 Upload your workflow Excel (.xlsx)", type=["xlsx"])
+
 if uploaded_file:
-    df = pd.read_excel(uploaded_file)
+    with NamedTemporaryFile(delete=False, suffix=".xlsx") as tmp:
+        tmp.write(uploaded_file.read())
+        tmp_path = tmp.name
+
+    df = pd.read_excel(tmp_path)
     if "Workflow" not in df.columns:
-        st.error("❌ Excel file must include a column labeled 'Workflow'.")
+        st.error("❌ Excel must have a column named 'Workflow'")
     else:
-        workflows = df["Workflow"].dropna().astype(str).tolist()
+        st.success("✅ Workflows loaded successfully!")
+        st.dataframe(df[["Workflow"]])
+        if st.button("▶ Run Round"):
+            try:
+                with st.spinner("Running Mapper..."):
+                    mapper_output = run_assistant(MAPPER_ID, "Run all workflows through Mapper", file_path=tmp_path)
 
-        if not 1 <= len(workflows) <= 25:
-            st.warning("⚠️ Please upload between 1 and 25 workflows.")
-        else:
-            st.success(f"✅ {len(workflows)} workflow(s) detected.")
-            st.dataframe(df)
+                st.success("✅ Mapper complete.")
+                st.text_area("🔹 Mapper Output", mapper_output, height=300)
 
-            if st.button("🚀 Run Round"):
-                with st.spinner("🔁 Mapper: Assigning SOCs..."):
-                    joined_workflows = "\n".join(workflows)  # Removed numbering — safer for parser
+                with st.spinner("Running Analyzer..."):
+                    analyzer_output = run_assistant(ANALYZER_ID, "Run all Mapper results through Analyzer", file_path=tmp_path)
 
-                    mapper_prompt = (
-                        f"You are the Mapper Assistant. Given the following workflows:\n{joined_workflows}\n\n"
-                        "Return a Markdown table with the following columns:\n"
-                        "- SOC Code, Job Title, CT Workers, % on Workflow, CT FTEs, Time Distribution, "
-                        "Tenure Bands (<3 yrs, 4–9 yrs, 10+ yrs), Routine/Non-Routine, Cognitive/Manual\n\n"
-                        "Output only the Markdown table. No headings, no explanations, no summaries."
-                    )
+                st.success("✅ Analyzer complete.")
+                st.text_area("🔹 Analyzer Output", analyzer_output, height=300)
 
-                    mapper_response = run_assistant(MAPPER_ID, mapper_prompt)
-                    mapper_structured = extract_code_block(mapper_response)
+                with st.spinner("Running Comparor..."):
+                    comparor_output = run_assistant(COMPAROR_ID, "Run Analyzer outputs through Comparor and generate Excel + PPT", file_path=tmp_path)
 
-                with st.spinner("📊 Analyzer: Assessing AI impact..."):
-                    analyzer_prompt = (
-                        f"You are the Analyzer Assistant. Analyze the following SOC data:\n\n"
-                        f"{mapper_structured}\n\n"
-                        "Follow Analyzer_v3_Instructions.txt. Return Markdown table only."
-                    )
-                    analyzer_response = run_assistant(ANALYZER_ID, analyzer_prompt)
-                    analyzer_structured = extract_code_block(analyzer_response)
+                st.success("✅ Comparor complete.")
+                st.text_area("🔹 Comparor Output", comparor_output, height=300)
 
-                with open("/tmp/analyzer_output.txt", "w") as f:
-                    f.write(analyzer_structured)
-
-                with st.spinner("📈 Comparor: Generating charts and summaries..."):
-                    comparor_prompt = (
-                        "You are the Comparor Assistant. The uploaded file contains Analyzer SOC output. "
-                        "Follow Comparor_v2_Instructions.txt and generate the PowerPoint and Excel outputs. "
-                        "Return URLs to download them."
-                    )
-                    comparor_response = run_assistant(COMPAROR_ID, comparor_prompt, file_path="/tmp/analyzer_output.txt")
-
-                st.success("🎉 Round complete!")
-                st.markdown("#### 📄 Comparor Output Preview")
-                st.text_area("Comparor Output", comparor_response[:3000], height=300)
+            except Exception as e:
+                st.error(f"❌ Error during pipeline: {e}")
