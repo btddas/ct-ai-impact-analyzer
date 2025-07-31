@@ -68,14 +68,16 @@ if uploaded_file:
 
             if st.button("🚀 Run Round"):
                 with st.spinner("🔁 Mapper: Assigning SOCs..."):
-                joined_workflows = "\n".join(workflows)
-                   mapper_prompt = (
+                joined_workflows = "\n".join(workflows)  # Removed numbering — safer for parser
+
+                    mapper_prompt = (
                         f"You are the Mapper Assistant. Given the following workflows:\n{joined_workflows}\n\n"
                         "Return a Markdown table with the following columns:\n"
                         "- SOC Code, Job Title, CT Workers, % on Workflow, CT FTEs, Time Distribution, "
                         "Tenure Bands (<3 yrs, 4–9 yrs, 10+ yrs), Routine/Non-Routine, Cognitive/Manual\n\n"
                         "Output only the Markdown table. No headings, no explanations, no summaries."
                     )
+
                     mapper_response = run_assistant(MAPPER_ID, mapper_prompt)
                     mapper_structured = extract_code_block(mapper_response)
 
