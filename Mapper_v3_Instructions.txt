@@ -27,7 +27,7 @@ For each workflow (10 subtasks × 1 SOC each), return:
   - Tenure <3 years (%)  
   - Tenure 4–9 years (%)  
   - Tenure 10+ years (%)  
-- Modality Classifiers:
+- Task-Based Model of Labor Classifiers:
   - Manual_vs_Cognitive: "Manual" or "Cognitive"  
   - Routine_vs_NonRoutine: "Routine" or "Non-Routine"  
 
