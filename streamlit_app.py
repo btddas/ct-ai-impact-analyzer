@@ -19,7 +19,7 @@ def extract_code_block(text):
     blocks = re.findall(r"```(?:\w*\n)?(.*?)```", text, re.DOTALL)
     return blocks[0].strip() if blocks else text.strip()
 
-def run_assistant(assistant_id, user_input):
+def run_assistant(assistant_id, user_input, file_ids=None):
     thread = openai.beta.threads.create()
     openai.beta.threads.messages.create(
         thread_id=thread.id,
@@ -28,7 +28,8 @@ def run_assistant(assistant_id, user_input):
     )
     run = openai.beta.threads.runs.create(
         thread_id=thread.id,
-        assistant_id=assistant_id
+        assistant_id=assistant_id,
+        file_ids=file_ids or []
     )
 
     while True:
@@ -64,29 +65,36 @@ if uploaded_file:
                         "Please return a single Markdown-formatted block with:\n"
                         "- SOC Code\n- Job Title\n- CT Workers\n- % on Workflow\n- CT FTEs\n- Time Distribution\n"
                         "- Tenure Bands (<3 yrs, 4–9 yrs, 10+ yrs)\n- Routine/Non-Routine\n- Cognitive/Manual\n\n"
-                        "Follow all rules in Mapper_v3_Instructions.txt. No summaries. Output only the table."
+                        "Follow all rules in Mapper_v3_Instructions.txt. Output only the table."
                     )
                     mapper_response = run_assistant(MAPPER_ID, mapper_prompt)
                     mapper_structured = extract_code_block(mapper_response)
 
                 with st.spinner("📊 Analyzer: Assessing AI impact..."):
                     analyzer_prompt = (
-                        f"You are the Analyzer Assistant. Please analyze the following structured SOC data "
-                        f"for AI displacement, skill burden, and augmentation:\n\n{mapper_structured}\n\n"
+                        f"You are the Analyzer Assistant. Please analyze the following structured SOC data:\n\n"
+                        f"{mapper_structured}\n\n"
                         "Follow Analyzer_v3_Instructions.txt strictly. Return Markdown block only with assessed data."
                     )
                     analyzer_response = run_assistant(ANALYZER_ID, analyzer_prompt)
                     analyzer_structured = extract_code_block(analyzer_response)
 
-                with st.spinner("📈 Comparor: Generating charts and insights..."):
+                # Save Analyzer output to file and upload it
+                with open("/tmp/analyzer_output.txt", "w") as f:
+                    f.write(analyzer_structured)
+
+                with st.spinner("📁 Uploading to OpenAI file store..."):
+                    upload = openai.files.create(file=open("/tmp/analyzer_output.txt", "rb"), purpose="assistants")
+                    uploaded_file_id = upload.id
+
+                with st.spinner("📈 Comparor: Generating insights..."):
                     comparor_prompt = (
-                        f"You are the Comparor Assistant. Using the following Analyzer SOC output:\n\n"
-                        f"{analyzer_structured}\n\n"
-                        "Follow Comparor_v2_Instructions.txt. Generate all required visuals and summary insights. "
-                        "Output Excel + PowerPoint files. Provide downloadable URLs."
+                        "You are the Comparor Assistant. Use the uploaded file containing the Analyzer SOC output. "
+                        "Follow Comparor_v2_Instructions.txt. Generate all charts and slides as described. "
+                        "Output links to downloadable Excel and PowerPoint files."
                     )
-                    comparor_response = run_assistant(COMPAROR_ID, comparor_prompt)
+                    comparor_response = run_assistant(COMPAROR_ID, comparor_prompt, file_ids=[uploaded_file_id])
 
                 st.success("🎉 Round complete!")
-                st.markdown("#### 📄 Raw Outputs")
-                st.text_area("Comparor Summary", comparor_response[:3000], height=300)
+                st.markdown("#### 📄 Comparor Response")
+                st.text_area("Comparor Output", comparor_response[:3000], height=300)
