@@ -68,7 +68,7 @@ if uploaded_file:
 
             if st.button("🚀 Run Round"):
                 with st.spinner("🔁 Mapper: Assigning SOCs..."):
-                joined_workflows = "\n".join(workflows)  # Removed numbering — safer for parser
+                    joined_workflows = "\n".join(workflows)  # Removed numbering — safer for parser
 
                     mapper_prompt = (
                         f"You are the Mapper Assistant. Given the following workflows:\n{joined_workflows}\n\n"
