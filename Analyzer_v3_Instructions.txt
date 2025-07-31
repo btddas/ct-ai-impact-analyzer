@@ -44,6 +44,7 @@ For each SOC on a workflow:
   - Skill Transition Burden (1–10)
   - AI Augmentation Potential (%)
   - AI Modality = PEP / UDP / Hybrid  
+  - FTE Divergence Impact Modeling
   - Long-Form AI Impact Narrative
 
 All columns listed above must be passed through to Comparor in their exact field names for use in downstream charting.
@@ -60,6 +61,47 @@ For any SOCs that are transformed or replaced by AI, or where new supervisory fu
   - Tag as `New AI Role`
 
 These must be included in Comparor and shown in divergence + role adoption charts.
+
+## 🔢 FTE Divergence Impact Modeling (Required for All Workflows)
+
+  For each SOC in the workflow:
+  
+  1. **Determine Baseline AI Impact Risk Trajectory** over three time horizons:
+     - Risk levels may increase over time (e.g., Moderate → High → Very High).
+     - If not explicitly defined, apply default risk graduation for routine cognitive roles:
+       - 1–3 yrs: Moderate
+       - 4–7 yrs: High
+       - 8–10 yrs: Very High
+  
+  2. **Calculate FTE Losses by Time Period**:
+     - Use table "FTE_Loss_Percentages" (from GitHub Assessment File).
+     - Apply % to the workflow-assigned CT FTEs for that SOC.
+     - Compute cumulative loss: FTEs lost in each time period vs original baseline.
+  
+  3. **Estimate Retrainable FTEs**:
+     - Use "Retrainability_Modifiers" table.
+     - Inputs: EZ level (1–5), Tenure Band (<3 yrs, 4–9, 10+).
+     - For each SOC, multiply displaced FTEs by weighted average retrainability modifier.
+     - Do not exceed 100% of lost FTEs per time period.
+  
+  4. **Estimate Gains from Newly Created AI Roles**:
+     - Default assumption: 5–15% of total workflow FTEs over 10 years shift to net-new SOCs (AI platform support, audit, governance).
+     - May be overridden if "AI_Role_Creation_Benchmarks" table is included in GitHub Assessment Files.
+  
+  5. **Produce Divergence Table for Each Time Horizon**:
+  
+  | Time Horizon | FTE Loss | Retrained FTEs | Net-New AI Role Gains | Net FTE Change |
+  |--------------|----------|----------------|------------------------|----------------|
+  | 1–3 Years    | XXX      | XXX            | XXX                    | = -Loss + Gain |
+  | 4–7 Years    | XXX      | XXX            | XXX                    |                |
+  | 8–10 Years   | XXX      | XXX            | XXX                    |                |
+  
+  This table is required as part of Analyzer v3 output for each SOC and for workflow totals.
+  
+  Also compute:
+  - **% of original CT FTEs retrained**
+  - **% of total losses offset**
+  - **Cumulative net impact**
 
 ## Methodology & Safeguards
 
@@ -99,8 +141,9 @@ Ensure presence of:
 - Every row must include all outputs
 - Columns in final output must include: [Workflow Name, Subtask #, Subtask Description, SOC Code, SOC Title, CT SOC FTEs, CT FTEs (Adjusted), % Participating, % Contribution, % Share of Time, Experience Zone, Tenure <3 yrs %, Tenure 4–9 yrs %, Tenure 10+ yrs %, Cognitive?, Routine?, AI Risk (1–3 yrs), AI Risk (1–3 yrs).1, AI Risk (4–7 yrs), AI Risk (4–7 yrs).1, AI Risk (8–10 yrs), AI Risk (8–10 yrs).1, Skill Transition Burden, AI Augmentation %, AI Platform, Long-Form AI Impact Description]
 
-- Narrative must explain:
+- Long form AI Narrative must explain:
   - Risk level reasoning
   - Skill barrier (technical, regulatory, behavioral)
   - AI support or replacement dynamics
   - Platform type (PEP / UDP / Hybrid)
+  - net FTE impact 
