@@ -1,195 +1,65 @@
 import streamlit as st
-import openai
-import os
-import time
-import base64
-from io import BytesIO
 import pandas as pd
+import openai
+import time
 
-# Set OpenAI API key
+# Load your OpenAI API key from Streamlit secrets
 openai.api_key = st.secrets["OPENAI_API_KEY"]
 
-# Assistant IDs
-MAPPER_ID = "asst_LjpOZTM7VQWPnUKSYt2U3zyb"
+# Assistant IDs from GitHub-synced logic
+MAPPER_ID = "asst_ICb5UuKQmufzyx2lRaEE1CBA"
 ANALYZER_ID = "asst_cRFnnCxMFqwhoVgFpiemOgIY"
 COMPAROR_ID = "asst_RXgfmnQ2wHxIcFwtSiUYSbKR"
 
-st.set_page_config(page_title="CT AI Impact Analyzer", layout="centered")
-st.title("CT AI Impact Analyzer")
-st.write("Upload a structured Excel or CSV export from Comparor to analyze workforce AI impact.")
+st.set_page_config(page_title="CT AI Impact Analyzer – Round Runner", layout="centered")
 
-uploaded_file = st.file_uploader("Upload Excel or CSV File", type=["xlsx", "csv"])
+st.title("🧠 Round Runner – Multi-Workflow (Excel Upload)")
+st.write("Upload an Excel file with 1–25 workflows to analyze AI impact across roles in Connecticut.")
 
-# Retry-safe assistant runner with verbose logging
-def run_single_assistant(assistant_id, user_prompt, file_id, tools=None, max_retries=5):
-    client = openai.OpenAI()
-    name = assistant_id.split("_")[1]
+uploaded_file = st.file_uploader("📤 Upload your `.xlsx` file", type=["xlsx"])
 
-    thread = client.beta.threads.create()
-    st.write(f"🧵 `{name}` thread ID: `{thread.id}`")
-
-    client.beta.threads.messages.create(
-        thread_id=thread.id,
-        role="user",
-        content=user_prompt,
-        attachments=[{
-            "file_id": file_id,
-            "tools": tools or [{"type": "file_search"}]
-        }]
-    )
-
-
-
-    for attempt in range(max_retries):
-        try:
-            run = client.beta.threads.runs.create(
-                thread_id=thread.id,
-                assistant_id=assistant_id
-            )
-            st.write(f"▶️ `{name}` run ID: `{run.id}`")
-
-            while True:
-                run_status = client.beta.threads.runs.retrieve(thread_id=thread.id, run_id=run.id)
-
-                if run_status.status == "completed":
-                    st.success(f"✅ `{name}` completed.")
-                    break
-
-                elif run_status.status == "failed":
-                    st.error(f"❌ `{name}` run failed.")
-                    messages = client.beta.threads.messages.list(thread_id=thread.id)
-                    st.write(f"📨 `{name}` last message contents:")
-                    for msg in messages.data:
-                        st.json(msg.dict())
-                    raise RuntimeError(f"❌ `{name}` run failed.")
-                time.sleep(2)
-
-            messages = client.beta.threads.messages.list(thread_id=thread.id)
-            for msg in messages.data[::-1]:
-                st.write(f"🗨️ **Message from `{msg.role}`**")
-                st.json(msg.dict(), expanded=False)
-
-            return messages
-
-        except openai.RateLimitError:
-            wait_seconds = 10 * (attempt + 1)
-            st.warning(f"⚠️ Rate limit hit. Retrying in {wait_seconds} seconds... (Attempt {attempt+1}/{max_retries})")
-            time.sleep(wait_seconds)
-
-    raise RuntimeError(f"❌ `{name}` run failed after {max_retries} retries.")
-
-def run_pipeline(file, ext):
-    client = openai.OpenAI()
-    st.write("📤 Converting and splitting Excel...")
-
-    if ext == "xlsx":
-        df = pd.read_excel(file)
+if uploaded_file:
+    df = pd.read_excel(uploaded_file)
+    if "Workflow" not in df.columns:
+        st.error("❌ The Excel file must include a column labeled 'Workflow'.")
     else:
-        df = pd.read_csv(file)
+        workflows = df["Workflow"].dropna().astype(str).tolist()
+        metadata_columns = [col for col in df.columns if col != "Workflow"]
 
-    chunk_size = 1
-    chunks = [df[i:i + chunk_size] for i in range(0, len(df), chunk_size)]
-    output_dfs = []
+        if not 1 <= len(workflows) <= 25:
+            st.warning("⚠️ Please upload between 1 and 25 workflows.")
+        else:
+            st.success(f"✅ {len(workflows)} workflow(s) detected.")
+            st.dataframe(df)
 
-    for i, chunk in enumerate(chunks):
-        st.write(f"🔹 Running Mapper on batch {i+1}/{len(chunks)}")
-        txt = chunk.to_csv(index=False)
-        txt_file = BytesIO(txt.encode("utf-8"))
-        txt_file.name = f"mapper_input_batch_{i+1}.txt"
-        openai_file = client.files.create(file=txt_file, purpose="assistants")
+            if st.button("🚀 Run Round"):
+                with st.spinner("Running Mapper..."):
+                    mapper_output = openai.beta.assistants.run(
+                        assistant_id=MAPPER_ID,
+                        instructions="Run with uploaded metadata-aware workflows.",
+                        input={"workflows": workflows, "metadata": df.to_dict("records")}
+                    )
+                    time.sleep(1)
 
-        messages = run_single_assistant(
-            MAPPER_ID,
-            "Run the instructions in your system prompt only.",
-            openai_file.id,
-            tools=[{"type": "code_interpreter"}]
-        )
+                with st.spinner("Running Analyzer..."):
+                    analyzer_output = openai.beta.assistants.run(
+                        assistant_id=ANALYZER_ID,
+                        instructions="Analyze all Mapper outputs for Round 12.",
+                        input={"mapper_data": mapper_output}
+                    )
+                    time.sleep(1)
 
-        found_file = False
-        for msg in messages.data:
-            if hasattr(msg, "tool_calls"):
-                for call in msg.tool_calls:
-                    if call.type == "code_interpreter":
-                        import json
-                        args = json.loads(call.function.arguments)
+                with st.spinner("Running Comparor..."):
+                    comparor_output = openai.beta.assistants.run(
+                        assistant_id=COMPAROR_ID,
+                        instructions="Generate PPT and Excel outputs aggregating all workflows.",
+                        input={"analyzer_data": analyzer_output}
+                    )
+                    time.sleep(2)
 
-                        if "file_path" in args:
-                            try:
-                                file_bytes = client.files.retrieve_content(args["file_path"])
-                                df_part = pd.read_csv(BytesIO(file_bytes))
-                                output_dfs.append(df_part)
-                                found_file = True
-                            except Exception as e:
-                                st.error(f"⚠️ Failed to read returned file `{args['file_path']}`: {e}")
+                excel_url = comparor_output["excel_url"]
+                ppt_url = comparor_output["ppt_url"]
 
-        if not found_file:
-            st.warning(f"⚠️ No output file returned for batch {i+1}")
-
-    if not output_dfs:
-        st.error("❌ No Mapper output collected from any batch.")
-        return []
-
-    combined_df = pd.concat(output_dfs, ignore_index=True)
-    combined_csv = BytesIO(combined_df.to_csv(index=False).encode())
-    combined_csv.name = "mapper_output.csv"
-
-    openai_file = client.files.create(file=combined_csv, purpose="assistants")
-    st.success("✅ Combined Mapper output ready.")
-
-    output_files = []
-
-    assistant_steps = [
-        (
-            ANALYZER_ID,
-            "Please act as the Analyzer: use the output of the Mapper to assess AI impact, risk level, and generate Excel results."
-        ),
-        (
-            COMPAROR_ID,
-            "Please act as the Comparor: compare across workflows and produce summary insights and PowerPoint output."
-        )
-    ]
-
-    for assistant_id, prompt in assistant_steps:
-        try:
-            st.write(f"▶️ Running `{assistant_id}`...")
-            messages = run_single_assistant(assistant_id, prompt, openai_file.id)
-            found_files = False
-            for msg in messages.data:
-                for file_id in getattr(msg, "file_ids", []):
-                    try:
-                        file_bytes = client.files.retrieve_content(file_id)
-                        output_files.append((file_id, file_bytes))
-                        found_files = True
-                    except Exception as e:
-                        st.error(f"⚠️ Failed to retrieve file `{file_id}`: {e}")
-            if not found_files:
-                st.warning(f"⚠️ No output files returned by `{assistant_id.split('_')[1]}`.")
-        except Exception as e:
-            st.error(f"❌ Error running `{assistant_id}`: {e}")
-
-    return output_files
-
-def download_link(file_bytes, filename, label):
-    b64 = base64.b64encode(file_bytes.read()).decode()
-    href = f'<a href="data:application/octet-stream;base64,{b64}" download="{filename}">{label}</a>'
-    return href
-
-if uploaded_file is not None:
-    ext = uploaded_file.name.split(".")[-1].lower()
-    if ext not in ["xlsx", "csv"]:
-        st.error("❌ Only .xlsx or .csv files are supported.")
-    else:
-        st.success("File uploaded. Click below to run analysis.")
-        if st.button("Submit"):
-            with st.spinner("⏳ Running assistants in sequence..."):
-                results = run_pipeline(uploaded_file, ext)
-
-            if results:
-                st.success("🎉 Analysis complete. Download your files:")
-                for i, (fid, result_file) in enumerate(results):
-                    ext = ".xlsx" if i == 0 else ".pptx"
-                    filename = f"AI_Impact_Output_{i+1}{ext}"
-                    st.markdown(download_link(BytesIO(result_file), filename, f"📥 Download {filename}"), unsafe_allow_html=True)
-            else:
-                st.warning("⚠️ All assistants completed, but no output files were generated.")
-
+                st.success("🎉 Round complete!")
+                st.download_button("⬇️ Download Excel", excel_url, file_name="Round_Results.xlsx")
+                st.download_button("⬇️ Download PowerPoint", ppt_url, file_name="Round_Slides.pptx")
