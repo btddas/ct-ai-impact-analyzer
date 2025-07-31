@@ -107,11 +107,53 @@ Provide a summary of all Workflows analyzed including description, number of adj
     - Tenure bands stacked left to right (<3 yrs on left)  
     - Add callouts for High vs Low AI Risk at top/bottom of axis
 
+## Slide Structure and Format (v5 Standard)
+
+You must replicate the **standard 15-slide format** used in `Comparor_v3_AI_Impact_Deck_v5.pptx`. This includes fixed titles, chart types, and layout expectations:
+
+| Slide # | Title                                 | Content Type                   |
+|---------|----------------------------------------|--------------------------------|
+| 1       | CT AI Workforce Impact Analysis        | Title slide (workflow name)    |
+| 2       | Executive Summary                      | Key facts, bullet insights     |
+| 3       | Workflow Scope Overview                | 10-subtask table or summary    |
+| 4       | AI Displacement Risk Timeline          | Bar chart: AI Risk over time   |
+| 5       | Risk × Skill Burden Quadrant View      | 2×2 quadrant graphic (not bars)|
+| 6       | Experience Zone × AI Risk              | Clustered column, EZ1–EZ5      |
+| 7       | Tenure Band × AI Risk                  | Clustered column, normalized   |
+| 8       | Emerging AI-Related Roles              | Bulleted list or table         |
+| 9       | Methodology Overview                   | FTE model, risk/burden logic   |
+| 10      | Risk and Burden Summary                | Narrative pattern analysis     |
+| 11      | CT Workforce Impact: Key Insights      | Focused insights from quadrant |
+| 12      | Appendix A: AI Risk & Burden Scale     | Definitions for risk, burden   |
+| 13      | Appendix B: SOC Mapping & Sources      | File references and methods    |
+| 14      | Appendix C: Analyst Annotations        | Notes, field validation        |
+| 15      | End of Report                          | Closing slide                  |
+
+**Special formatting expectations:**
+- Slide 5 must be a **true quadrant grid** labeled by risk and burden (not bar chart)
+- Slide 6 must **always show all EZ bands** (EZ1–EZ5), even if 0%
+- Slide 7 must use normalized bars with **<3, 4–9, 10+** tenure bands
+- Slide 8 must be a **text block or table**, not a chart
+
+## Required Charts and Outputs
+
+Provide a summary of all Workflows analyzed including description, number of adjusted FTEs in CT, and average EZ and Tenure bands
+
+1. ⏳ AI Impact Timeline (Updated)  
+2. 🧭 Quadrant Chart – Risk × Skill Burden  
+3. 📊 Seniority × AI Risk (8–10 yrs)  
+4. 🔄 Routine × Cognitive 2x2 Matrix  
+5. ⚙️ AI Modality Breakdown  
+6. 📈 Skill Transition Burden Distribution  
+7. 📉 Divergence – CT FTEs Lost and Gained  
+8. 🧠 New AI Role Adoption Chart  
+9. 🧱 Tenure Composition × Experience Zone  
+10. 📊 Tenure Composition × Workflow  
+
 ## Output Deliverables  
 - 📈 Excel file with all chart data  
 - 📊 PowerPoint with:
-  - One slide per chart (10 total)  
-  - Summary slide per workflow  
+  - One slide per chart 
   - Executive Summary slide (patterns across workflows)  
   - Appendix with:
     - Source references  
