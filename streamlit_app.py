@@ -2,20 +2,22 @@ import streamlit as st
 import pandas as pd
 import openai
 import time
+import re
 
-# Set your OpenAI key from secrets
 openai.api_key = st.secrets["OPENAI_API_KEY"]
 
-# Assistant IDs from GitHub-synced deployment
 MAPPER_ID = "asst_ICb5UuKQmufzyx2lRaEE1CBA"
 ANALYZER_ID = "asst_cRFnnCxMFqwhoVgFpiemOgIY"
 COMPAROR_ID = "asst_RXgfmnQ2wHxIcFwtSiUYSbKR"
 
-# Streamlit UI setup
 st.set_page_config(page_title="CT AI Impact Analyzer", layout="centered")
 st.title("🧠 Round Runner – Multi-Workflow (Excel Upload)")
 
 uploaded_file = st.file_uploader("📤 Upload an Excel file with a 'Workflow' column", type=["xlsx"])
+
+def extract_code_block(text):
+    blocks = re.findall(r"```(?:\w*\n)?(.*?)```", text, re.DOTALL)
+    return blocks[0].strip() if blocks else text.strip()
 
 def run_assistant(assistant_id, user_input):
     thread = openai.beta.threads.create()
@@ -29,13 +31,12 @@ def run_assistant(assistant_id, user_input):
         assistant_id=assistant_id
     )
 
-    # Poll until complete
     while True:
         run = openai.beta.threads.runs.retrieve(thread_id=thread.id, run_id=run.id)
         if run.status == "completed":
             break
         elif run.status in ["failed", "cancelled", "expired"]:
-            raise RuntimeError(f"Run failed with status: {run.status}")
+            raise RuntimeError(f"Run failed: {run.status}")
         time.sleep(2)
 
     messages = openai.beta.threads.messages.list(thread_id=thread.id)
@@ -44,7 +45,7 @@ def run_assistant(assistant_id, user_input):
 if uploaded_file:
     df = pd.read_excel(uploaded_file)
     if "Workflow" not in df.columns:
-        st.error("❌ The Excel file must include a column labeled 'Workflow'.")
+        st.error("❌ Excel file must include a column labeled 'Workflow'.")
     else:
         workflows = df["Workflow"].dropna().astype(str).tolist()
         metadata = df.drop(columns=["Workflow"]) if df.shape[1] > 1 else None
@@ -56,17 +57,36 @@ if uploaded_file:
             st.dataframe(df)
 
             if st.button("🚀 Run Round"):
-                with st.spinner("🔁 Sending to Mapper..."):
-                    mapper_input = "\n".join([f"{i+1}. {w}" for i, w in enumerate(workflows)])
-                    mapper_result = run_assistant(MAPPER_ID, f"Map these workflows:\n{mapper_input}")
+                with st.spinner("🔁 Mapper: Assigning SOCs..."):
+                    joined_workflows = "\n".join([f"{i+1}. {w}" for i, w in enumerate(workflows)])
+                    mapper_prompt = (
+                        f"You are the Mapper Assistant. Given the following workflows:\n{joined_workflows}\n\n"
+                        "Please return a single Markdown-formatted block with:\n"
+                        "- SOC Code\n- Job Title\n- CT Workers\n- % on Workflow\n- CT FTEs\n- Time Distribution\n"
+                        "- Tenure Bands (<3 yrs, 4–9 yrs, 10+ yrs)\n- Routine/Non-Routine\n- Cognitive/Manual\n\n"
+                        "Follow all rules in Mapper_v3_Instructions.txt. No summaries. Output only the table."
+                    )
+                    mapper_response = run_assistant(MAPPER_ID, mapper_prompt)
+                    mapper_structured = extract_code_block(mapper_response)
 
-                with st.spinner("🔎 Sending to Analyzer..."):
-                    analyzer_result = run_assistant(ANALYZER_ID, mapper_result)
+                with st.spinner("📊 Analyzer: Assessing AI impact..."):
+                    analyzer_prompt = (
+                        f"You are the Analyzer Assistant. Please analyze the following structured SOC data "
+                        f"for AI displacement, skill burden, and augmentation:\n\n{mapper_structured}\n\n"
+                        "Follow Analyzer_v3_Instructions.txt strictly. Return Markdown block only with assessed data."
+                    )
+                    analyzer_response = run_assistant(ANALYZER_ID, analyzer_prompt)
+                    analyzer_structured = extract_code_block(analyzer_response)
 
-                with st.spinner("📊 Sending to Comparor..."):
-                    comparor_result = run_assistant(COMPAROR_ID, analyzer_result)
+                with st.spinner("📈 Comparor: Generating charts and insights..."):
+                    comparor_prompt = (
+                        f"You are the Comparor Assistant. Using the following Analyzer SOC output:\n\n"
+                        f"{analyzer_structured}\n\n"
+                        "Follow Comparor_v2_Instructions.txt. Generate all required visuals and summary insights. "
+                        "Output Excel + PowerPoint files. Provide downloadable URLs."
+                    )
+                    comparor_response = run_assistant(COMPAROR_ID, comparor_prompt)
 
-                st.success("🎉 Round complete.")
-                st.markdown("#### 📄 Results")
-                st.text_area("Excel Output Preview", analyzer_result[:1500])
-                st.download_button("⬇️ Download Results (text)", analyzer_result, file_name="Round_Results.txt")
+                st.success("🎉 Round complete!")
+                st.markdown("#### 📄 Raw Outputs")
+                st.text_area("Comparor Summary", comparor_response[:3000], height=300)
