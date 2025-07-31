@@ -7,17 +7,15 @@ from tempfile import NamedTemporaryFile
 
 openai.api_key = st.secrets["OPENAI_API_KEY"]
 
-# Assistant IDs (GitHub-synced)
+# Assistant IDs
 MAPPER_ID = "asst_ICb5UuKQmufzyx2lRaEE1CBA"
 ANALYZER_ID = "asst_cRFnnCxMFqwhoVgFpiemOgIY"
 COMPAROR_ID = "asst_RXgfmnQ2wHxIcFwtSiUYSbKR"
 
-# Extract Markdown table block from assistant output
 def extract_code_block(text):
     blocks = re.findall(r"```(?:\w*\n)?(.*?)```", text, re.DOTALL)
     return blocks[0].strip() if blocks else text.strip()
 
-# Assistant runner with optional file upload and correct attachment logic
 def run_assistant(assistant_id, user_input, file_path=None):
     thread = openai.beta.threads.create()
 
@@ -51,9 +49,9 @@ def run_assistant(assistant_id, user_input, file_path=None):
     messages = openai.beta.threads.messages.list(thread_id=thread.id)
     return messages.data[0].content[0].text.value
 
-# Streamlit interface
-st.set_page_config(page_title="CT AI Impact Analyzer", layout="centered")
-st.title("🧠 CT AI Workforce Impact Analyzer – Round 12")
+# Streamlit layout
+st.set_page_config(page_title="CT AI Workforce Impact Analyzer – Round 12", layout="centered")
+st.title("📊 CT AI Workforce Impact Analyzer – Round 12")
 
 uploaded_file = st.file_uploader("📥 Upload Excel with a column labeled 'Workflow'", type=["xlsx"])
 
@@ -92,14 +90,18 @@ if uploaded_file:
 
                     with st.spinner("📊 Step 2: Running Analyzer..."):
                         analyzer_prompt = (
-                            f"Please analyze this Mapper table per Analyzer_v3_Instructions.txt:\n\n{mapper_structured}"
+                            "Use the uploaded Markdown table containing SOC data for a single workflow. "
+                            "Follow Analyzer_v3_Instructions.txt. Output a Markdown table only."
                         )
-                        analyzer_out = run_assistant(ANALYZER_ID, analyzer_prompt)
+                        with NamedTemporaryFile(delete=False, mode="w", suffix=".txt") as f:
+                            f.write(mapper_structured)
+                            mapper_txt_path = f.name
+
+                        analyzer_out = run_assistant(ANALYZER_ID, analyzer_prompt, file_path=mapper_txt_path)
                         analyzer_structured = extract_code_block(analyzer_out)
                         st.success("✅ Analyzer complete.")
                         st.text_area("🔹 Analyzer Output", analyzer_structured, height=200)
 
-                    # Save Analyzer output to .txt and upload to OpenAI
                     with NamedTemporaryFile(delete=False, mode="w", suffix=".txt") as f:
                         f.write(analyzer_structured)
                         analyzer_txt_path = f.name
