@@ -10,7 +10,7 @@ openai.api_key = st.secrets["OPENAI_API_KEY"]
 # Assistant IDs
 MAPPER_ID = "asst_ICb5UuKQmufzyx2lRaEE1CBA"
 ANALYZER_ID = "asst_cRFnnCxMFqwhoVgFpiemOgIY"
-COMPAROR_ID = "asst_RXgfmnQ2wHxIcFwtSiUYSbKR"
+COMPAROR_ID = "asst_PTfsO2JxEjkgRpDeZVvcPPG7"
 
 def extract_code_block(text):
     blocks = re.findall(r"```(?:\w*\n)?(.*?)```", text, re.DOTALL)
