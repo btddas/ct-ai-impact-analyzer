@@ -88,6 +88,42 @@ Consider:
 - Familiarity with digital tools or analytics
 - Experience Zone (EZ): Entry (EZ 1–2), Intermediate (EZ 3–4), Expert (EZ 5)
 
+## 📊 FTE Impact and Retrainability Reference Tables
+
+  Include the following source tables for all Analyzer runs:
+  
+  1. **FTE_Loss_Percentages**
+  
+  | AI Impact Risk | 1–3 Years | 4–7 Years | 8–10 Years |
+  |----------------|-----------|-----------|------------|
+  | Very Low       | 2%        | 4%        | 6%         |
+  | Low            | 5%        | 10%       | 15%        |
+  | Moderate       | 10%       | 25%       | 40%        |
+  | High           | 20%       | 45%       | 65%        |
+  | Very High      | 30%       | 70%       | 90%        |
+  
+  2. **Retrainability_Modifiers**
+  
+  | EZ Level | Tenure <3 yrs | Tenure 4–9 yrs | Tenure 10+ yrs |
+  |----------|----------------|----------------|----------------|
+  | 1        | 0.8            | 0.6            | 0.4            |
+  | 2        | 0.7            | 0.5            | 0.3            |
+  | 3        | 0.6            | 0.4            | 0.2            |
+  | 4        | 0.5            | 0.3            | 0.1            |
+  | 5        | 0.4            | 0.2            | 0.05           |
+  
+  3. **Optional: AI_Role_Creation_Benchmarks**
+  (Include if wanting to customize AI role growth assumptions per workflow)
+  
+  | Workflow Type                  | Net-New AI Role Gain (10 Yrs) |
+  |-------------------------------|-------------------------------|
+  | Claims & Billing              | 8%                            |
+  | Clinical Documentation        | 5%                            |
+  | Appeals & Compliance          | 10%                           |
+  | AI-Supported Workflow (PEP)   | 15%                           |
+  | AI-Supported Workflow (UDP)   | 12%                           |
+
+
 ---
 
 📌 Output Format per SOC-Task Entry:
