@@ -43,16 +43,20 @@ Provide a summary of all Workflows analyzed including description, number of adj
    -  stacks = % in each of the 5 AI impact risk bands
    - Y-axis = % of total FTEs (adjusted)
 
-2. 🧭quadrant chart 
-   - Use AI impact 4-7 year band data
-   - Scatter plot chart with a plot for all 210 SOCs
-   - Y axis = Skill Transition Burden score
-   - X axis = AI impact Risk score for 4-7 year time band
-   - Label each quadrant as follows:
+2. 🧭quadrant chart  
+   - Use AI Impact *Risk Label* for 4–7 year time band (not raw score)  
+   - Map SOCs to quadrants based on:
+     - High Risk = labeled “High” or “Very High”
+     - Low Risk = labeled “Low” or “Moderate”
+     - High Burden = Skill Transition Burden ≥ 5.5
+     - Low Burden = STB < 5.5
+   - Label quadrants:
      - Q1: Transform or Transition (High Risk, High Burden)  
      - Q2: Upskill & Retain (High Risk, Low Burden)  
      - Q3: Stuck but Stable (Low Risk, High Burden)  
      - Q4: Resilient Roles (Low Risk, Low Burden)  
+   - Ensure that High Risk share here matches % in Slide 4 (Timeline)
+
 
 3. 📊 Seniority × AI Risk (8–10 yrs)  
    - Bar chart per EZ1–EZ5 (always include all 5 even if empty)  
