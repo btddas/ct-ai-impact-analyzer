@@ -68,7 +68,7 @@ if uploaded_file:
 
             if st.button("🚀 Run Round"):
                 with st.spinner("🔁 Mapper: Assigning SOCs..."):
-                    joined_workflows = "\n".join([f"{i+1}. {w}" for i, w in enumerate(workflows)])
+                    joined_workflows = "\n".join(workflows)
                     mapper_prompt = (
                         f"You are the Mapper Assistant. Given the following workflows:\n{joined_workflows}\n\n"
                         "Return a Markdown table with:\n"
