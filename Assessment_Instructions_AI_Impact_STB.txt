@@ -66,7 +66,7 @@ AI Risk Scores must be assigned for three time periods (1–3, 4–7, 8–10 yea
 
 ⚙️ 2. AI Modality: PEP, UDP, or Hybrid
 
-Determine whether the AI being applied is best described as:
+Determine referencing PEP and UDP capabilities.pptx whether the AI being applied is best described as:
 
 🧠 PEP (Predictive Exception Processing) – for predictive models, structured pattern recognition, classification, flagging
 📄 UDP (Unstructured Data Processing) – for document parsing, text extraction, summarization, semantic comparison
