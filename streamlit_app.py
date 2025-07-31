@@ -5,31 +5,30 @@ import time
 import re
 from tempfile import NamedTemporaryFile
 
-# Load your OpenAI API key from secrets
 openai.api_key = st.secrets["OPENAI_API_KEY"]
 
-# Assistant IDs from GitHub
+# Assistant IDs (GitHub-synced)
 MAPPER_ID = "asst_ICb5UuKQmufzyx2lRaEE1CBA"
 ANALYZER_ID = "asst_cRFnnCxMFqwhoVgFpiemOgIY"
 COMPAROR_ID = "asst_RXgfmnQ2wHxIcFwtSiUYSbKR"
 
-# Extract the first Markdown code block from assistant response
+# Extract Markdown table block from assistant output
 def extract_code_block(text):
     blocks = re.findall(r"```(?:\w*\n)?(.*?)```", text, re.DOTALL)
     return blocks[0].strip() if blocks else text.strip()
 
-# Unified assistant runner: handles optional file attachment
+# Assistant runner with optional file upload and correct attachment logic
 def run_assistant(assistant_id, user_input, file_path=None):
     thread = openai.beta.threads.create()
 
     if file_path:
-        uploaded_file = openai.files.create(file=open(file_path, "rb"), purpose="assistants")
-        message = openai.beta.threads.messages.create(
+        upload = openai.files.create(file=open(file_path, "rb"), purpose="assistants")
+        openai.beta.threads.messages.create(
             thread_id=thread.id,
             role="user",
             content=user_input,
             attachments=[{
-                "file_id": uploaded_file.id,
+                "file_id": upload.id,
                 "tools": [{"type": "file_search"}]
             }]
         )
@@ -40,25 +39,21 @@ def run_assistant(assistant_id, user_input, file_path=None):
             content=user_input
         )
 
-    run = openai.beta.threads.runs.create(
-        thread_id=thread.id,
-        assistant_id=assistant_id
-    )
+    run = openai.beta.threads.runs.create(thread_id=thread.id, assistant_id=assistant_id)
 
-    while True:
-        run = openai.beta.threads.runs.retrieve(thread_id=thread.id, run_id=run.id)
-        if run.status == "completed":
-            break
-        elif run.status in ["failed", "cancelled", "expired"]:
-            raise RuntimeError(f"Run failed: {run.status}")
+    while run.status not in ["completed", "failed", "cancelled", "expired"]:
         time.sleep(2)
+        run = openai.beta.threads.runs.retrieve(thread_id=thread.id, run_id=run.id)
+
+    if run.status != "completed":
+        raise RuntimeError(f"Run failed: {run.status}")
 
     messages = openai.beta.threads.messages.list(thread_id=thread.id)
     return messages.data[0].content[0].text.value
 
-# Streamlit app layout
-st.set_page_config(page_title="CT AI Workforce Impact Analyzer – Round 12", layout="centered")
-st.title("📊 CT AI Workforce Impact Analyzer – Round 12")
+# Streamlit interface
+st.set_page_config(page_title="CT AI Impact Analyzer", layout="centered")
+st.title("🧠 CT AI Workforce Impact Analyzer – Round 12")
 
 uploaded_file = st.file_uploader("📥 Upload Excel with a column labeled 'Workflow'", type=["xlsx"])
 
@@ -69,56 +64,55 @@ if uploaded_file:
 
     df = pd.read_excel(tmp_path)
     if "Workflow" not in df.columns:
-        st.error("❌ Excel must include a column named 'Workflow'.")
+        st.error("❌ Excel must include a column named 'Workflow'")
     else:
         workflows = df["Workflow"].dropna().astype(str).tolist()
 
         if not 1 <= len(workflows) <= 25:
-            st.warning("⚠️ Please provide between 1 and 25 workflows.")
+            st.warning("⚠️ Please provide 1–25 workflows.")
         else:
             st.success(f"✅ {len(workflows)} workflow(s) detected.")
             st.dataframe(df)
 
             if st.button("🚀 Run Round"):
                 try:
-                    with st.spinner("⚙️ Step 1: Running Mapper..."):
-                        joined_workflows = "\n".join(workflows)
+                    with st.spinner("🔁 Step 1: Running Mapper..."):
+                        joined = "\n".join(workflows)
                         mapper_prompt = (
-                            f"Given the following workflows:\n{joined_workflows}\n\n"
-                            "Return a Markdown table with these columns:\n"
+                            f"Given the following workflows:\n{joined}\n\n"
+                            "Return only a Markdown table with:\n"
                             "- SOC Code, Job Title, CT Workers, % on Workflow, CT FTEs, Time Distribution, "
                             "Tenure Bands (<3 yrs, 4–9 yrs, 10+ yrs), Routine/Non-Routine, Cognitive/Manual\n\n"
-                            "Follow Mapper_v3_Instructions.txt. Output only the Markdown table — no headings or notes."
+                            "Follow Mapper_v3_Instructions.txt strictly. Output table only."
                         )
-                        mapper_result = run_assistant(MAPPER_ID, mapper_prompt)
-                        mapper_structured = extract_code_block(mapper_result)
-                        st.success("✅ Mapper completed.")
-                        st.text_area("📄 Mapper Output", mapper_structured, height=200)
+                        mapper_out = run_assistant(MAPPER_ID, mapper_prompt)
+                        mapper_structured = extract_code_block(mapper_out)
+                        st.success("✅ Mapper complete.")
+                        st.text_area("🔹 Mapper Output", mapper_structured, height=200)
 
-                    with st.spinner("⚙️ Step 2: Running Analyzer..."):
+                    with st.spinner("📊 Step 2: Running Analyzer..."):
                         analyzer_prompt = (
-                            f"Analyze the following Mapper output per Analyzer_v3_Instructions.txt:\n\n{mapper_structured}"
+                            f"Please analyze this Mapper table per Analyzer_v3_Instructions.txt:\n\n{mapper_structured}"
                         )
-                        analyzer_result = run_assistant(ANALYZER_ID, analyzer_prompt)
-                        analyzer_structured = extract_code_block(analyzer_result)
-                        st.success("✅ Analyzer completed.")
-                        st.text_area("📄 Analyzer Output", analyzer_structured, height=200)
+                        analyzer_out = run_assistant(ANALYZER_ID, analyzer_prompt)
+                        analyzer_structured = extract_code_block(analyzer_out)
+                        st.success("✅ Analyzer complete.")
+                        st.text_area("🔹 Analyzer Output", analyzer_structured, height=200)
 
-                    with NamedTemporaryFile(delete=False, mode="w", suffix=".txt") as tmp_out:
-                        tmp_out.write(analyzer_structured)
-                        analyzer_file_path = tmp_out.name
+                    # Save Analyzer output to .txt and upload to OpenAI
+                    with NamedTemporaryFile(delete=False, mode="w", suffix=".txt") as f:
+                        f.write(analyzer_structured)
+                        analyzer_txt_path = f.name
 
-                    with st.spinner("⚙️ Step 3: Running Comparor..."):
+                    with st.spinner("📈 Step 3: Running Comparor..."):
                         comparor_prompt = (
-                            "You are the Comparor Assistant. Use the uploaded Analyzer output to generate:\n"
-                            "- 1 PowerPoint aggregating all workflows (white theme)\n"
-                            "- 1 Excel with all SOC-level results\n"
-                            "- Summary quadrant charts, seniority stack, and AI roles created\n\n"
-                            "Follow Comparor_v2_Instructions.txt."
+                            "Use the uploaded file containing Analyzer SOC output. "
+                            "Follow Comparor_v2_Instructions.txt to generate Excel + PowerPoint outputs. "
+                            "Return links or text output as appropriate."
                         )
-                        comparor_result = run_assistant(COMPAROR_ID, comparor_prompt, file_path=analyzer_file_path)
-                        st.success("✅ Comparor completed.")
-                        st.text_area("📄 Comparor Output", comparor_result[:3000], height=300)
+                        comparor_out = run_assistant(COMPAROR_ID, comparor_prompt, file_path=analyzer_txt_path)
+                        st.success("✅ Comparor complete.")
+                        st.text_area("📄 Comparor Output", comparor_out[:3000], height=300)
 
                 except Exception as e:
                     st.error(f"❌ Pipeline failed: {e}")
