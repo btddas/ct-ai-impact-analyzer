@@ -76,17 +76,23 @@ Determine referencing PEP and UDP capabilities.pptx whether the AI being applied
 
 🔧 3. Skill Transition Burden (STB)
 
-Assess how difficult it will be for current FTEs to adapt to the AI-influenced task. Rate on a 1–10 scale:
-
-1–3 = Light Burden
-4–6 = Moderate Burden
-7–10 = Heavy Burden
-
-Consider:
-- Level of judgment or regulation involved
-- Communication intensity
-- Familiarity with digital tools or analytics
-- Experience Zone (EZ): Entry (EZ 1–2), Intermediate (EZ 3–4), Expert (EZ 5)
+     Refine Skill Transition Burden (STB) Score Logic
+    
+    Skill Transition Burden (STB) is a 1–10 score reflecting how difficult it will be for current workers in a SOC to adapt to the AI-enhanced version of their subtask. This score is conceptually distinct from AI Risk.
+    
+    Use the following guidelines:
+    
+    - High STB (7–10): Indicates the current workforce has low skill overlap with the AI-enhanced task and will struggle to reskill. Often applies to high-EZ, cognitive, non-routine roles where the future task involves complex tool usage or data interpretation.
+    - Medium STB (4–6): Indicates moderate adaptability. Workers may require training but retain relevant core strengths.
+    - Low STB (1–3): Indicates the current workforce is naturally aligned with the AI-enhanced version of the task. Examples include routine/manual roles or those already using structured templates.
+    
+    Also consider:
+    - Whether the task is being augmented vs. replaced (use AI Modality as input)
+    - Findings from “Augmenting or Automating Labor”:
+      - Roles combining cognitive + social skills tend to be more adaptable (lower STB)
+      - Roles with narrow task scope but high abstraction may struggle more (higher STB)
+    
+    STB must not be mechanically derived from AI Risk, and should reflect the *human-to-new-role friction* dimension.
 
 ## 📊 FTE Impact and Retrainability Reference Tables
 
