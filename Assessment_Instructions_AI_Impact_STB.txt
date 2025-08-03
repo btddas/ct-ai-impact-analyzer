@@ -76,23 +76,38 @@ Determine referencing PEP and UDP capabilities.pptx whether the AI being applied
 
 🔧 3. Skill Transition Burden (STB)
 
-     Refine Skill Transition Burden (STB) Score Logic
-    
-    Skill Transition Burden (STB) is a 1–10 score reflecting how difficult it will be for current workers in a SOC to adapt to the AI-enhanced version of their subtask. This score is conceptually distinct from AI Risk.
-    
-    Use the following guidelines:
-    
-    - High STB (7–10): Indicates the current workforce has low skill overlap with the AI-enhanced task and will struggle to reskill. Often applies to high-EZ, cognitive, non-routine roles where the future task involves complex tool usage or data interpretation.
-    - Medium STB (4–6): Indicates moderate adaptability. Workers may require training but retain relevant core strengths.
-    - Low STB (1–3): Indicates the current workforce is naturally aligned with the AI-enhanced version of the task. Examples include routine/manual roles or those already using structured templates.
-    
-    Also consider:
-    - Whether the task is being augmented vs. replaced (use AI Modality as input)
-    - Findings from “Augmenting or Automating Labor”:
-      - Roles combining cognitive + social skills tend to be more adaptable (lower STB)
-      - Roles with narrow task scope but high abstraction may struggle more (higher STB)
-    
-    STB must not be mechanically derived from AI Risk, and should reflect the *human-to-new-role friction* dimension.
+     Revised Skill Transition Burden (STB) Scoring Logic
+
+     Skill Transition Burden (STB) represents the difficulty current workers will face transitioning into the AI-modified version of their subtask. It is scored independently from AI Risk and is influenced by worker adaptability, role complexity, and the nature of AI intervention.
+     
+     Use the following rubric:
+     
+     Start with a base score of 3.
+     
+     Experience Zone Adjustments:
+     - Add +0 if Experience Zone = EZ 1 or EZ 2
+     - Add +1 if Experience Zone = EZ 3
+     - Add +2 if Experience Zone = EZ 4
+     - Add +3 if Experience Zone = EZ 5
+     
+     Cognitive & Routine Adjustments:
+     - Add +1 if Cognitive = Yes
+     - Add +1 if Routine = No
+     
+     AI Modality Adjustments:
+     - Add +0 if AI Modality = PEP
+     - Add +1 if AI Modality = UDP
+     - Add +2 if AI Modality = Hybrid
+     
+     Cap final STB score at 10.
+     
+     This framework reflects that:
+     - Lower EZ roles tend to have simpler, more adaptable tasks
+     - Higher EZ roles may require significant retraining to adjust to AI workflows
+     - Cognitive, non-routine tasks are more impacted by AI-led transformation
+     - Hybrid and UDP modalities introduce greater abstraction or prompt/audit complexity than PEP
+     
+     STB must remain conceptually distinct from AI Risk and is critical to quadrant classification.
 
 ## 📊 FTE Impact and Retrainability Reference Tables
 
