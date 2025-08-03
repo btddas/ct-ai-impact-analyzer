@@ -117,6 +117,24 @@ These must be included in Comparor and shown in divergence + role adoption chart
       - review The AI Shift DRAFT v2.2 (1).docx as a - but not the only  - reference for determining what new AI roles may be need to support the AI changes forecast for each workflow
       - Default assumption: 5–15% of total workflow FTEs over 10 years shift to net-new SOCs (AI platform support, audit, governance).
       - May be overridden if "AI_Role_Creation_Benchmarks" table is included in GitHub Assessment Files.
+
+  Allocate New AI Role FTEs by Time Period
+
+      Once New AI-Supported Roles have been estimated for each SOC based on AI Modality, distribute their FTEs into each of the 3 time bands based on the cascading displacement pattern of the associated SOC:
+      
+      Let:
+      - FTE_Loss_1_3 = SOC-level loss in years 1–3
+      - FTE_Loss_4_7 = SOC-level loss in years 4–7
+      - FTE_Loss_8_10 = SOC-level loss in years 8–10
+      - Total_Loss = sum of the above
+      
+      Then for each new AI role linked to that SOC:
+      - AI Role FTEs (1–3 yrs) = Total New Role FTEs × (FTE_Loss_1_3 ÷ Total_Loss)
+      - AI Role FTEs (4–7 yrs) = Total New Role FTEs × ((FTE_Loss_1_3 + FTE_Loss_4_7) ÷ Total_Loss)
+      - AI Role FTEs (8–10 yrs) = Total New Role FTEs
+      
+      These values are cumulative. Comparor will use these phased FTEs only in the Divergence, Executive Summary, and New AI Roles outputs.
+
   
   5. **Produce Divergence Table for Each Time Horizon**:
   
