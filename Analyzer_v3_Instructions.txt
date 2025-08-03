@@ -114,8 +114,9 @@ These must be included in Comparor and shown in divergence + role adoption chart
      - Do not exceed 100% of lost FTEs per time period.
   
   4. **Estimate Gains from Newly Created AI Roles**:
-     - Default assumption: 5–15% of total workflow FTEs over 10 years shift to net-new SOCs (AI platform support, audit, governance).
-     - May be overridden if "AI_Role_Creation_Benchmarks" table is included in GitHub Assessment Files.
+      - review The AI Shift DRAFT v2.2 (1).docx as a - but not the only  - reference for determining what new AI roles may be need to support the AI changes forecast for each workflow
+      - Default assumption: 5–15% of total workflow FTEs over 10 years shift to net-new SOCs (AI platform support, audit, governance).
+      - May be overridden if "AI_Role_Creation_Benchmarks" table is included in GitHub Assessment Files.
   
   5. **Produce Divergence Table for Each Time Horizon**:
   
