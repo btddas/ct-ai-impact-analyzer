@@ -63,3 +63,11 @@ Use O*NET definitions + domain knowledge. Pay close attention to verbs in task d
 
 Structured CSV or Excel with columns:
 [Workflow Name, Subtask #, Subtask Description, SOC Code, SOC Title, CT SOC FTEs, % Participating, % Contribution, % Share of Time, Adjusted CT FTEs, Experience Zone, Tenure <3 years (%), Tenure 4–9 years (%), Tenure 10+ years (%), Manual_vs_Cognitive, Routine_vs_NonRoutine]
+
+# After computing Adjusted FTEs for each subtask
+df["CT FTEs (Adjusted)"] = df["CT_SOC_FTEs"] * df["% Participating"] * df["% Time Share"]
+
+# Compute % Contribution
+total_fte = df["CT FTEs (Adjusted)"].sum()
+df["% Contribution"] = df["CT FTEs (Adjusted)"] / total_fte
+
