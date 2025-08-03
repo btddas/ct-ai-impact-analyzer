@@ -26,7 +26,7 @@ For each SOC on a workflow:
     - Tenure <3 years (%)  
     - Tenure 4–9 years (%)  
     - Tenure 10+ years (%)  
-  - Modality Classifiers:
+  - Cognative/Routine Classifiers:
     - Manual_vs_Cognitive: "Manual" or "Cognitive"  
     - Routine_vs_NonRoutine: "Routine" or "Non-Routine"
 - New Analyzer Calculations and Research per /reference/docs/Assessment_Instructions_AI_Impact_STB.txt  
@@ -45,7 +45,7 @@ For each SOC on a workflow:
   assert ai_risk_label in valid_labels, f"Invalid AI Risk label: {ai_risk_label}"
 
 
-  - Skill Transition Burden (1–10)
+  - Skill Transition Burden (1–10) calculate using STBs guidance in: Assessment_Instructions_AI_Impact_STB.txt
   - AI Augmentation Potential (%)
   - AI Modality = PEP / UDP / Hybrid  
   - FTE Divergence Impact Modeling
