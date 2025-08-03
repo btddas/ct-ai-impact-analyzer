@@ -40,6 +40,10 @@ For each SOC on a workflow:
      - 51–75% = High
      - 76–100% = Very High
    - These labels must always align to their respective numeric values.
+  # Validation to enforce only standard AI Risk labels are used
+  valid_labels = {"Very Low", "Low", "Moderate", "High", "Very High"}
+  assert ai_risk_label in valid_labels, f"Invalid AI Risk label: {ai_risk_label}"
+
 
   - Skill Transition Burden (1–10)
   - AI Augmentation Potential (%)
