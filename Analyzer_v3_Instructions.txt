@@ -78,9 +78,34 @@ These must be included in Comparor and shown in divergence + role adoption chart
        - 8–10 yrs: Very High
   
   2. **Calculate FTE Losses by Time Period**:
-     - Use table "FTE_Loss_Percentages" (from GitHub Assessment File).
-     - Apply % to the workflow-assigned CT FTEs for that SOC.
-     - Compute cumulative loss: FTEs lost in each time period vs original baseline.
+     Calculate Cascading FTE Loss Over Time
+
+        For each SOC row, estimate FTE loss over the 3 AI risk time bands using the following logic:
+        
+        - Convert AI risk levels to baseline displacement estimates:
+          - Very High = 0.75
+          - High = 0.50
+          - Moderate = 0.25
+          - Low = 0.10
+          - Very Low = 0.05
+        
+        - Adjust the rate using Experience Zone (EZ):
+          - EZ 2 = ×1.1
+          - EZ 3 = ×1.0
+          - EZ 4 = ×0.9
+        
+        - Apply cascading loss logic:
+          - FTEs lost in 1–3 yrs = CT FTEs × Risk1 × EZ modifier
+          - FTEs lost in 4–7 yrs = (CT FTEs – FTEs lost 1–3 yrs) × Risk2 × EZ modifier
+          - FTEs lost in 8–10 yrs = (Remaining after 1–7 yrs) × Risk3 × EZ modifier
+        
+        - Cumulative FTE Loss = sum of losses over all 3 bands
+        
+        Output columns required:
+        - FTE Loss 1–3 yrs
+        - FTE Loss 4–7 yrs
+        - FTE Loss 8–10 yrs
+        - Cumulative FTE Loss
   
   3. **Estimate Retrainable FTEs**:
      - Use "Retrainability_Modifiers" table.
