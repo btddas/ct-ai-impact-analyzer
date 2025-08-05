@@ -31,6 +31,7 @@ For each SOC on a workflow:
     - Routine_vs_NonRoutine: "Routine" or "Non-Routine"
 - New Analyzer Calculations and Research per /reference/docs/Assessment_Instructions_AI_Impact_STB.txt  
     Do not use local or ad hoc rules for AI Impact Risk scoring. Always apply the risk progression matrix, cognitive/manual and routine/non-routine mappings, and modality impact from the GitHub file: Assessment_Instructions_AI_Impact_STB.txt. AI Impact Risk must follow an increasing trend over time. No SOC may have decreasing risk.
+  - After calculating AI Impact Risk for each time band on a 1–10 scale, the Analyzer MUST multiply each score by 10 (to convert to 0–100%) before outputting. This ensures compatibility with Comparor’s label classification thresholds.
   - AI Impact Risk (1–3 yrs), (4–7 yrs), (8–10 yrs)
     - AI Risk Qualitative Labels:
     - AI Risk (1–3 yrs).1, (4–7 yrs).1, (8–10 yrs).1
