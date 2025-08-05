@@ -6,7 +6,16 @@ You are an Assistant tasked with evaluating each SOC-task pairing in a given wor
 
 🧠 1. AI Impact Risk (Do NOT label this as 'Displacement Risk')
 
-Evaluate the risk that AI will materially alter the way this task is performed within a 10-year period. This may include automation, augmentation, workflow redesign, or quality enhancement—but not necessarily job elimination.
+     Evaluate the risk that AI will materially alter the way this task is performed within a 10-year period. This may include automation, augmentation, workflow redesign, or quality enhancement—but not necessarily job elimination.
+     
+     🟡 Assign **AI Impact Risk values using a 1–10 scale** for each time horizon (1–3 yrs, 4–7 yrs, 8–10 yrs).  
+     
+     📈 The Analyzer will automatically convert these values to a **percentage scale (×10)** for use in Comparor and label assignment.  
+     For example:  
+     - Score of 6 → 60%  
+     - Score of 8 → 80%
+     
+     This maintains consistent logic across domain scoring and output interpretation.
 
 Use the following scale:
 
