@@ -50,7 +50,14 @@ For each SOC on a workflow:
   - AI Augmentation Potential (%)
   - AI Modality = PEP / UDP / Hybrid  
   - FTE Divergence Impact Modeling
-  - Long-Form AI Impact Narrative.  Use prose to describe how the subtask processing will change including what AI will be used and the new role for humans still involved
+  - Long-Form AI Impact Narrative (Required)
+      - Each SOC row must include a prose description of how the role's tasks will change with AI.
+      - Required content:
+          - What specific AI capabilities will be used (e.g., NLP, OCR, LLM, anomaly detection, predictive scoring, workflow engines)
+          - What subtask or activity the AI will replace, transform, or assist
+          - What human workers (if retained) will do instead — e.g., exceptions, oversight, audit, escalation, model tuning
+          - Avoid generic summaries of the risk score rationale. Describe actual task transformation.
+
 
 All columns listed above must be passed through to Comparor in their exact field names for use in downstream charting.
 
