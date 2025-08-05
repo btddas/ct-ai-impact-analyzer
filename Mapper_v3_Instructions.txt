@@ -52,12 +52,13 @@ Use O*NET definitions + domain knowledge. Pay close attention to verbs in task d
 
 ## Structural & Integrity Rules
 
-- Do not reuse SOCs or subtasks across workflows  
+- FOr multiple workflows, each subtasks and SOC identification must be an independent analysis. Do not reuse SOCs or subtasks across workflows from cache, etc 
 - Ensure total % Share of Time = 100% across all 10 subtasks  
 - Include at least one clinical SOC in all health-related workflows  
 - Use tenure data per SOC from reference file  
 - Adjust FTE calculation must be present for each row  
 - No AI modality tags — this occurs in Analyzer step
+- Do not prune clinical or oversight SOCs from workflows involving appeals or reviews.
 
 ## Output Format
 
