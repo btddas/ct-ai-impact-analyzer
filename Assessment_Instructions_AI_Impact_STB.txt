@@ -18,48 +18,48 @@ Use the following scale:
 
 ---
 
-### Analyzer AI Risk Scoring Framework (v10.4)
+### Analyzer AI Risk Scoring Framework (Updated)
 
-AI Risk Scores must be assigned for three time periods (1–3, 4–7, 8–10 years) using the following guidance:
- 
-  - Use domain logic and instructions from `/reference/docs/Assessment_Instructions_AI_Impact_STB.txt`  
-  - Score as percentage (0–100%)  
+AI Impact Risk must be scored across three timeframes: 1–3 years, 4–7 years, and 8–10 years. These reflect the evolving risk that AI will materially transform the role’s core tasks.
 
-- ✅ 🟩 Assign qualitative labels using the following thresholds:
+1. Start with Base Role Type (Cognitive × Routine Matrix):
 
-| Risk Label     | % Range        |
-|----------------|----------------|
-| Very Low       | 0–10%          |
-| Low            | 11–25%         |
-| Moderate       | 26–50%         |
-| High           | 51–75%         |
-| Very High      | 76–100%        |
+| Cognitive? | Routine? | AI Risk (1–3 / 4–7 / 8–10 yrs) |
+|------------|----------|-------------------------------|
+| Yes        | Yes      | 4 / 6 / 8                     |
+| Yes        | No       | 2 / 4 / 6                     |
+| No         | Yes      | 4 / 6 / 7                     |
+| No         | No       | 1 / 2 / 3                     |
 
-- ✅ 🟩 Ensure numeric risk values (columns Q, S, U) **align** to these qualitative labels (columns R, T, V)  
-  - These must never conflict — each qualitative value must be derived directly from its numeric counterpart  
+2. Apply AI Modality Adjustment:
+- If Modality is **PEP**: +1 to 8–10 yr risk for routine roles
+- If Modality is **UDP**: +1 to 4–7 and 8–10 yr bands for document-heavy tasks
+- If Hybrid: apply whichever adjustment is higher
 
-1. Baseline Determination by Modality Traits:
-   - Routine + Cognitive → start at Moderate or High in 1–3 yrs
-   - Routine + Manual → start at Low or Moderate
-   - Non-routine + Cognitive → typically Very Low or Low in 1–3 yrs, Moderate later
-   - Non-routine + Manual → typically Very Low to Low, little change over time
+3. Non-Decreasing Rule:
+- AI Impact Risk must **not decrease** across time bands.
+- If 1–3 yr risk is Very Low (1), 8–10 yr risk must not exceed Moderate (5).
 
-2. Experience Zone Adjustments:
-   - EZ 1–2 → add +2
-   - EZ 4–5 → subtract −2
+4. Maximum Cap:
+- Do not assign scores above 9. If a role is not fully automatable, cap at 8.
 
-3. Structure + AI Automation Keywords:
-   - Tasks with “enter,” “verify,” “route,” “extract,” “schedule,” “submit” are considered structurally automatable
-   - If also routine + cognitive/manual, elevate scores in 4–7 and 8–10 year bands
+5. Experience Zone Influence:
+- Do NOT use EZ to directly reduce AI risk.
+- EZ affects Skill Transition Burden only — not Risk.
 
-4. Risk Persistence and Ceiling Logic:
-   - Scores must not decrease over time
-   - Very Low in 1–3 yrs → cannot exceed Moderate by 8–10 yrs
-   - Do not push all tasks to High or Very High
-   - Very High = AI can fully replace task end-to-end by 8–10 yrs
+6. Structure-Driven Escalation:
+- Tasks involving “enter,” “verify,” “route,” “submit,” “extract,” “classify,” “code,” or “scrub” are structurally automatable.
+- For such tasks, raise 4–7 and 8–10 yr scores by 1–2 points.
 
-5. Interpersonal Exception Clause:
-   - Tasks centered on communication, reassurance, or emotional labor without structured triggers should remain Low or Moderate across all periods
+7. Final Validation:
+- Apply judgment using domain knowledge and modality context.
+- Verify that risk aligns with displacement trajectory, not merely AI support.
+
+✔ Example:  
+A Claims Clerk (Cognitive + Routine, UDP Modality):  
+→ Base Risk: 4 / 6 / 8  
+→ UDP Modality = +1 for 4–7 and 8–10  
+→ Final Risk: 4 / 7 / 9
 
 
 ---
