@@ -23,7 +23,7 @@ For each workflow (10 subtasks × 1 SOC each), return:
 - % Share of Time (auto-calculated to sum to 100% across subtasks) The average % of time that *participating* SOC workers spend on this workflow Must vary across subtasks and total approximately 100% across the workflow  
 - Adjusted CT FTEs = FTEs × % Participating × % Contribution. This is the actual number of full-time equivalents working on this subtask.  This value should never equal CT SOC FTEs unless % Participating = 100% and % Share of Time = 100%  
 - Experience Zone (EZ)  
-- Tenure Distribution:
+- Tenure Distribution using CT_FTE_by_SOC_with_Tenure_Bands v2.xlsx:
   - Tenure <3 years (%)  
   - Tenure 4–9 years (%)  
   - Tenure 10+ years (%)  
