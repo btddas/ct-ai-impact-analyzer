@@ -18,9 +18,10 @@ For each workflow (10 subtasks × 1 SOC each), return:
 - Subtask # and Subtask Description  
 - SOC Code and SOC Title  
 - Total CT SOC FTEs (from - CT FTE counts by SOC v2.csv).  This is the total number of workers in the SOC statewide (before any workflow filtering)
-- % Participating (of SOC in workflow) The % of workers in that SOC who engage in this workflow. Must be derived using workflow logic, not equal across all SOCs  
-- % Contribution (of subtask to SOC’s workflow time)  
-- % Share of Time (auto-calculated to sum to 100% across subtasks) The average % of time that *participating* SOC workers spend on this workflow Must vary across subtasks and total approximately 100% across the workflow  
+- % Participating (Column F) = share of workers in this SOC who touch the workflow at all (coverage gate). Must vary by SOC; do not set a uniform value.
+- % Share of Time (Column G) = average % of time that participating workers in this SOC spend on this workflow (time gate). Independent of Column F.
+- % Contribution (of total workflow FTEs) = row share of Adjusted CT FTEs relative to the sum of Adjusted CT FTEs across all rows.
+Must vary across subtasks and total approximately 100% across the workflow  
 - Adjusted CT FTEs = FTEs × % Participating × % Contribution. This is the actual number of full-time equivalents working on this subtask.  This value should never equal CT SOC FTEs unless % Participating = 100% and % Share of Time = 100%  
 - Job Zone (JZ)  
 - Tenure Distribution using CT_FTE_by_SOC_with_Tenure_Bands v2.xlsx:
@@ -50,6 +51,46 @@ Use O*NET definitions + domain knowledge. Pay close attention to verbs in task d
 - “Assess”, “Coordinate”, “Respond”, “Manage” → Cognitive, Non-Routine  
 - “Transport”, “Lift”, “Clean”, “Move” → Manual, Routine
 
+## Participation & Time Method (Columns F and G)
+
+###  “% Participating” (deterministic)
+Definition: For each SOC, the share of CT workers who engage the workflow at least occasionally.
+
+Inputs you already maintain:
+- 16 fixed subtasks (no changes to your list).
+- For each (SOC, subtask), a Role Level label: Core, Regular, Occasional, or blank.
+
+Role → participation weight:
+Core = 0.70
+Regular = 0.35
+Occasional = 0.15
+(blank) = 0.00
+
+Aggregation across multiple subtasks (compounding without double-counting):
+F_baseline = 1 - Π(1 - p_role_i)    over all subtasks i with a non-blank Role Level
+If none, F_baseline = 0.
+
+Quick Plug Overrides (single numbers):
+If a SOC is listed in the override table, use Override_F instead of F_baseline:
+- Physicians (SOC 29-1210.* family): Override_F = 0.30
+- Lawyers (SOC 23-1011):            Override_F = 0.05
+
+Implementation tip (Excel):
+- Store Role→Weight map in a 2-col named range RoleTbl.
+- Store overrides in a 2-col table OverrideTbl [SOC, Override_F]. Set F as:
+  F = IFERROR( XLOOKUP([@SOC], OverrideTbl[SOC], OverrideTbl[Override_F]),
+               1 - PRODUCT(1 - IFERROR(VLOOKUP(RoleLabel_1,RoleTbl,2,0),0),
+                           1 - IFERROR(VLOOKUP(RoleLabel_2,RoleTbl,2,0),0),
+                           ... repeat for all 16 role labels ...) )
+
+###  “% Share of Time”
+Definition: Average % of time among participating workers in this SOC spent on the workflow. This is independent of Column F and should reflect role realities (e.g., clinical oversight and legal roles are usually low).
+- Guidance: owner roles = higher single digits to low double digits; oversight/clinical/legal = low single digits—unless the role is specialized in this workflow.
+- Optional Quick Plug Overrides (single numbers):
+  - Physicians (29-1210.*): Override_G = 0.02   // 2%
+  - Lawyers (23-1011):      Override_G = 0.15   // 15%
+If an Override_G exists for the SOC, use it for Column G; otherwise set G per workflow evidence.
+
 ## Structural & Integrity Rules
 
 - FOr multiple workflows, each subtasks and SOC identification must be an independent analysis. Do not reuse SOCs or subtasks across workflows from cache, etc 
@@ -65,10 +106,14 @@ Use O*NET definitions + domain knowledge. Pay close attention to verbs in task d
 Structured CSV or Excel with columns:
 [Workflow Name, Subtask #, Subtask Description, SOC Code, SOC Title, CT SOC FTEs, % Participating, % Contribution, % Share of Time, Adjusted CT FTEs, Job Zone, Tenure <3 years (%), Tenure 4–9 years (%), Tenure 10+ years (%), Manual_vs_Cognitive, Routine_vs_NonRoutine]
 
-# After computing Adjusted FTEs for each subtask
-df["CT FTEs (Adjusted)"] = df["CT_SOC_FTEs"] * df["% Participating"] * df["% Time Share"]
+# After computing % Participating (F) and % Share of Time (G)
+df["CT FTEs (Adjusted)"] = df["CT SOC FTEs"] * df["% Participating"] * df["% Share of Time"]
 
-# Compute % Contribution
+# Compute % Contribution across all rows in this workflow table
 total_fte = df["CT FTEs (Adjusted)"].sum()
 df["% Contribution"] = df["CT FTEs (Adjusted)"] / total_fte
+
+# Optional integrity checks
+assert (df["% Participating"].between(0,1)).all()
+assert (df["% Share of Time"].between(0,1)).all()
 
