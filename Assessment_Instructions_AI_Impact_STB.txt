@@ -52,9 +52,9 @@ AI Impact Risk must be scored across three timeframes: 1–3 years, 4–7 years,
 4. Maximum Cap:
 - Do not assign scores above 9. If a role is not fully automatable, cap at 8.
 
-5. Experience Zone Influence:
-- Do NOT use EZ to directly reduce AI risk.
-- EZ affects Skill Transition Burden only — not Risk.
+5. Job Zone Influence:
+- Do NOT use JZ to directly reduce AI risk.
+- JZ affects Skill Transition Burden only — not Risk.
 
 6. Structure-Driven Escalation:
 - Tasks involving “enter,” “verify,” “route,” “submit,” “extract,” “classify,” “code,” or “scrub” are structurally automatable.
@@ -94,10 +94,10 @@ Determine referencing PEP and UDP capabilities.pptx whether the AI being applied
      Start with a base score of 3.
      
      Experience Zone Adjustments:
-     - Add +0 if Experience Zone = EZ 1 or EZ 2
-     - Add +1 if Experience Zone = EZ 3
-     - Add +2 if Experience Zone = EZ 4
-     - Add +3 if Experience Zone = EZ 5
+     - Add +0 if Job Zone = JZ 1 or JZ 2
+     - Add +1 if Job Zone = JZ 3
+     - Add +2 if Job Zone = JZ 4
+     - Add +3 if Job Zone = JZ 5
      
      Cognitive & Routine Adjustments:
      - Add +1 if Cognitive = Yes
@@ -111,8 +111,8 @@ Determine referencing PEP and UDP capabilities.pptx whether the AI being applied
      Cap final STB score at 10.
      
      This framework reflects that:
-     - Lower EZ roles tend to have simpler, more adaptable tasks
-     - Higher EZ roles may require significant retraining to adjust to AI workflows
+     - Lower JZ roles tend to have simpler, more adaptable tasks
+     - Higher JZ roles may require significant retraining to adjust to AI workflows
      - Cognitive, non-routine tasks are more impacted by AI-led transformation
      - Hybrid and UDP modalities introduce greater abstraction or prompt/audit complexity than PEP
      
