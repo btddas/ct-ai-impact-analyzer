@@ -45,6 +45,17 @@ For each SOC on a workflow:
   valid_labels = {"Very Low", "Low", "Moderate", "High", "Very High"}
   assert ai_risk_label in valid_labels, f"Invalid AI Risk label: {ai_risk_label}"
 
+    - Modality (PEP / UDP / Hybrid)
+      • PEP = prediction/exception/triage models (detect/score/route/recommend)
+      • UDP = document/knowledge LLMs (classify/extract/summarize/draft/code-from-text)
+      • Hybrid = both engines are required inside the same subtask loop (see Modality rule below)
+    
+    - AI Impact Risk (1–3 yrs)  [0.00–1.00]
+    - AI Impact Risk (4–7 yrs)  [0.00–1.00]  // must be ≥ (1–3 yrs)
+    - AI Impact Risk (8–10 yrs) [0.00–1.00]  // must be ≥ (4–7 yrs)
+    
+    - Skill Transition Burden (1–10)   // independent of risk
+    - AI Augmentation Potential (%)     // independent of risk (not 1 − risk)
 
   - Skill Transition Burden (1–10) calculate using STBs guidance in: Assessment_Instructions_AI_Impact_STB.txt
   - AI Augmentation Potential (%)
@@ -57,6 +68,76 @@ For each SOC on a workflow:
           - What subtask or activity the AI will replace, transform, or assist
           - What human workers (if retained) will do instead — e.g., exceptions, oversight, audit, escalation, model tuning
           - Avoid generic summaries of the risk score rationale. Describe actual task transformation.
+
+## Modality Tagging (PEP / UDP / Hybrid)
+  
+  Goal: assign the automation “engine” for each (Subtask × SOC) in a deterministic way.
+  
+  1) Dominant engine rule (default):
+     - If one engine (PEP or UDP) accounts for ≥70% of the automatable effort inside the subtask’s human-in-the-loop loop, tag that single engine.
+  
+  2) Hybrid rule (use when BOTH are truly needed):
+     Tag = Hybrid if BOTH conditions hold inside the SAME subtask loop:
+     (a) Interdependence: UDP outputs (e.g., extracted fields/summaries/drafts) are consumed by a PEP model that drives user action, OR PEP outcomes trigger new UDP retrieval/drafting in that loop.
+     (b) Materiality: Each engine accounts for ≥30% of the automatable effort OR the loop cannot complete without both engines.
+  
+  3) Examples (for the Medical Claims workflow):
+     - Coding & Scrubbing: UDP parses charts/notes and drafts codes; PEP scores denial/error risk → Hybrid.
+     - Claim Repair & Resubmission: UDP reads EOBs/drafts corrections; PEP recommends the most successful fix path → Hybrid.
+     - Appeals Drafting & Response: UDP summarizes records/drafts; PEP estimates outcome likelihood/routing level → Hybrid.
+     - Submission, Remittance/EOB posting: typically UDP-only.
+     - Auto-adjudication triage, Final adjudication scoring: typically PEP-only.
+  
+  Reference (input, not an output): “PEP and UDP capabilities.pptx” is a standard capability catalog used to support these modality decisions.
+
+## AI Impact Risk – Deterministic Scoring Method
+
+  Scope: produce three horizon scores per row (Subtask × SOC): 1–3 yrs, 4–7 yrs, 8–10 yrs. Scores are task-feasibility + governance, not headcount changes.
+  
+  Inputs from Mapper/Context:
+  - Subtask description and artifacts (what the human does today)
+  - Modality (PEP/UDP/Hybrid)
+  - Task classifiers (Cognitive/Manual; Routine/Non-routine)
+  - Any compliance/licensure notes (e.g., clinical/legal sign-off)
+  - Data/access notes (label availability, data quality, system coupling)
+  
+  Step 1 — Set near-term technical fit (1–3 yrs anchor)
+  Use the Assessment rubric to select a single fit level for the subtask TODAY:
+  
+     Fit level → Anchor (1–3 yrs)
+     - HIGH   → 0.65
+     - MEDIUM → 0.45
+     - LOW    → 0.20
+  
+  Guidance:
+  - UDP High: templated/consistent docs, stable schemas, mature IDP/LLM patterns.
+  - PEP High: well-defined outcomes, adequate labeled data, stable decision criteria.
+  - Hybrid: judge the sub-steps together; if both engines are needed and mature, HIGH is still valid.
+  
+  Step 2 — Apply governance friction caps (affect the step-ups)
+  Set a single friction severity based on the heaviest applicable gate for this subtask:
+  
+     Friction severity → Δ(4–7) , Δ(8–10)
+     - NONE            → +0.15 , +0.10
+     - MODERATE        → +0.10 , +0.10
+     - HEAVY           → +0.05 , +0.05
+  
+  Examples:
+  - HEAVY: licensed clinical/legal sign-off with safety risk; restricted data access.
+  - MODERATE: auditability and change-control requirements; partial data gaps.
+  - NONE: internal process with clear data and no external sign-off.
+  
+  Step 3 — Compute horizons with monotonicity
+  - Risk(1–3)  = Anchor from Step 1
+  - Risk(4–7)  = MIN(1.00, Risk(1–3) + Δ(4–7))
+  - Risk(8–10) = MIN(1.00, Risk(4–7) + Δ(8–10))
+  
+  Enforce: Risk(1–3) ≤ Risk(4–7) ≤ Risk(8–10) for every row.
+  
+  Notes:
+  - Do not derive Skill Transition Burden (1–10) or Augmentation (%) from risk; they are independent.
+  - For heavily supervised clinical/legal steps, select the appropriate friction severity rather than altering anchors ad hoc.
+  - Keep decisions auditable: record Fit level, Friction severity, and a one-line rationale in a Notes column.
 
 
 All columns listed above must be passed through to Comparor in their exact field names for use in downstream charting.
@@ -168,6 +249,27 @@ These must be included in Comparor and shown in divergence + role adoption chart
 - Tenure Band classification is required
 - Job Zone must be retained
 - Healthcare workflows must include ≥3–5 clinical SOCs unless explicitly excluded
+
+## QA & Guardrails (Risk/Modality)
+
+- Modality determinism:
+  • Hybrid only if both interdependence + materiality conditions are met.
+  • Otherwise choose the dominant single engine (≥70%).
+
+- Risk monotonicity:
+  • (1–3) ≤ (4–7) ≤ (8–10) for all rows; clamp upward if needed.
+
+- Rubric independence:
+  • Skill Transition Burden (1–10) and Augmentation (%) must not be computed as a function of risk.
+
+- Documentation:
+  • For each row, store three short fields: FitLevel(H/M/L), Friction(N/M/H), Modality(PEP/UDP/Hybrid).
+  • Keep a one-line rationale (e.g., “UDP templated EOB + PEP fix-path recommender; friction=Moderate due to payer policy variance”).
+
+- Sanity patterns for this workflow:
+  • Coding & Scrubbing, Repair & Resubmission, Appeals, Oversight/QA → often Hybrid.
+  • Submission, Remittance/EOB posting → commonly UDP.
+  • Auto-adjudication triage, Final adjudication scoring → commonly PEP.
 
 ## Patch v4 Logic (Final – August 2025)
 
