@@ -22,7 +22,7 @@ For each workflow (10 subtasks × 1 SOC each), return:
 - % Contribution (of subtask to SOC’s workflow time)  
 - % Share of Time (auto-calculated to sum to 100% across subtasks) The average % of time that *participating* SOC workers spend on this workflow Must vary across subtasks and total approximately 100% across the workflow  
 - Adjusted CT FTEs = FTEs × % Participating × % Contribution. This is the actual number of full-time equivalents working on this subtask.  This value should never equal CT SOC FTEs unless % Participating = 100% and % Share of Time = 100%  
-- Experience Zone (EZ)  
+- Job Zone (JZ)  
 - Tenure Distribution using CT_FTE_by_SOC_with_Tenure_Bands v2.xlsx:
   - Tenure <3 years (%)  
   - Tenure 4–9 years (%)  
@@ -63,7 +63,7 @@ Use O*NET definitions + domain knowledge. Pay close attention to verbs in task d
 ## Output Format
 
 Structured CSV or Excel with columns:
-[Workflow Name, Subtask #, Subtask Description, SOC Code, SOC Title, CT SOC FTEs, % Participating, % Contribution, % Share of Time, Adjusted CT FTEs, Experience Zone, Tenure <3 years (%), Tenure 4–9 years (%), Tenure 10+ years (%), Manual_vs_Cognitive, Routine_vs_NonRoutine]
+[Workflow Name, Subtask #, Subtask Description, SOC Code, SOC Title, CT SOC FTEs, % Participating, % Contribution, % Share of Time, Adjusted CT FTEs, Job Zone, Tenure <3 years (%), Tenure 4–9 years (%), Tenure 10+ years (%), Manual_vs_Cognitive, Routine_vs_NonRoutine]
 
 # After computing Adjusted FTEs for each subtask
 df["CT FTEs (Adjusted)"] = df["CT_SOC_FTEs"] * df["% Participating"] * df["% Time Share"]
