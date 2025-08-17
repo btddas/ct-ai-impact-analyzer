@@ -134,7 +134,29 @@ Record the %PEP/%UDP judgment basis in Notes (one line citing patterns from the 
   - Task classifiers (Cognitive/Manual; Routine/Non-routine)
   - Any compliance/licensure notes (e.g., clinical/legal sign-off)
   - Data/access notes (label availability, data quality, system coupling)
-  
+
+    ## Fit (High / Medium / Low)
+    
+    Definition: Fit measures the subtask’s technical feasibility for AI within the current human-in-the-loop loop (data ↔ model ↔ action), independent of governance/policy. Use the “PEP UDP Reference” to judge feasibility patterns for PEP (prediction/exception) and UDP (document/LLM).
+    
+    Signal checklist (score 1 if “mostly yes”):
+    1) Inputs available digitally at step start (not air-gapped or paper-only).
+    2) Inputs are structured or template-like (for UDP: OCR/LLM can reliably parse).
+    3) Decision is bounded/rules-like or repeatedly labeled (for PEP).
+    4) Clean historical data or exemplars exist to learn from (gold labels or strong heuristics).
+    5) SOP/states are finite and well-described; edge cases are rare.
+    6) Output acceptance criteria are clear (edits/edits-pass rate measurable).
+    7) Integration points exist to take action (writeback/API/RPA), and feedback can be captured.
+    
+    Scoring:
+    - HIGH   = 5–7 signals
+    - MEDIUM = 3–4 signals
+    - LOW    = 0–2 signals
+    
+    Notes:
+    - Fit is **not** governance: regulatory/clinical/legal sign-off lives under **Friction**.
+    - Record the top 2–3 signals that drove the Fit call in a Notes column.
+
   Step 1 — Set near-term technical fit (1–3 yrs anchor)
   Use the Assessment rubric to select a single fit level for the subtask TODAY:
   
@@ -147,6 +169,14 @@ Record the %PEP/%UDP judgment basis in Notes (one line citing patterns from the 
   - UDP High: templated/consistent docs, stable schemas, mature IDP/LLM patterns.
   - PEP High: well-defined outcomes, adequate labeled data, stable decision criteria.
   - Hybrid: judge the sub-steps together; if both engines are needed and mature, HIGH is still valid.
+
+    ### Near-term anchor by Fit × Modality (Risk 1–3, before priors)
+    
+    Set the anchor from Fit AND the Modality Score:
+    
+    - PEP:    High=0.65, Medium=0.45, Low=0.20
+    - Hybrid: High=0.60, Medium=0.43, Low=0.18
+    - UDP:    High=0.55, Medium=0.40, Low=0.18
 
     ### Technology & Job-Ladder Priors (PEP earlier; UDP/Hybrid later)
     
