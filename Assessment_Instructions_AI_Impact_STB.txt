@@ -35,6 +35,13 @@ Use the following scale:
 
 ---
 
+### What “Fit” means (for assessors)
+
+Fit = technical feasibility of the subtask’s AI loop (data → model → action), not governance. Use the “PEP UDP Reference” to judge patterns and apply the 7-signal checklist. Score:
+- HIGH (5–7 signals), MEDIUM (3–4), LOW (0–2).
+This Fit level sets the near-term anchor; timing priors and friction adjust it.
+
+
 ### Analyzer AI Risk Scoring Framework (Updated)
 
 AI Impact Risk must be scored across three timeframes: 1–3 years, 4–7 years, and 8–10 years. These reflect the evolving risk that AI will materially transform the role’s core tasks.
