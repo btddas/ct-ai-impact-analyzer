@@ -1,0 +1,58 @@
+# Analyzer Reference: PEP vs. UDP vs. Hybrid
+
+## 1. Technology Lineage
+- **PEP (Prediction Exception Processing):** Older lineage. Predictive analytics, anomaly detection, exception flagging. Mature adoption since early 2000s.
+- **UDP (Unstructured Data Processing):** Newer. LLM/deep learning enabled scaling after ~2018. Focus on unstructured document parsing and synthesis.
+- **Hybrid:** Combines PEP and UDP. Delivers highest ROI in workflows where structured prediction and unstructured understanding reinforce each other.
+
+## 2. Capability Mapping
+
+### PEP AI Capabilities
+- Monitoring: Model drift detection, retraining triggers.
+- Predicting: Forecast probable outcomes from new data.
+- Classifying: Pattern and rule generation for decision-making.
+- Explaining: Transparent, data-supported recommendations.
+- Use Case Examples: Exception handling, KYC review, fund admin validation, anomaly detection in billing.
+
+### UDP AI Capabilities
+- Summarizing: Condense single or multiple documents.
+- Reasoning: Compare and contrast meaning or structure.
+- Grouping: Cluster or categorize text data.
+- Extracting: Pull structured content from unstructured inputs.
+- Use Case Examples: Contract standardization, fund onboarding, EHR parsing, regulatory filings.
+
+## 3. Adoption & ROI Horizon
+
+| Use Case Type | 2022 (Today – 3 yrs) | 2026–28 (1–3 yrs) | 2029–32 (4–7 yrs) | 2033–35 (8–10 yrs) |
+|---------------|-----------------------|------------------|------------------|--------------------|
+| 100% PEP      | Mature; ROI 20–40%    | ROI 30–50%       | ROI 40–55%       | ROI 50–60% (plateau) |
+| 100% UDP      | Pilots; ROI 10–20%    | ROI 30–50%       | ROI 50–70%       | ROI 60–80% (mainstream) |
+| Hybrid (PEP+UDP) | Early pilots; ROI 20–30% | ROI 50–65%  | ROI 60–80%       | ROI 70–90% (transformational) |
+
+## 4. Evidence of ROI in Practice
+- Healthcare claims (PEP+UDP): Costs drop from ~$152 to ~$54 per claim; 64% savings; 60–80% effort reduction.
+- Appeals workflows: Provider costs drop $30–75 → $8–21; Payer costs $20–45 → $6–15.
+- Strategic benefits: Fewer denials, faster cash flow, scalable volume handling, audit-ready compliance.
+
+## 5. Hybrid Use Cases – Clarification
+There are two distinct Hybrid categories:
+
+- **Mutually Dependent Hybrid**
+  - PEP and UDP are inseparable for the workflow step.
+  - Removing one breaks functionality.
+  - Example: Healthcare claims repair → UDP extracts codes, PEP predicts denials. Both required.
+- **Independent Choice Hybrid**
+  - PEP and UDP can operate independently.
+  - Workflow ROI increases if both are applied together.
+  - Example: Contract management → UDP standardizes terms, PEP predicts compliance risk. Each works alone, but combined value is higher.
+
+### Analyzer Guidance
+- Always tag Hybrid subtasks as **Mutually Dependent** or **Independent Choice**.
+- Mutually Dependent: Mandatory dual-AI classification in ROI and AI impact timelines.
+- Independent Choice: Record both standalone ROI and uplift from combined use.
+
+## 6. Implications for Analyzer
+- Always classify subtasks as PEP, UDP, or Hybrid (with dependency flag).
+- Hybrid is not an “edge case” but often the dominant long-term pattern.
+- ROI timelines should reflect adoption curve differences between PEP, UDP, and Hybrid.
+- Narratives must highlight synergy: UDP structures unstructured inputs; PEP predicts/explains outcomes. Combined use compounds savings and shifts human labor to oversight.
