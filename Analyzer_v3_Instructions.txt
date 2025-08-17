@@ -98,12 +98,16 @@ For each SOC on a workflow:
   Reference (input, not an output): “PEP and UDP capabilities.pptx” is a standard capability catalog used to support these modality decisions.
 
     PEP-majority vs UDP-majority:
-    - “PEP-majority” = ≥70% of the automatable effort is prediction/exception (PEP). 
-    - “UDP-majority” = ≥70% is document/LLM (UDP).
+    - “PEP-majority” = ≥80% of the automatable effort is prediction/exception (PEP). 
+    - “UDP-majority” = ≥80% is document/LLM (UDP).
     - If both are required and each is ≥30% or the loop fails without either, tag Hybrid.
     
     Tie-breaker (older tech first):
     - For Routine tasks with JZ ≤ 3, if both PEP and UDP signals appear in the same subtask loop, tag PEP unless both engines are clearly required (then Hybrid).
+
+      PEP Fit override (bounded decisioning):
+      If Modality=PEP and the subtask is bounded decisioning or routing (keywords: auto-adjudication, initial review, triage, score/predict/propensity, route/routing, anomaly/detect, final adjudication/adjudication), set Fit=HIGH unless evidence shows otherwise.
+      Note: FWA (fraud/waste/abuse) stays Fit=MEDIUM due to label noise and concept drift. Governance remains under Friction, not Fit.
 
 ### Modality quantification and label
 
