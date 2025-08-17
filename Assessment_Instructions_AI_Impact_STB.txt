@@ -4,6 +4,9 @@ You are an Assistant tasked with evaluating each SOC-task pairing in a given wor
 
 ---
 
+Use “PEP UDP Reference” (repo file) as the capabilities rubric to standardize Fit (High/Med/Low) by subtask. It is an input reference; it does not auto-score rows.
+
+
 🧠 1. AI Impact Risk (Do NOT label this as 'Displacement Risk')
 
      Evaluate the risk that AI will materially alter the way this task is performed within a 10-year period. This may include automation, augmentation, workflow redesign, or quality enhancement—but not necessarily job elimination.
@@ -44,6 +47,11 @@ AI Impact Risk must be scored across three timeframes: 1–3 years, 4–7 years,
 - If Modality is **PEP**: +1 to 8–10 yr risk for routine roles
 - If Modality is **UDP**: +1 to 4–7 and 8–10 yr bands for document-heavy tasks
 - If Hybrid: apply whichever adjustment is higher
+
+Timing prior:
+- PEP-majority or PEP-only tasks tend to show earlier near-term impact (1–3 yrs), especially for Routine and JZ ≤ 3.
+- UDP-majority and Hybrid tasks tend to ramp more in 4–7 and 8–10 yrs, especially for Non-routine and JZ ≥ 4, or when documents are complex.
+
 
 3. Non-Decreasing Rule:
 - AI Impact Risk must **not decrease** across time bands.
