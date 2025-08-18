@@ -285,109 +285,74 @@ For any SOCs that are transformed or replaced by AI, or where new supervisory fu
 
 These must be included in Comparor and shown in divergence + role adoption charts.
 
-## 🔢 FTE Divergence Impact Modeling (Required for All Workflows)
+## FTE Preservation & Divergence Impact Modeling (Required for All Workflows)
 
-  For each SOC in the workflow:
-  
-  1. **Determine Baseline AI Impact Risk Trajectory** over three time horizons:
-     - Risk levels may increase over time (e.g., Moderate → High → Very High).
-     - If not explicitly defined, apply default risk graduation for routine cognitive roles:
-       - 1–3 yrs: Moderate
-       - 4–7 yrs: High
-       - 8–10 yrs: Very High
-  ### Tenure Adjustment to FTE Loss Calculations
-  After assigning base FTE Loss % trajectories by role modality (Routine-Cognitive vs Non-routine-Cognitive),
-  adjust these values based on the tenure distribution of each SOC:
-  
-  - If `<3 years` tenure share > 40%:
-    - Increase FTE Loss % (1–3 Yrs) by +10 percentage points.
-    - Increase FTE Loss % (4–7 Yrs) by +5 percentage points.
-    - Keep 8–10 Yr value unchanged.
-  
-  - If `10+ years` tenure share > 50%:
-    - Reduce FTE Loss % (1–3 Yrs) by –5 percentage points.
-    - Reduce FTE Loss % (4–7 Yrs) by –5 percentage points.
-    - Keep 8–10 Yr value unchanged.
-  
-  - If tenure distribution is balanced (no extreme band >40%/<50%), retain base anchor schedule.
-  
-  All adjustments must be clipped between 0% and 100%.
-  The 8–10 Yr horizon remains the long-run ceiling and should not decrease relative to earlier periods.
+For each SOC in the workflow:
 
+1. Baseline AI Impact Risk Trajectory
+   - Assign AI risk levels across the three horizons (1–3, 4–7, 8–10 yrs).
+   - Risk levels may increase over time (e.g., Moderate → High → Very High).
+   - If not defined, apply default risk graduation for routine cognitive roles:
+     - 1–3 yrs: Moderate
+     - 4–7 yrs: High
+     - 8–10 yrs: Very High
 
-  2. **Calculate FTE Losses by Time Period**:
-     Calculate Cascading FTE Loss Over Time
+2. Tenure Adjustment to FTE Loss Calculations
+   After assigning base FTE Loss % trajectories by role modality (Routine-Cognitive vs Non-routine-Cognitive), adjust based on the tenure distribution:
+   - If <3 years tenure share >40%:
+       + Increase FTE Loss % (1–3 yrs) by +10 percentage points.
+       + Increase FTE Loss % (4–7 yrs) by +5 percentage points.
+   - If 10+ years tenure share >50%:
+       + Reduce FTE Loss % (1–3 yrs) by –5 percentage points.
+       + Reduce FTE Loss % (4–7 yrs) by –5 percentage points.
+   - If tenure distribution is balanced, retain base schedule.
+   - All adjustments clipped to [0%, 100%].
+   - Loss % in later horizons cannot be lower than earlier horizons.
 
-        For each SOC row, estimate FTE loss over the 3 AI risk time bands using the following logic:
-        
-        - Convert AI risk levels to baseline displacement estimates:
-          - Very High = 0.75
-          - High = 0.50
-          - Moderate = 0.25
-          - Low = 0.10
-          - Very Low = 0.05
-        
-        - Adjust the rate using Experience Zone (EZ):
-          - JZ 2 = ×1.1
-          - JZ 3 = ×1.0
-          - JZ 4 = ×0.9
-        
-        - Apply cascading loss logic:
-          - FTEs lost in 1–3 yrs = CT FTEs × Risk1 × JZ modifier
-          - FTEs lost in 4–7 yrs = (CT FTEs – FTEs lost 1–3 yrs) × Risk2 × JZ modifier
-          - FTEs lost in 8–10 yrs = (Remaining after 1–7 yrs) × Risk3 × JZ modifier
-        
-        - Cumulative FTE Loss = sum of losses over all 3 bands
-        
-        Output columns required:
-        - FTE Loss 1–3 yrs
-        - FTE Loss 4–7 yrs
-        - FTE Loss 8–10 yrs
-        - Cumulative FTE Loss
-  
-  3. **Estimate Retrainable FTEs**:
-     - Use "Retrainability_Modifiers" table.
-     - Inputs: JZ level (1–5), Tenure Band (<3 yrs, 4–9, 10+).
-     - For each SOC, multiply displaced FTEs by weighted average retrainability modifier.
-     - Do not exceed 100% of lost FTEs per time period.
-  
-  4. **Estimate Gains from Newly Created AI Roles**:
-      - review AI New Jobs.docx as a - but not the only  - reference for determining what new AI roles may be need to support the AI changes forecast for each workflow
-      - Default assumption: 5–15% of total workflow FTEs over 10 years shift to net-new SOCs (AI platform support, audit, governance).
-      - May be overridden if "AI_Role_Creation_Benchmarks" table is included in GitHub Assessment Files.
+3. Calculate FTE Losses by Time Period
+   - Map AI Risk Levels to baseline displacement:
+       Very High = 0.75
+       High = 0.50
+       Moderate = 0.25
+       Low = 0.10
+       Very Low = 0.05
+   - Adjust using Experience Zone (EZ):
+       JZ2 = ×1.1
+       JZ3 = ×1.0
+       JZ4 = ×0.9
+   - Cascading logic:
+       FTEs lost in 1–3 yrs = CT FTEs × Risk1 × JZ modifier
+       FTEs lost in 4–7 yrs = (Remaining after 1–3 yrs) × Risk2 × JZ modifier
+       FTEs lost in 8–10 yrs = (Remaining after 1–7 yrs) × Risk3 × JZ modifier
+   - Cumulative FTE Loss = sum of all three bands
 
-  Allocate New AI Role FTEs by Time Period
+4. Estimate Preserved FTEs (Retrainable + Retained)
+   Preservation is calculated as the portion of displaced workers retained through:
+   - Retrainability Modifiers (by JZ & tenure band).
+   - Skill Transition Burden (STB): higher burden → lower preservation probability.
+   - Formula:
+     Preserved_FTEs = Lost_FTEs × Retrainability_Modifier × (1 – (STB ÷ 10))
+   - This produces preserved counts by time period, which must align with retrainability logic and avoid exceeding total losses.
 
-      Once New AI-Supported Roles have been estimated for each SOC based on AI Modality, distribute their FTEs into each of the 3 time bands based on the cascading displacement pattern of the associated SOC:
-      
-      Let:
-      - FTE_Loss_1_3 = SOC-level loss in years 1–3
-      - FTE_Loss_4_7 = SOC-level loss in years 4–7
-      - FTE_Loss_8_10 = SOC-level loss in years 8–10
-      - Total_Loss = sum of the above
-      
-      Then for each new AI role linked to that SOC:
-      - AI Role FTEs (1–3 yrs) = Total New Role FTEs × (FTE_Loss_1_3 ÷ Total_Loss)
-      - AI Role FTEs (4–7 yrs) = Total New Role FTEs × ((FTE_Loss_1_3 + FTE_Loss_4_7) ÷ Total_Loss)
-      - AI Role FTEs (8–10 yrs) = Total New Role FTEs
-      
-      These values are cumulative. Comparor will use these phased FTEs only in the Divergence, Executive Summary, and New AI Roles outputs.
+5. Estimate Gains from Newly Created AI Roles
+   - Use AI New Jobs.docx and workflow-specific logic to identify meta roles and SOC-tied new AI jobs.
+   - Default benchmark: 5–15% of workflow FTEs over 10 years, unless overridden by AI_Role_Creation_Benchmarks table.
+   - Allocate new FTEs across horizons in proportion to displacement timing of the linked SOCs.
+   - Meta roles (e.g., AI governance, orchestration) are appended separately and tied to workflow totals, not subtask SOCs.
 
-  
-  5. **Produce Divergence Table for Each Time Horizon**:
-  
-  | Time Horizon | FTE Loss | Retrained FTEs | Net-New AI Role Gains | Net FTE Change |
-  |--------------|----------|----------------|------------------------|----------------|
-  | 1–3 Years    | XXX      | XXX            | XXX                    | = -Loss + Gain |
-  | 4–7 Years    | XXX      | XXX            | XXX                    |                |
-  | 8–10 Years   | XXX      | XXX            | XXX                    |                |
-  
-  This table is required as part of Analyzer v3 output for each SOC and for workflow totals.
-  
-  Also compute:
-  - **% of original CT FTEs retrained**
-  - **% of total losses offset**
-  - **Cumulative net impact**
+6. Produce Divergence Table for Each Horizon
+   Using the same preservation outputs, compute the net divergence at both SOC and workflow level:
+
+   | Time Horizon | FTE Loss | Preserved FTEs | Net-New AI Role Gains | Net FTE Change |
+   |--------------|----------|----------------|-----------------------|----------------|
+   | 1–3 Years    | XXX      | XXX            | XXX                   | = -Loss + Preserved + Gains |
+   | 4–7 Years    | XXX      | XXX            | XXX                   |                |
+   | 8–10 Years   | XXX      | XXX            | XXX                   |                |
+
+   Additional outputs:
+   - % of original FTEs retrained (Preserved ÷ Loss)
+   - % of total losses offset by new AI roles
+   - Cumulative net impact
 
 ## Methodology & Safeguards
 
