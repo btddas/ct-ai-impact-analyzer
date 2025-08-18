@@ -425,6 +425,34 @@ Ensure presence of:
 - Every row must include all outputs
 - Columns in final output must include: [Workflow Name, Subtask #, Subtask Description, SOC Code, SOC Title, CT SOC FTEs, CT FTEs (Adjusted), % Participating, % Contribution, % Share of Time, Experience Zone, Tenure <3 yrs %, Tenure 4–9 yrs %, Tenure 10+ yrs %, Cognitive?, Routine?, AI Risk (1–3 yrs), AI Risk (1–3 yrs).1, AI Risk (4–7 yrs), AI Risk (4–7 yrs).1, AI Risk (8–10 yrs), AI Risk (8–10 yrs).1, Skill Transition Burden, AI Augmentation %, AI Platform, Long-Form AI Impact Description]
 
+    ### Column Mapping for Analyzer Outputs
+    
+    The following column headers must be created or updated to support Preservation + Divergence:
+    
+    - CT FTEs (Adjusted)                [existing baseline workforce FTEs]
+    - FTE Loss 1–3 yrs                  [calculated]
+    - FTE Loss 4–7 yrs                  [calculated]
+    - FTE Loss 8–10 yrs                 [calculated]
+    - Cumulative FTE Loss               [calculated]
+    
+    - Preserved FTEs 1–3 yrs            [new]
+    - Preserved FTEs 4–7 yrs            [new]
+    - Preserved FTEs 8–10 yrs           [new]
+    - Cumulative Preserved FTEs         [new]
+    
+    - New AI FTEs 1–3 yrs               [new]
+    - New AI FTEs 4–7 yrs               [new]
+    - New AI FTEs 8–10 yrs              [new]
+    - Cumulative New AI FTEs            [new]
+    
+    - Net FTE Change 1–3 yrs            [new]
+    - Net FTE Change 4–7 yrs            [new]
+    - Net FTE Change 8–10 yrs           [new]
+    - Cumulative Net FTE Change         [new]
+    
+    These columns feed directly into the Divergence Table and ensure consistency between SOC-level preservation analysis and workflow-level outputs.
+
+
 - Long form AI Narrative must explain:
   - Risk level reasoning
   - Skill barrier (technical, regulatory, behavioral)
