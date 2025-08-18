@@ -452,6 +452,32 @@ Ensure presence of:
     
     These columns feed directly into the Divergence Table and ensure consistency between SOC-level preservation analysis and workflow-level outputs.
 
+### Replacement Rate Calculation (Row-Specific)
+
+For each SOC/Task row, the Analyzer must calculate and report the **Replacement Rate**, defined as:
+
+**Replacement Rate (%) = New AI Role FTEs ÷ Lost FTEs**
+
+Inputs:
+- **Baseline CT FTEs (Adjusted)** = Column I  
+- **Preserved FTEs** = Baseline × Preservation Rate (e.g., 15%)  
+- **Lost FTEs** = Baseline – Preserved  
+- **New AI Role FTEs** = Estimated demand for new AI-related positions, derived using modality-specific benchmarks:  
+  - PEP ≈ 3% of Baseline  
+  - UDP ≈ 5.5% of Baseline  
+  - Hybrid ≈ 8% of Baseline  
+- **Replacement Rate** = New AI Role FTEs ÷ Lost FTEs
+
+Outputs:
+- Add two new columns to Analyzer output:
+  1. **Lost FTEs**  
+  2. **Replacement Rate (%)**
+
+Guidelines:
+- Preservation Rate is fixed at the rate specified earlier in instructions (e.g., 15%) unless otherwise provided.  
+- Replacement Rate must be calculated **per SOC/Task row** (not as a flat average across the workflow).  
+- Label results clearly so they can be traced row-by-row in Excel exports.  
+
 
 - Long form AI Narrative must explain:
   - Risk level reasoning
