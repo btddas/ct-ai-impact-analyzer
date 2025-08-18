@@ -27,7 +27,33 @@ Must vary across subtasks and total approximately 100% across the workflow
 - Tenure Distribution using CT_FTE_by_SOC_with_Tenure_Bands v2.xlsx:
   - Tenure <3 years (%)  
   - Tenure 4–9 years (%)  
-  - Tenure 10+ years (%)  
+  - Tenure 10+ years (%) 
+      STRICT SOC-LEVEL TENURE JOIN (No JZ fallback)
+      
+      Source file: CT_FTE_by_SOC_with_Tenure_Bands v2.xlsx (Sheet1)
+      Source columns → Output columns:
+        - "SOC Code" → join key (normalize Unicode dashes to ASCII "-")
+        - "% Entry (<3 yrs)"      → "Tenure <3 years (%)"
+        - "% Mid (3–10 yrs)"      → "Tenure 4–9 years (%)"
+        - "% Senior (>10 yrs)"    → "Tenure 10+ years (%)"
+      
+      Rules:
+      1) Join tenure ONLY by SOC Code. DO NOT derive tenure from Job/Experience Zone.
+      2) If a SOC Code is not found in the tenure file:
+         - Set all three tenure cells to "MISSING_TENURE"
+         - Emit a validation error and STOP the run (do not silently continue).
+      3) Validation: for every mapped row, (Tenure <3 + Tenure 4–9 + Tenure 10+) must be in [99, 101].
+         - If outside this band, emit a validation error and STOP the run.
+      4) Display values as percentages; store as numbers (not strings with "%").
+      
+      Implementation notes (pseudo):
+      - key = normalize_dashes(SOC_Code)
+      - t = read_excel("CT_FTE_by_SOC_with_Tenure_Bands v2.xlsx", sheet="Sheet1")
+      - map = { "% Entry (<3 yrs)": Tenure_<3, "% Mid (3–10 yrs)": Tenure_4_9, "% Senior (>10 yrs)": Tenure_10p }
+      - df = df.merge(t[["SOC Code", ...]], left_on=key, right_on="SOC Code", how="left")
+      - assert not df[["Tenure <3 years (%)","Tenure 4–9 years (%)","Tenure 10+ years (%)"]].isna().any().any(), "MISSING_TENURE"
+- assert ((df["Tenure <3 years (%)"] + df["Tenure 4–9 years (%)"] + df["Tenure 10+ years (%)"]).between(99,101)).all(), "TENURE_SUM_OUT_OF_RANGE"
+
 - Task-Based Model of Labor Classifiers:
   - Manual_vs_Cognitive: "Manual" or "Cognitive"  
   - Routine_vs_NonRoutine: "Routine" or "Non-Routine"  
