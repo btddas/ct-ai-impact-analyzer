@@ -295,7 +295,26 @@ These must be included in Comparor and shown in divergence + role adoption chart
        - 1–3 yrs: Moderate
        - 4–7 yrs: High
        - 8–10 yrs: Very High
+  ### Tenure Adjustment to FTE Loss Calculations
+  After assigning base FTE Loss % trajectories by role modality (Routine-Cognitive vs Non-routine-Cognitive),
+  adjust these values based on the tenure distribution of each SOC:
   
+  - If `<3 years` tenure share > 40%:
+    - Increase FTE Loss % (1–3 Yrs) by +10 percentage points.
+    - Increase FTE Loss % (4–7 Yrs) by +5 percentage points.
+    - Keep 8–10 Yr value unchanged.
+  
+  - If `10+ years` tenure share > 50%:
+    - Reduce FTE Loss % (1–3 Yrs) by –5 percentage points.
+    - Reduce FTE Loss % (4–7 Yrs) by –5 percentage points.
+    - Keep 8–10 Yr value unchanged.
+  
+  - If tenure distribution is balanced (no extreme band >40%/<50%), retain base anchor schedule.
+  
+  All adjustments must be clipped between 0% and 100%.
+  The 8–10 Yr horizon remains the long-run ceiling and should not decrease relative to earlier periods.
+
+
   2. **Calculate FTE Losses by Time Period**:
      Calculate Cascading FTE Loss Over Time
 
