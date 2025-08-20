@@ -1,0 +1,79 @@
+# Workforce Extrapolation Application – CT AI Impact Analyzer
+
+## Purpose
+This application extends Analyzer v4 results by extrapolating workflow-level FTE losses to the full Connecticut workforce, organized two ways:
+1. By Job Zone × Cognitive/Routine categories
+2. By Industry × Job Zone
+
+Both tables are generated with full row and column totals.
+
+---
+
+## Inputs
+1. data/CT FTE counts by SOC v2.csv  
+   - Provides total Connecticut workforce by SOC code.
+   - Each SOC is already classified by:
+     - Job Zone (1–5, per O*NET)
+     - Cognitive vs. Manual
+     - Routine vs. Non-Routine
+2. data/Top10_Industry_List.csv  
+   - Provides workforce counts (CT_FTEs) by top 10 industries + Other.
+   - Also includes GDP_CT_Millions for contextual analysis.
+3. Analyzer v4 output  
+   - Provides workflow-level FTE demand loss values.
+
+---
+
+## Processing Logic
+
+### Step 1 – Build Table A (Job Zone × Cognitive/Routine)
+- Pivot `CT FTE counts by SOC v2.csv` into a 5 × 4 table:
+  - Rows: Job Zone 1–5
+  - Columns: Cognitive Routine (CR), Cognitive Non-Routine (CNR), Manual Routine (MR), Manual Non-Routine (MNR)
+- Fill each cell with sum of CT FTEs in that JZ × category.
+- Add row totals and column totals.
+
+### Step 2 – Extrapolate Analyzer Losses Across Table A
+- Take workflow-level FTE loss % from Analyzer v4.
+- Apply this % proportionally to each JZ × category cell.
+- Produce a second version of Table A showing estimated FTE loss by cell, with row/column totals.
+
+### Step 3 – Build Table B (Industry × Job Zone)
+- Start from `Top10_Industry_List.csv` workforce counts.
+- Allocate each industry’s CT_FTEs into Job Zones using distribution from `CT FTE counts by SOC v2.csv`.
+- Build an 11 × 5 matrix (10 industries + Other × Job Zones).
+- Add row totals (industry totals, matches Top10_Industry_List.csv) and column totals (Job Zone totals, matches SOC file).
+
+### Step 4 – Extrapolate Analyzer Losses Across Table B
+- Apply Analyzer v4 workflow FTE loss % to Table B, proportionally to FTE distribution.
+- Produce a second version of Table B showing estimated FTE loss by industry × Job Zone.
+- Row and column totals must match the statewide workflow extrapolation.
+
+---
+
+## Outputs
+1. **Table A – Workforce by Job Zone × Cognitive/Routine**  
+   - Raw FTEs  
+   - FTE losses (Analyzer extrapolated)  
+
+2. **Table B – Workforce by Industry × Job Zone**  
+   - Raw FTEs  
+   - FTE losses (Analyzer extrapolated)  
+
+3. Both tables must include:  
+   - Row totals  
+   - Column totals  
+   - Grand totals  
+
+---
+
+## Reference Files Required
+- `data/CT FTE counts by SOC v2.csv`  
+- `data/Top10_Industry_List.csv`  
+(No incremental references required.)
+
+---
+
+## Usage
+- Save this file as `Workforce_Extrapolation_App.txt` in the `apps/` or root directory of the repo.  
+- Call the application after running Analyzer v4 with:
