@@ -1,0 +1,14 @@
+Industry,CT_FTEs,Share_of_Total,GDP_CT$,Note
+Professional & Business Services,145000,9.1%,41000,"From USAFacts: $41 B" :contentReference[oaicite:10]{index=10}
+Real Estate, Rental & Leasing (incl. Other Services),70000,4.4%,41000,"From USAFacts: $41 B" :contentReference[oaicite:11]{index=11}
+Finance & Insurance,110000,6.9%,38500,"From USAFacts: $38.5 B" :contentReference[oaicite:12]{index=12}
+Manufacturing,160000,10.0%,30800,"Wiki: $30.8 B (2018)" :contentReference[oaicite:13]{index=13}
+Education & Health Services,305000,19.1%,28300,"Wiki: Health+EDU: $28.3 B (2018)" :contentReference[oaicite:14]{index=14}
+Retail Trade,180000,11.3%,--,"Estimated (to align)"
+Accommodation & Food Services,125000,7.8%,--,"Estimated"
+Administrative & Support Services,95000,5.9%,--,"Estimated"
+Public Administration,85000,5.3%,--,"Estimated"
+Construction,75000,4.7%,--,"Estimated"
+Other,70000,4.4%,--,"Estimated"
+Total,1600000,100.0%,345900,"Total CT GDP 2023" :contentReference[oaicite:15]{index=15}
+
