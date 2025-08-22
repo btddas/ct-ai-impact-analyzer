@@ -1,0 +1,22 @@
+Industry,Regulatory_Brake_Weighting,Timeline_Adjustment,Transparency_Modifier,Analyzer_Commentary
+Health Care & Social Assistance,Medium,Balanced – allow some 1–3 yr adoption,Low,Regulators push digital compliance (HIPAA, CMS); AI often encouraged. Brake moderate but not severe.
+Educational Services,Medium,Slower – adoption phased into 4–7 yrs,Low,FERPA and privacy rules slow adoption but not as rigid as finance.
+Retail Trade,Low,Standard phasing,Low,Minimal regulatory friction; adoption mostly market-driven.
+Manufacturing,Medium,Balanced,Medium,OSHA and FDA compliance slow adoption in safety/quality processes; explainability required.
+Professional, Scientific & Technical Services,Low,Standard phasing,Medium,Client confidentiality and professional standards require explainability; regulator not primary brake.
+Accommodation & Food Services,Low,Standard phasing,Low,Low regulatory intensity; adoption mostly labor-economics driven.
+Finance & Insurance,High,Cap 1–3 yr displacement at Moderate; shift risk to 4–7 yrs,High,SEC/FINRA/Fed/state insurance → high risk-aversion; strong explainability requirement. Brakes strong near-term.
+Administrative & Support Services,Medium,Balanced,Low,Labor law and OSHA minor brakes; AI adoption mostly operational.
+Public Administration (Government),High,Slow – most displacement only in 8–10 yrs,High,Procurement and trust slow adoption; explainability required for AI systems.
+Information (Publishing, Telecom, IT),Medium,Balanced,Medium,Privacy regulations (GDPR, CCPA) add brakes; explainability needed in network/content management.
+Transportation & Warehousing,Medium,Balanced,Medium,DOT/FAA/FRA safety regulations slow AI adoption in logistics.
+Construction,Medium,Balanced,Medium,OSHA and permitting rules slow adoption; explainability required in inspections.
+Wholesale Trade,Low,Standard phasing,Low,Light regulation; adoption driven by commerce not regulators.
+Real Estate & Rental/Leasing,Medium,Balanced,Medium,Fair housing/lending compliance slow AI in underwriting/property valuation.
+Arts, Entertainment & Recreation,Low,Standard phasing,Low,Minimal regulatory brakes; adoption largely cultural.
+Utilities,High,Slow – brakes in 1–3 yrs,High,Highly regulated monopolies; AI adoption delayed until explainability proven.
+Agriculture, Forestry, Fishing & Hunting,Medium,Balanced,Low,USDA/EPA regulation adds friction but AI adoption low baseline.
+Mining, Quarrying, Oil & Gas Extraction,Medium,Balanced,Medium,MSHA/EPA add brakes; explainability needed in safety-critical monitoring.
+Management of Companies & Enterprises,Medium,Balanced,Medium,SOX/SEC disclosure rules require explainability; brakes moderate.
+Other Services (Repair, Personal, Non-Profit),Low,Standard phasing,Low,Limited regulatory oversight; adoption largely cultural/economic.
+Other (Residual/Unclassified),Medium,Balanced,Medium,Case by case; default to medium brake and balanced phasing unless evidence otherwise.
