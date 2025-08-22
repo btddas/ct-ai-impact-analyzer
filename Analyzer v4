@@ -293,4 +293,6 @@ Include the following (plus a short **Notes** column capturing FitLevel/Friction
 - **Tenure distribution** (tenure charts)  
 - **JZ** (seniority × risk chart)  
 - **Qualitative AI Risk labels** (Very Low–Very High) derived from **numeric percent** via the 5‑tier bands—never manually assigned.
+- Include a column labeled “Regulatory Adjustment Applied” in SOC output tables, showing how the raw displacement risk was modified by industry-specific brakes (e.g., “High → Moderate due to Finance brake”).
+
 
