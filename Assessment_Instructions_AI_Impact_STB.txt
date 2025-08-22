@@ -33,6 +33,8 @@ Use the following scale:
 🟠 High – Majority of task is transformed via AI (e.g., automated, AI-led decisions).
 🔴 Very High – Task can be end-to-end handled by AI; human role becomes exception-only.
 
+Note: AI Impact Risk scores are *pre-regulatory*. Final risk scores must incorporate industry-specific modifiers from `Industry_Regulatory_Modifiers.csv`as described in the Analyzer v4 Instructions
+
 ---
 
 ### What “Fit” means (for assessors)
