@@ -89,6 +89,24 @@ Create **one output row per Subtask × SOC** with the exact column names below.
 - **Hybrid:** Δ(4–7)=+0.15, Δ(8–10)=+0.10  
 **Later boost:** +0.05 to Δ(4–7) if `(Modality=UDP AND Non‑routine AND JZ ≥ 4)`
 
+**Apply Industry Regulatory Modifiers
+- Load `Industry_Regulatory_Modifiers.csv`.
+- Match workflow industry (via NAICS) to its row in the modifier table.
+- Apply the following logic:
+  1. **Regulatory Brake Weighting**
+     - If “High”: Reduce 1–3 year displacement risk by one severity band (e.g., Very High → High, High → Moderate).
+     - If “Medium”: No cap, but reduce 1–3 yr risk by ~10%.
+     - If “Low”: No adjustment.
+  2. **Timeline Adjustment**
+     - If “Cap 1–3”: Ensure no SOC in that workflow exceeds “Moderate” displacement in 1–3 yrs; shift excess risk into the 4–7 yr window.
+     - If “Slow (8–10 yrs emphasis)”: Reduce 4–7 yr risk by one band; shift risk to 8–10 yrs.
+     - If “Balanced”: No shift beyond the Brake adjustment.
+  3. **Transparency Requirement Modifier**
+     - If “High”: Increase Skill Transition Burden by +1 (reflecting need for explainability/auditability).
+     - If “Medium”: No score change, but annotate role as “Explainability-dependent.”
+     - If “Low”: No adjustment.
+
+
 **Friction severity (caps step‑ups):** Choose the **heaviest** applicable gate for the subtask.  
 - **NONE:** subtract (0.00, 0.00) from (Δ4–7, Δ8–10)  
 - **MODERATE:** subtract (0.03, 0.03)  
